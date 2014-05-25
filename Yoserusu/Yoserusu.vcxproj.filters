@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0b02da88-75f2-45bc-848e-29acb55ccece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sequence">
+      <UniqueIdentifier>{be76c8d1-334b-437d-b08a-3d03f33f1ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sequence\Game">
+      <UniqueIdentifier>{4be0c29c-292f-434b-8c66-7e63f72b2b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{292661e6-9131-4bfb-97c2-9228eb2ac4b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{9477e740-4cc1-40e1-bee0-980ca332021d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua\Luabind">
+      <UniqueIdentifier>{bf59487b-2fec-4a0a-9394-1073124e641f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sequence\AutheScene.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Parent.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Title.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Loading.cpp">
+      <Filter>Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\ParentGame.cpp">
+      <Filter>Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Play.cpp">
+      <Filter>Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Game\Result.cpp">
+      <Filter>Sequence\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\DataBase.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\DepthSingleton.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\ModelLoader.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\SoundManager.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ArmLeft.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ArmRight.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\BackGround.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Ball.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\LockOn.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Score.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Timer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Wall.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Authe.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\LuaManager.cpp">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Sprite.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_info.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_registry.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_rep.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\create_class.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\error.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\function.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\inheritance.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\object_rep.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\open.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\pcall.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\scope.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
+      <Filter>Lua\Luabind</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sequence\AutheScene.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Child.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Parent.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Title.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Child.h">
+      <Filter>Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Loading.h">
+      <Filter>Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\ParentGame.h">
+      <Filter>Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Play.h">
+      <Filter>Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Game\Result.h">
+      <Filter>Sequence\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\DataBase.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\DepthSingleton.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\ModelLoader.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\SoundManager.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Arm.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ArmLeft.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ArmRight.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BackGround.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Ball.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enum.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LockOn.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Score.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Timer.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Wall.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Authe.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\LuaManager.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Sprite.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

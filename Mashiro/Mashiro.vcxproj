@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B6BBCA02-64B1-4A59-BB63-84A696534553}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Mashiro</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>K_PLUGIN;K_FBXSDK;K_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(OGG_LIB);$(DXSDK_DIR)\Include;$(KINECTSDK10_DIR)\inc;C:\Program Files\Autodesk\FBX\FBX SDK\2013.3\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4221;4006</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(KINECTSDK10_DIR)\lib\x86\;C:\Program Files\Autodesk\FBX\FBX SDK\2013.3\lib\vs2010\x86;C:\Users\Mashiro\Desktop\Mashiro\Mashiro\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;Imm32.lib;windowscodecs.lib;ws2_32.lib;dxguid.lib;dxerr.lib;d3d10.lib;d3d10_1.lib;d3dx10d.lib;d2d1.lib;dwrite.lib;dinput8.lib;Kinect10.lib;fbxsdk-2013.3-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <TreatLibWarningAsErrors>false</TreatLibWarningAsErrors>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+    <PostBuildEvent>
+      <Command>for %%1 in ($(SolutionDir)Shaders/*.fx) do fxc.exe $(SolutionDir)Shaders/%%~n1.fx /T fx_4_0  /Fo $(SolutionDir)Shaders/%%~n1.h</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(DXSDK_DIR)\Include;$(KINECTSDK10_DIR)\inc;C:\Program Files\Autodesk\FBX\FBX SDK\2013.3\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(KINECTSDK10_DIR)\lib\x86\;C:\Program Files\Autodesk\FBX\FBX SDK\2013.3\lib\vs2010\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;Imm32.lib;windowscodecs.lib;ws2_32.lib;dxguid.lib;dxerr.lib;d3d10.lib;d3dx10.lib;d3d10_1.lib;d2d1.lib;dwrite.lib;dinput8.lib;Kinect10.lib;fbxsdk-2013.3-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <TreatLibWarningAsErrors>false</TreatLibWarningAsErrors>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Array.h" />
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Array2d.h" />
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\AutoPtr.h" />
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\MemoryManager.h" />
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Pool.h" />
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\SharedPtr.h" />
+    <ClInclude Include="Base\Array.h" />
+    <ClInclude Include="Base\Impl\Array2dImpl.h" />
+    <ClInclude Include="Base\Impl\ArrayImpl.h" />
+    <ClInclude Include="Base\Impl\AutoPtrImpl.h" />
+    <ClInclude Include="Base\Impl\PoolImpl.h" />
+    <ClInclude Include="Base\Impl\ReferenceType.h" />
+    <ClInclude Include="Base\Impl\ReferenceTypeTemplate.h" />
+    <ClInclude Include="Base\Impl\SharedPtrImpl.h" />
+    <ClInclude Include="Graphics\Bitmap.h" />
+    <ClInclude Include="Graphics\Enum.h" />
+    <ClInclude Include="Graphics\IndexBuffer.h" />
+    <ClInclude Include="Graphics\GraphicsManager.h" />
+    <ClInclude Include="Graphics\Model.h" />
+    <ClInclude Include="Graphics\RenderTarget.h" />
+    <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\SpriteManager.h" />
+    <ClInclude Include="Graphics\src\BitmapImpl.h" />
+    <ClInclude Include="Graphics\src\IndexBufferImpl.h" />
+    <ClInclude Include="Graphics\src\GraphicsManagerImpl.h" />
+    <ClInclude Include="Graphics\src\Release.h" />
+    <ClInclude Include="Graphics\src\RenderTargetImpl.h" />
+    <ClInclude Include="Graphics\src\ShaderImpl.h" />
+    <ClInclude Include="Graphics\src\SpriteManagerImpl.h" />
+    <ClInclude Include="Graphics\src\StringRenderImpl.h" />
+    <ClInclude Include="Graphics\src\TextureImpl.h" />
+    <ClInclude Include="Graphics\src\VertexBufferImpl.h" />
+    <ClInclude Include="Graphics\StringRender.h" />
+    <ClInclude Include="Graphics\Texture.h" />
+    <ClInclude Include="Graphics\Vertex.h" />
+    <ClInclude Include="Graphics\VertexBuffer.h" />
+    <ClInclude Include="Input\Joystick.h" />
+    <ClInclude Include="Input\Keyboard.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Input\Mouse.h" />
+    <ClInclude Include="Input\src\InputManagerImpl.h" />
+    <ClInclude Include="Input\src\JoystickImpl.h" />
+    <ClInclude Include="Kinect\KinectEnum.h" />
+    <ClInclude Include="Kinect\KinectManager.h" />
+    <ClInclude Include="Kinect\src\KinectManagerImpl.h" />
+    <ClInclude Include="Mashiro.h" />
+    <ClInclude Include="Math\Functions.h" />
+    <ClInclude Include="Math\Matrix.h" />
+    <ClInclude Include="Math\Random.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene\AnimationModel.h" />
+    <ClInclude Include="Scene\CollisionMesh.h" />
+    <ClInclude Include="Scene\FBXFileLoader.h" />
+    <ClInclude Include="Scene\FBXSkinMeshLoader.h" />
+    <ClInclude Include="Scene\Model.h" />
+    <ClInclude Include="Scene\MRSFileLoader.h" />
+    <ClInclude Include="Scene\PMDFileLoader.h" />
+    <ClInclude Include="Scene\PrimitiveRender.h" />
+    <ClInclude Include="Scene\SINFileLoader.h" />
+    <ClInclude Include="Scene\src\AnimationModelImpl.h" />
+    <ClInclude Include="Scene\src\FBXFileLoaderImpl.h" />
+    <ClInclude Include="Scene\src\FBXSkinMeshLoaderImpl.h" />
+    <ClInclude Include="Scene\src\ModelImpl.h" />
+    <ClInclude Include="Scene\src\MRSFileLoaderImpl.h" />
+    <ClInclude Include="Scene\src\PMDFileLoaderImpl.h" />
+    <ClInclude Include="Scene\src\PrimitiveRenderImpl.h" />
+    <ClInclude Include="Scene\src\SINFileLoaderImpl.h" />
+    <ClInclude Include="Shader\hlsl\Canvas.h" />
+    <ClInclude Include="Shader\hlsl\CircleShadow.h" />
+    <ClInclude Include="Shader\hlsl\CocTrans.h" />
+    <ClInclude Include="Shader\hlsl\DefferdPost.h" />
+    <ClInclude Include="Shader\hlsl\DefferdShading.h" />
+    <ClInclude Include="Shader\hlsl\Effect.h" />
+    <ClInclude Include="Shader\hlsl\Fog.h" />
+    <ClInclude Include="Shader\hlsl\Lambert.h" />
+    <ClInclude Include="Shader\hlsl\Outline.h" />
+    <ClInclude Include="Shader\hlsl\ShadowMap.h" />
+    <ClInclude Include="Shader\hlsl\ShadowScene.h" />
+    <ClInclude Include="Shader\hlsl\SkinMesh.h" />
+    <ClInclude Include="Shader\hlsl\Toon.h" />
+    <ClInclude Include="Shader\src\ShaderBase.h" />
+    <ClInclude Include="Sound\AudioEffect.h" />
+    <ClInclude Include="Sound\EffectParameter.h" />
+    <ClInclude Include="Sound\MusicSource.h" />
+    <ClInclude Include="Sound\Player.h" />
+    <ClInclude Include="Sound\src\AudioEffectImpl.h" />
+    <ClInclude Include="Sound\src\DecoderBase.h" />
+    <ClInclude Include="Sound\src\MusicSourceImpl.h" />
+    <ClInclude Include="Sound\src\PlayerImpl.h" />
+    <ClInclude Include="Sound\src\SoundBase\SoundBase.h" />
+    <ClInclude Include="Sound\src\SoundBase\SoundBaseImpl.h" />
+    <ClInclude Include="Sound\src\SoundDataCreate.h" />
+    <ClInclude Include="Sound\src\Wave\Wave.h" />
+    <ClInclude Include="Threading\Event.h" />
+    <ClInclude Include="Threading\Mutex.h" />
+    <ClInclude Include="Threading\Semaphore.h" />
+    <ClInclude Include="Threading\src\ThreadingManagerImpl.h" />
+    <ClInclude Include="Threading\Thread.h" />
+    <ClInclude Include="Threading\ThreadingManager.h" />
+    <ClInclude Include="Window\Resource.h" />
+    <ClInclude Include="Window\Window.h" />
+    <ClInclude Include="WorkSpace\WorkSpace.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Base\src\Halt.cpp" />
+    <ClCompile Include="Base\src\MemoryManager.cpp" />
+    <ClCompile Include="Graphics\src\Bitmap.cpp" />
+    <ClCompile Include="Graphics\src\IndexBuffer.cpp" />
+    <ClCompile Include="Graphics\src\GraphicsManager.cpp" />
+    <ClCompile Include="Graphics\src\RenderTarget.cpp" />
+    <ClCompile Include="Graphics\src\Shader.cpp" />
+    <ClCompile Include="Graphics\src\SpriteManager.cpp" />
+    <ClCompile Include="Graphics\src\StringRender.cpp" />
+    <ClCompile Include="Graphics\src\Texture.cpp" />
+    <ClCompile Include="Graphics\src\VertexBuffer.cpp" />
+    <ClCompile Include="Input\src\Joystick.cpp" />
+    <ClCompile Include="Input\src\Keyboard.cpp" />
+    <ClCompile Include="Input\src\InputManager.cpp" />
+    <ClCompile Include="Input\src\Mouse.cpp" />
+    <ClCompile Include="Kinect\src\KinectManager.cpp" />
+    <ClCompile Include="Math\src\Functions.cpp" />
+    <ClCompile Include="Math\src\Matrix.cpp" />
+    <ClCompile Include="Math\src\Random.cpp" />
+    <ClCompile Include="Math\src\Vector2.cpp" />
+    <ClCompile Include="Math\src\Vector3.cpp" />
+    <ClCompile Include="Math\src\Vector4.cpp" />
+    <ClCompile Include="Scene\src\AnimationModel.cpp" />
+    <ClCompile Include="Scene\src\CollisionMesh.cpp" />
+    <ClCompile Include="Scene\src\FBXFileLoader.cpp" />
+    <ClCompile Include="Scene\src\FBXSkinMeshLoader.cpp" />
+    <ClCompile Include="Scene\src\Model.cpp" />
+    <ClCompile Include="Scene\src\MRSFileLoader.cpp" />
+    <ClCompile Include="Scene\src\PMDFileLoader.cpp" />
+    <ClCompile Include="Scene\src\PrimitiveRender.cpp" />
+    <ClCompile Include="Scene\src\SINFileLoader.cpp" />
+    <ClCompile Include="Shader\src\ShaderBase.cpp" />
+    <ClCompile Include="Sound\src\AudioEffect.cpp" />
+    <ClCompile Include="Sound\src\MusicSource.cpp" />
+    <ClCompile Include="Sound\src\Player.cpp" />
+    <ClCompile Include="Sound\src\SoundBase\SoundBase.cpp" />
+    <ClCompile Include="Sound\src\Wave\Wave.cpp" />
+    <ClCompile Include="Threading\src\Event.cpp" />
+    <ClCompile Include="Threading\src\Mutex.cpp" />
+    <ClCompile Include="Threading\src\Semaphore.cpp" />
+    <ClCompile Include="Threading\src\Thread.cpp" />
+    <ClCompile Include="Threading\src\ThreadingManager.cpp" />
+    <ClCompile Include="Window\src\Window.cpp" />
+    <ClCompile Include="WorkSpace\src\WorkSpace.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

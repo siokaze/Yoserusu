@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{1c5713cb-f54b-40f0-9edd-7d592b113ce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\include">
+      <UniqueIdentifier>{faa80374-6bf5-42d8-ab1b-d57588d64760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\src">
+      <UniqueIdentifier>{687b95ec-465d-4dcb-abee-4aa7ed38fc7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\include\Impl">
+      <UniqueIdentifier>{cffee97e-9f85-4728-a617-5ec8fba82410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{d21c529b-0a36-47e8-8fc7-d88b2c7be85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{fae86e1b-6216-4992-8831-eb3e5adc12d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\include">
+      <UniqueIdentifier>{0b3816f1-e8ff-4979-8e9e-8d716ccc8d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\src">
+      <UniqueIdentifier>{f7ab3b0b-72c2-4775-8e51-c1f2cd3d8514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{d19e4708-5a41-493c-aac6-d42677617676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\include">
+      <UniqueIdentifier>{81df1683-bd72-4b72-bdeb-cfac25fbe26e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\src">
+      <UniqueIdentifier>{f8078a54-ae8c-4a1d-9ad0-bd6758df7547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{8762ea17-9f1d-4ce3-8477-3486f8bdf680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\include">
+      <UniqueIdentifier>{abbcff36-f845-4cd1-b23c-70ad0b0f7789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\src">
+      <UniqueIdentifier>{03e0aef3-4420-40d1-8915-1fc3032a50fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorkSpace">
+      <UniqueIdentifier>{84ccbd9f-61ba-481d-91e0-98712d96d80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorkSpace\include">
+      <UniqueIdentifier>{9139d32d-c87f-44a8-860f-20e2d1c21253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorkSpace\src">
+      <UniqueIdentifier>{e6e8b4d6-e9c2-47bc-aaee-bc9fcdd16f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{853ea38c-0528-4d48-b88d-39f61bc4d1a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\include">
+      <UniqueIdentifier>{797c6566-2689-4a9e-9a10-2bca3c68a7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\src">
+      <UniqueIdentifier>{1e8a0edf-b19e-4f35-8ab5-0012f0c7b191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\src\Ogg">
+      <UniqueIdentifier>{ead9ae14-02f4-4f6d-8691-fc832f68853f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\src\Wave">
+      <UniqueIdentifier>{b879d429-67e2-467a-be28-6fdd56c5f7d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\include">
+      <UniqueIdentifier>{a40260c9-544e-4e1f-ac89-bb570ffafa16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\src">
+      <UniqueIdentifier>{ef207aec-d8c4-4a7e-9e66-50eec4f9ddcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading">
+      <UniqueIdentifier>{da859ab4-297d-42bd-ac1b-7564b2ac3979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\include">
+      <UniqueIdentifier>{c020bab2-abf7-4097-971f-f68a51560641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\src">
+      <UniqueIdentifier>{0f806a80-a8d1-45f8-81bd-829d9bea9020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\src\SoundBase">
+      <UniqueIdentifier>{c66cfedf-2cba-496a-8a1c-400ffb2b5fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kinect">
+      <UniqueIdentifier>{41b834b0-e499-44d8-a8cf-053647b11de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kinect\include">
+      <UniqueIdentifier>{fd1e468a-9c8e-4452-b0d1-9d5e143f983e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kinect\src">
+      <UniqueIdentifier>{90cf5b4f-02cb-4f76-8bf4-2bdf0c9894d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{0e227b82-e3e3-46e5-8079-1459316f48df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\include">
+      <UniqueIdentifier>{fa2f8242-8de9-4a01-b88a-235f84c98176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\src">
+      <UniqueIdentifier>{c583cdde-44d0-44e1-91ea-6e95e57da189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{8ca9b6ad-c614-4f8d-9e23-8195d3f9e967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\src">
+      <UniqueIdentifier>{c2b5aa54-c80f-48a9-8e0c-e46ce0131afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\hlsl">
+      <UniqueIdentifier>{873cb074-2d63-4501-9f2b-c85fbf67d203}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sound\src\SoundBase\SoundBaseImpl.h">
+      <Filter>Sound\src\SoundBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\Wave\Wave.h">
+      <Filter>Sound\src\Wave</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\AudioEffectImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\DecoderBase.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\MusicSourceImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\PlayerImpl.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\SoundDataCreate.h">
+      <Filter>Sound\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\AudioEffect.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\MusicSource.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Player.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Resource.h">
+      <Filter>Window\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Window.h">
+      <Filter>Window\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Functions.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Random.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Enum.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkSpace\WorkSpace.h">
+      <Filter>WorkSpace\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard.h">
+      <Filter>Input\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Mouse.h">
+      <Filter>Input\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\src\InputManagerImpl.h">
+      <Filter>Input\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Event.h">
+      <Filter>Threading\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Mutex.h">
+      <Filter>Threading\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Thread.h">
+      <Filter>Threading\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\ThreadingManager.h">
+      <Filter>Threading\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\src\ThreadingManagerImpl.h">
+      <Filter>Threading\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\src\SoundBase\SoundBase.h">
+      <Filter>Sound\src\SoundBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Semaphore.h">
+      <Filter>Threading\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Array.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Kinect\KinectManager.h">
+      <Filter>Kinect\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Kinect\src\KinectManagerImpl.h">
+      <Filter>Kinect\src</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Kinect\KinectEnum.h">
+      <Filter>Kinect\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix.h">
+      <Filter>Math\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\EffectParameter.h">
+      <Filter>Sound\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\Release.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\AnimationModel.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CollisionMesh.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\FBXFileLoader.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\FBXSkinMeshLoader.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Model.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MRSFileLoader.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\PMDFileLoader.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\PrimitiveRender.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SINFileLoader.h">
+      <Filter>Scene\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\AnimationModelImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\FBXFileLoaderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\FBXSkinMeshLoaderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\ModelImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\MRSFileLoaderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\PMDFileLoaderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\PrimitiveRenderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\src\SINFileLoaderImpl.h">
+      <Filter>Scene\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Array.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Array2d.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\AutoPtr.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\MemoryManager.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\Pool.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Mashiro_TestProject\Mashiro\Base\SharedPtr.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\Array2dImpl.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\ArrayImpl.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\AutoPtrImpl.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\PoolImpl.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\ReferenceType.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\ReferenceTypeTemplate.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Impl\SharedPtrImpl.h">
+      <Filter>Base\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\src\ShaderBase.h">
+      <Filter>Shader\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\CircleShadow.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\CocTrans.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\DefferdPost.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\DefferdShading.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Effect.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Fog.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Lambert.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Outline.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\ShadowMap.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\ShadowScene.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\SkinMesh.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Toon.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\hlsl\Canvas.h">
+      <Filter>Shader\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GraphicsManager.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\IndexBuffer.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Model.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Shader.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Texture.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Vertex.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\VertexBuffer.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\StringRender.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Bitmap.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\SpriteManager.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\GraphicsManagerImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\IndexBufferImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\TextureImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\VertexBufferImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\BitmapImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\SpriteManagerImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\StringRenderImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\RenderTarget.h">
+      <Filter>Graphics\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\RenderTargetImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\src\ShaderImpl.h">
+      <Filter>Graphics\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Mashiro.h">
+      <Filter>Base\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\src\JoystickImpl.h">
+      <Filter>Input\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Joystick.h">
+      <Filter>Input\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Base\src\Halt.cpp">
+      <Filter>Base\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\SoundBase\SoundBase.cpp">
+      <Filter>Sound\src\SoundBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\Wave\Wave.cpp">
+      <Filter>Sound\src\Wave</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\AudioEffect.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\MusicSource.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\src\Player.cpp">
+      <Filter>Sound\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\src\Window.cpp">
+      <Filter>Window\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Functions.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Random.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Vector2.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Vector3.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Vector4.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkSpace\src\WorkSpace.cpp">
+      <Filter>WorkSpace\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\src\Keyboard.cpp">
+      <Filter>Input\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\src\Mouse.cpp">
+      <Filter>Input\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\src\InputManager.cpp">
+      <Filter>Input\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\src\Event.cpp">
+      <Filter>Threading\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\src\Thread.cpp">
+      <Filter>Threading\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\src\ThreadingManager.cpp">
+      <Filter>Threading\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\src\Mutex.cpp">
+      <Filter>Threading\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\src\Semaphore.cpp">
+      <Filter>Threading\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Kinect\src\KinectManager.cpp">
+      <Filter>Kinect\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\src\Matrix.cpp">
+      <Filter>Math\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\CollisionMesh.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\FBXFileLoader.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\FBXSkinMeshLoader.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\Model.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\MRSFileLoader.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\PMDFileLoader.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\PrimitiveRender.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\SINFileLoader.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\src\AnimationModel.cpp">
+      <Filter>Scene\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\src\MemoryManager.cpp">
+      <Filter>Base\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\src\ShaderBase.cpp">
+      <Filter>Shader\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\GraphicsManager.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\IndexBuffer.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\Texture.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\VertexBuffer.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\Bitmap.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\SpriteManager.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\StringRender.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\RenderTarget.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\src\Shader.cpp">
+      <Filter>Graphics\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\src\Joystick.cpp">
+      <Filter>Input\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

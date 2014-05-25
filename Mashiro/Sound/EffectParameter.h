@@ -1,0 +1,65 @@
+#ifndef INCLUDE_EFFECT_PARAMETER_H_
+#define INCLUDE_EFFECT_PARAMETER_H_
+
+#include <float.h>
+
+namespace Mashiro {
+namespace Sound {
+
+// EQ XEQで使用されるパラメータ
+#define FXEQ_MIN_FRAMERATE 22000
+#define FXEQ_MAX_FRAMERATE 48000
+
+#define FXEQ_MIN_FREQUENCY_CENTER       20.0f
+#define FXEQ_MAX_FREQUENCY_CENTER       20000.0f
+#define FXEQ_DEFAULT_FREQUENCY_CENTER_0 100.0f   // band 0
+#define FXEQ_DEFAULT_FREQUENCY_CENTER_1 800.0f   // band 1
+#define FXEQ_DEFAULT_FREQUENCY_CENTER_2 2000.0f  // band 2
+#define FXEQ_DEFAULT_FREQUENCY_CENTER_3 10000.0f // band 3
+
+#define FXEQ_MIN_GAIN     0.126f // -18dB
+#define FXEQ_MAX_GAIN     7.94f  // +18dB
+#define FXEQ_DEFAULT_GAIN 1.0f   // 0dB change, all bands
+
+#define FXEQ_MIN_BANDWIDTH     0.1f
+#define FXEQ_MAX_BANDWIDTH     2.0f
+#define FXEQ_DEFAULT_BANDWIDTH 1.0f // all bands
+
+
+// マスタリングリミッターのパラメータ
+#define FXMASTERINGLIMITER_MIN_RELEASE     1
+#define FXMASTERINGLIMITER_MAX_RELEASE     20
+#define FXMASTERINGLIMITER_DEFAULT_RELEASE 6
+
+#define FXMASTERINGLIMITER_MIN_LOUDNESS     1
+#define FXMASTERINGLIMITER_MAX_LOUDNESS     1800
+#define FXMASTERINGLIMITER_DEFAULT_LOUDNESS 1000
+
+
+// リバーブXReverbで使用されるパラメータ
+#define FXREVERB_MIN_DIFFUSION     0.0f
+#define FXREVERB_MAX_DIFFUSION     1.0f
+#define FXREVERB_DEFAULT_DIFFUSION 0.9f
+
+#define FXREVERB_MIN_ROOMSIZE     0.0001f
+#define FXREVERB_MAX_ROOMSIZE     1.0f
+#define FXREVERB_DEFAULT_ROOMSIZE 0.6f
+
+
+// エコーXEchoで使用されるパラメータ
+#define FXECHO_MIN_WETDRYMIX     0.0f
+#define FXECHO_MAX_WETDRYMIX     1.0f
+#define FXECHO_DEFAULT_WETDRYMIX 0.5f
+
+#define FXECHO_MIN_FEEDBACK     0.0f
+#define FXECHO_MAX_FEEDBACK     1.0f
+#define FXECHO_DEFAULT_FEEDBACK 0.5f
+
+#define FXECHO_MIN_DELAY     1.0f
+#define FXECHO_MAX_DELAY     2000.0f
+#define FXECHO_DEFAULT_DELAY 500.0f
+
+}
+}
+
+#endif

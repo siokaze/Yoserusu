@@ -29,6 +29,8 @@ Authe::Authe() : mHandCheckCount( 0 ), mHandCheck( false ), mDepth( 0 ), mCount(
 	mBitmap[ 2 ] = Bitmap::create( "res/image/RedMaru.png" );
 	mBitmap[ 3 ] = Bitmap::create( "res/image/BlueMaru.png" );  
 	mBitmap[ 4 ] = Bitmap::create( "res/image/Title_Auth.png");
+
+	LuaManager::instance()->loadLua( "Lua/Authe.lua" );
 }
 
 Authe::~Authe() {
@@ -37,24 +39,10 @@ Authe::~Authe() {
 void Authe::draw()  {
 	Graphics::Manager m = Graphics::Manager::instance();
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	//”FØ”ÍˆÍ
-	sp.setTrance( 1.f );
-	sp.setBitmap( mBitmap[ 2 ] );
-	sp.setBitmapRectangle( Vector2( 600, 100 ) );
-	sp.draw();
-
-	sp.setTrance( 1.f );
-	sp.setBitmap( mBitmap[ 3 ] );
-	sp.setBitmapRectangle( Vector2( 200, 100));	
-	sp.draw();
 
 	//”FØó‘Ô
 	switch( mMoveSceneFlag ){
 		case MODE_WAIT:
-			sp.setTrance( 1.f );
-			sp.setBitmap( mBitmap[ 4 ] );
-			sp.setBitmapRectangle( Vector2(130,400) );
-			sp.draw();
 			break;
 		case MODE_NOW:
 			sp.setTrance( 1.f );
@@ -89,6 +77,8 @@ void Authe::draw()  {
 	sp.setTrance( 1.f );
 	sp.setFillEllipse( posL, Vector2( 30, 30 ) );
 	sp.draw();
+
+	LuaManager::instance()->runLua<void>( "Authe", "draw" );
 
 }
 

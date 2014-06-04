@@ -122,6 +122,7 @@
     <ClCompile Include="Sequence\Title.cpp" />
     <ClCompile Include="Util\DataBase.cpp" />
     <ClCompile Include="Util\DepthSingleton.cpp" />
+    <ClCompile Include="Util\KinectUtil.cpp" />
     <ClCompile Include="Util\ModelLoader.cpp" />
     <ClCompile Include="Util\SoundManager.cpp" />
     <ClCompile Include="Util\Sprite.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Shader\include\ShaderBase.h" />
     <ClInclude Include="Util\DataBase.h" />
     <ClInclude Include="Util\DepthSingleton.h" />
+    <ClInclude Include="Util\KinectUtil.h" />
     <ClInclude Include="Util\ModelLoader.h" />
     <ClInclude Include="Util\SoundManager.h" />
     <ClInclude Include="Util\Sprite.h" />

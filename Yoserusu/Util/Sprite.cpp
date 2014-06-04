@@ -6,7 +6,9 @@ using namespace Mashiro;
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
-SpriteUtil::SpriteUtil(  const char* fileName ){
+SpriteUtil::SpriteUtil( const char* fileName ) : 
+mColor( 1.f, 1.f, 1.f ),
+mAlpha( 1.f ){
 	mBitmap = Bitmap::create( fileName );
 }
 

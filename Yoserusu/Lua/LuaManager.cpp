@@ -4,7 +4,11 @@
 #include "LuaManager.h"
 #include "Util/Sprite.h"
 #include "Game/Enum.h"
+#include "boost/tuple/tuple.hpp"
+#include "Mashiro/Math/Vector2.h"
+#include "Mashiro/Math/Vector3.h"
 using namespace Mashiro;
+using namespace Mashiro::Math;
 
 LuaManager* LuaManager::mInstance = nullptr;
 
@@ -34,7 +38,16 @@ LuaManager::LuaManager(){
 	luabind::module( mLuaState )[
 		luabind::class_<SpriteUtil>("SpriteUtil")
 			.def(luabind::constructor<const char*>())
-			.def("draw", (void(SpriteUtil::*)(int, int))&SpriteUtil::draw)
+			.def("draw", (void(SpriteUtil::*)(int, int))&SpriteUtil::draw),
+		luabind::class_< Vector2 >( "Vector2" )
+			.def( luabind::constructor< float, float >() )
+			.def_readwrite( "x", &Vector2::x )
+			.def_readwrite( "y", &Vector2::y ),
+		luabind::class_< Vector3 >( "Vector3" )
+			.def( luabind::constructor< float, float, float >() )
+			.def_readwrite( "x", &Vector3::x )
+			.def_readwrite( "y", &Vector3::y )
+			.def_readwrite( "z", &Vector3::z )
 	];
 }
 
@@ -59,14 +72,4 @@ void LuaManager::loadLua( const char* lua ){
 		}
 	}
 	lua_settop(mLuaState,top);
-}
-
-void LuaManager::runLua( const char* className, const char* functionName ){
-	::lua_pcall( mLuaState, 0, 0, 0 );
-	::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
-	
-	assert(::luabind::type(tbl) == LUA_TTABLE);
-	assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
-
-	luabind::call_function<void>(tbl[functionName],tbl);
 }

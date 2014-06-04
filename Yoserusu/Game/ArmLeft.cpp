@@ -5,8 +5,9 @@
 #include "Mashiro/Math/Vector4.h"
 #include "Mashiro/Scene/PMDFileLoader.h"
 #include "Mashiro/Kinect/KinectManager.h"
-
 #include "Util/ModelLoader.h"
+
+#include "Util/KinectUtil.h"
 
 #include "Shader/include/CocTrans.h"
 using namespace Mashiro::Scene;
@@ -21,6 +22,7 @@ ArmLeft::~ArmLeft(){
 }
 
 void ArmLeft::Update(float depth,int number){
+
 	Kinect::Manager kinect = Kinect::Manager::instance();
 	Vector2 pos1(kinect.skeletonPos(Kinect::SKELETON_INDEX_HAND_LEFT));
 	Vector2 pos2(kinect.skeletonPos(Kinect::SKELETON_INDEX_ELBOW_LEFT));
@@ -116,12 +118,15 @@ void ArmLeft::Draw()
 
 	Vector4 light = coc->instance()->worldLight( sworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	shoulder.model.draw(sworld);
 	light = coc->instance()->worldLight( hworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	wrist.model.draw(hworld);
 	light = coc->instance()->worldLight( eworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	elbow.model.draw(eworld);
 
 }

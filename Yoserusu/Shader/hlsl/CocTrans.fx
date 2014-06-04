@@ -37,6 +37,14 @@ SamplerState texSamp_1 : register( s1 )
 	AddressV = Wrap;
 };
 
+TextureCube envMap : register( t2 ); //キューブマップ
+SamplerState texSamp_2 : register( s2 )
+{
+	Filter = MIN_MAG_MIP_LINEAR;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
+
 struct VS_INPUT{
 	float4 pos : POSITION;
 	float3 nor : NORMAL;
@@ -50,10 +58,16 @@ struct VS_OUTPUT {
 	float2 tex : TEXCOORD0;
 	float3 N : TEXCOORD1;
 	float3 X : TEXCOORD2;
+	float3 eye : TEXCOORD3;
+	float3 vpos : TEXCOORD4;
 };
 
 VS_OUTPUT vs_coc( VS_INPUT In ){
 	VS_OUTPUT Out;
+
+	float4 world_pos, view_pos;
+	world_pos = mul( In.pos, mWorld );
+	view_pos = mul( In.pos, mView );
 
 	//座標変換
 	Out.pos = mul( In.pos, mWorld );
@@ -71,6 +85,11 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 
 	Out.N = n.xyz;
 	Out.X = In.pos.xyz;
+
+	Out.vpos = view_pos.xyz;
+
+	Out.eye = world_pos.xyz - mEye.xyz;
+	Out.eye = normalize( Out.eye );
 
 	return Out;
 }
@@ -112,7 +131,9 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 		color = In.col * tex_0.Sample( texSamp_0, In.tex );
 	}
 	if( mDrawType == ARM ){//通常描画
-		color = In.col * tex_0.Sample( texSamp_0, In.tex );
+		float3 reflect_vec = reflect( In.eye, In.N );
+		color = In.col * envMap.Sample( texSamp_0, reflect_vec );
+		color = saturate( 1.0f * color + 0.2 );
 	}
 	if( mDrawType == BALL ){ //tex2枚で描画
 #if _DEBUG

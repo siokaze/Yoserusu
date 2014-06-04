@@ -10,6 +10,8 @@
 #include "Util/SoundManager.h"
 #include "Util/ModelLoader.h"
 
+#include "Shader/include/CocTrans.h"
+
 namespace Sequence{
 namespace Game{
 
@@ -46,6 +48,14 @@ void Result::update( ParentGame* parent ){
 	sp.setBitmap( mBackGround );
 	sp.setBitmapRectangle(Vector2(0,0));
 	sp.draw();
+
+	CocTrans* coc = CocTrans::instance();
+	CocTrans::ConstantBuffer* cb = NULL;
+	if( coc->lock( (void**)&cb ) ){
+		cb->mDrawType = CocTrans::TYPE_BALL;
+		coc->unLock();
+	}
+	Graphics::Manager().setShader( CocTrans::instance()->shader() );
 	
 	//É{Å[Éã
 	ball.setPosition(Vector3( ballPos ));

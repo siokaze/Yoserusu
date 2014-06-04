@@ -3,7 +3,6 @@
 
 #include "Mashiro/Graphics/Enum.h"
 #include "Mashiro/Graphics/Shader.h"
-#include "Shader/include/ShaderBase.h"
 
 #include "Mashiro/Math/Vector4.h"
 #include "Mashiro/Math/Matrix.h"
@@ -13,7 +12,7 @@ using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
 //CocTransシェーダ
-class CocTrans : public ShaderBase< CocTrans > {
+class CocTrans {
 public:
 	enum Type {
 		TYPE_BALL,
@@ -25,11 +24,9 @@ public:
 		Vector3 mDummy;
 	};
 public:
-	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
-		create();
-	}
-
-	~CocTrans(){
+	static CocTrans* instance(){
+		static CocTrans mInstance;
+		return &mInstance;
 	}
 
 	//シェーダ生成
@@ -57,8 +54,32 @@ public:
 		return v;
 	}
 
+	bool lock( void** cb ){
+		if( mShader.lock( cb ) ){
+			return true;
+		}
+		return false;
+	}
+
+	void unLock(){
+		mShader.unlock();
+	}
+	 
+	Mashiro::Graphics::Shader shader(){
+		return mShader;
+	}
+
 	Mashiro::Math::Vector4 mLight;
 
+	Mashiro::Graphics::Shader mShader;
+
+private:
+	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
+		create();
+	}
+
+	~CocTrans(){
+	}
 };
 
 

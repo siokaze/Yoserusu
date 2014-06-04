@@ -2,6 +2,7 @@
 #define INCLUDE_SPLITE_H_
 
 #include "Mashiro/Graphics/Bitmap.h"
+#include "Mashiro/Math/Vector3.h"
 
 /*
 * @file Splite.h
@@ -28,8 +29,18 @@ public:
 	* @brif 2Dï`âÊ
 	*/
 	void draw( const Mashiro::Graphics::Bitmap& bitmap );
+	/*
+	* @brif ÉJÉâÅ[ê›íË(default=white)
+	*/
+	void setColor( float r, float g, float b );
+	/*
+	* @brif ìßâﬂó¶
+	*/
+	void setTransparency( float t );
 private:
 	Mashiro::Graphics::Bitmap mBitmap;
+	Mashiro::Math::Vector3 mColor;
+	float mAlpha;
 };
 
 #endif

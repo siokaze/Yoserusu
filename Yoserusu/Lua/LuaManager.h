@@ -2,6 +2,7 @@
 #define INCLUDE_LUA_MANAGER_H_
 
 #include "lua.hpp"
+#include "luabind/luabind.hpp"
 
 class LuaManager{
 public:
@@ -26,12 +27,24 @@ public:
 	* @brif lua内関数実行
 	* @param const char* className - クラスの名前
 	* @param const char* functionName - 関数名
+	* @tparam typename RetVal - 呼び出す関数の戻り値
 	*/
-	void runLua( const char* className, const char* functionName );
-	/*
-	* @brif lua内関数を実行したあとに値を取り出す
-	*/
-	template< typename Type > Type getLuaRetrun( int numArgs = 1 );
+	template< typename RetVal > RetVal runLua( const char* className, const char* functionName ){
+		::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
+
+		assert(::luabind::type(tbl) == LUA_TTABLE);
+		assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
+
+		return luabind::call_function<RetVal>(tbl[functionName],tbl);
+	}
+	template<> void runLua( const char* className, const char* functionName ){
+		::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
+
+		assert(::luabind::type(tbl) == LUA_TTABLE);
+		assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
+
+		luabind::call_function<void>(tbl[functionName],tbl);
+	}
 private:
 	LuaManager();
 	~LuaManager();

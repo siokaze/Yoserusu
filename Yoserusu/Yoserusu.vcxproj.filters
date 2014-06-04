@@ -122,6 +122,9 @@
     <ClCompile Include="Sequence\Game\Result.cpp">
       <Filter>Sequence\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Util\KinectUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -239,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="Shader\include\CocTrans.h">
       <Filter>Shader\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\KinectUtil.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

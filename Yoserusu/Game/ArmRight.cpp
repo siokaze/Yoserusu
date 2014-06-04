@@ -115,12 +115,15 @@ void ArmRight::Draw()
 
 	Vector4 light = coc->instance()->worldLight( sworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	shoulder.model.draw(sworld);
 	light = coc->instance()->worldLight( sworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	wrist.model.draw(hworld);
 	light = coc->instance()->worldLight( sworld );	
 	Graphics::Manager().setLight( light );
+	m.setTexture( mCubeTex, 2 );
 	elbow.model.draw(eworld);
 
 

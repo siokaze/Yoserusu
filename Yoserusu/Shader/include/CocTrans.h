@@ -21,6 +21,7 @@ public:
 	};
 	struct ConstantBuffer{
 		int mDrawType;
+		Matrix mWorldInv;
 		Vector3 mDummy;
 	};
 public:
@@ -33,16 +34,18 @@ public:
 	void create(){
 		ElementDesc desc[] = {
 			{ "POSITION", FORMAT_R32G32B32_FLOAT, 0 },
-			{ "NORMAL", FORMAT_R32G32B32_FLOAT, 12 },
-			{ "COLOR", FORMAT_R32G32B32A32_FLOAT, 24 },
-			{ "TEXCOORD", FORMAT_R32G32_FLOAT, 40 },
+			{ "NORMAL", FORMAT_R32G32B32_FLOAT, 16 },
+			{ "COLOR", FORMAT_R32G32B32A32_FLOAT, 28 },
+			{ "TEXCOORD", FORMAT_R32G32_FLOAT, 44 },
+			{ "BINORMAL", FORMAT_R32G32B32_FLOAT, 52 },
+			{ "TANGENT", FORMAT_R32G32B32_FLOAT, 64 },
 		};
 		ShaderFile file;
 		file.mFileName = "Shader/hlsl/CocTrans.fx";
 		file.mVSFunc = "vs_coc";
 		file.mPSFunc = "ps_coc";
 		//シェーダ生成
-		mShader = Shader::create(file, desc, 4, sizeof( ConstantBuffer ) );	
+		mShader = Shader::create(file, desc, 6, sizeof( ConstantBuffer ) );	
 	}
 
 	Mashiro::Math::Vector4 worldLight( const Matrix& world ){

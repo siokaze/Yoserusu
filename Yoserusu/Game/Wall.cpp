@@ -83,19 +83,22 @@ void Wall::Draw( bool timer )
 	Graphics::Sprite sp = Graphics::Sprite::instance();
 
 	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_WALL;
-		coc->unLock();
-	}
-	cb = nullptr;
-	Graphics::Manager().setShader( CocTrans::instance()->shader() );
-
 	for(int i = 0; i < 4; i++)
 	{
 		mModel[i].setPosition(mPos[i]);
 		mModel[ i ].setTexture( mTextureCol[ rand ].first );
 		mModel[ i ].setColor( mTextureCol[ rand ].second );
+
+		CocTrans::ConstantBuffer* cb = NULL;
+		if( coc->lock( (void**)&cb ) ){
+			cb->mDrawType = CocTrans::TYPE_WALL;
+			Matrix worldInv ;
+			worldInv.setInverse(mModel[ i ].worldMatrix());
+			cb->mWorldInv = worldInv;
+			coc->unLock();
+		}
+		cb = nullptr;
+		Graphics::Manager().setShader( CocTrans::instance()->shader() );
 
 		Vector4 light = coc->instance()->worldLight( mModel[ i ].worldMatrix() );	
 		Graphics::Manager().setLight( light );

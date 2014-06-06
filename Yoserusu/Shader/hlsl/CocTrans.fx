@@ -2,7 +2,7 @@
 #define ARM 1
 #define WALL 2
 
-#define _DEBUG 1
+#define DEBUG 0
 
 cbuffer ConstantBasic : register(b0)
 {
@@ -18,6 +18,7 @@ cbuffer ConstantBasic : register(b0)
 cbuffer ConstantBasic : register(b1)
 {
 	int mDrawType;
+	float4x4 mWorldInv;
 	float3 mDummy;
 };
 
@@ -50,6 +51,8 @@ struct VS_INPUT{
 	float3 nor : NORMAL;
 	float4 col : COLOR;
 	float2 tex : TEXCOORD;
+	float3 bin : BINORMAL;
+	float3 tan : TANGENT;
 };
 
 struct VS_OUTPUT {
@@ -60,6 +63,7 @@ struct VS_OUTPUT {
 	float3 X : TEXCOORD2;
 	float3 eye : TEXCOORD3;
 	float3 vpos : TEXCOORD4;
+	float3 light : TEXCOORD5;
 };
 
 VS_OUTPUT vs_coc( VS_INPUT In ){
@@ -81,15 +85,29 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 
 	Out.tex = In.tex;
 
-	float3 n = mul( In.nor, (float3x3)mWorld  );
+	float3 nor = mul( In.nor, (float3x3)mWorld  );
 
-	Out.N = n.xyz;
+
+	Out.N = nor.xyz;
 	Out.X = In.pos.xyz;
 
 	Out.vpos = view_pos.xyz;
 
+	float4 t = normalize( mul( float4( In.tan.xyz,1.0f ), ( mWorldInv ) ) ); 
+	float4 b = normalize( mul( float4( In.bin.xyz,1.0f ), ( mWorldInv ) ) ); 
+	float4 n = normalize( mul( float4( In.nor.xyz,1.0f ), ( mWorldInv ) ) );
+
+	float3 light = world_pos.xyz - mLight.xyz;
+	Out.light.x = dot(light, t.xyz); 
+	Out.light.y = dot(light, b.xyz); 
+	Out.light.z = dot(light, n.xyz); 
+	Out.light = normalize(Out.light);
+
 	Out.eye = world_pos.xyz - mEye.xyz;
 	Out.eye = normalize( Out.eye );
+
+
+
 
 	return Out;
 }
@@ -136,12 +154,10 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 		color = saturate( 1.0f * color + 0.2 );
 	}
 	if( mDrawType == BALL ){ //tex2枚で描画
-#if _DEBUG
 		float4 texCol_0, texCol_1;
 		texCol_0 = tex_0.Sample( texSamp_0, In.tex );
 		texCol_1 = tex_1.Sample( texSamp_1, In.tex );
 		color = In.col * texCol_0 * texCol_1;
-#endif
 	}
 
 	color = color + ks*max( 0, F * D * G / NV ) / 2;

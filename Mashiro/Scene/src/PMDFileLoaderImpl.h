@@ -154,11 +154,26 @@ public:
 		mVertexBuffer = VertexBuffer::create( vert_count, sizeof( Vertex ) );
 		Vertex* v = NULL; 
 		if( mVertexBuffer.lock( (void**)&v ) ){
-			for( unsigned long i = 0; i < vert_count; ++i ){
+			for( unsigned long i = 0, count = 0; i < vert_count; ++i, ++count ){
 				v[ i ].mPosition.set( vertex[ i ].pos[ 0 ], vertex[ i ].pos[ 1 ], vertex[ i ].pos[ 2 ] );
 				v[ i ].mNormal.set( vertex[ i ].normal_vec[ 0 ], vertex[ i ].normal_vec[ 1 ], vertex[ i ].normal_vec[ 2 ] );
 				v[ i ].mUV.set( vertex[ i ].uv[ 0 ], vertex[ i ].uv[ 1 ] );
 				v[ i ].mColor.set( 1.f, 1.f, 1.f, 1.f );
+				if( count == 3 ){
+					count = 0;
+					Vector3 bin, tan;
+					CalcTangentAndBinormal(
+						&v[ i - 2 ].mPosition, &v[ i - 2 ].mUV,
+						&v[ i - 1 ].mPosition, &v[ i - 1 ].mUV,
+						&v[ i ].mPosition, &v[ i ].mUV,
+						&bin, &tan );
+					v[ i - 2 ].mBinormal = bin;
+					v[ i - 2 ].mTangent = tan;
+					v[ i - 1 ].mBinormal = bin;
+					v[ i - 1 ].mTangent = tan;
+					v[ i ].mBinormal = bin;
+					v[ i ].mTangent = tan;
+				}
 			}
 			mVertexBuffer.unlock();
 		}
@@ -248,6 +263,60 @@ public:
 					mMaterial[ i ].mTexture = Graphics::Texture::create( str.c_str() );
 				}
 			}
+		}
+	}
+	void CalcTangentAndBinormal(
+	Vector4* p0, Vector2* uv0,
+	Vector4* p1, Vector2* uv1,
+	Vector4* p2, Vector2* uv2,
+	Vector3* outTangent, Vector3* outBinormal ) {
+		// 5次元→3次元頂点に
+		Vector3 CP0[ 3 ] = {
+			Vector3( p0->x, uv0->x, uv0->y ),
+			Vector3( p0->y, uv0->x, uv0->y ),
+			Vector3( p0->z, uv0->x, uv0->y ),
+		};
+		Vector3 CP1[ 3 ] = {
+			Vector3( p1->x, uv1->x, uv1->y ),
+			Vector3( p1->y, uv1->x, uv1->y ),
+			Vector3( p1->z, uv1->x, uv1->y ),
+		};
+		Vector3 CP2[ 3 ] = {
+			Vector3( p2->x, uv2->x, uv2->y ),
+			Vector3( p2->y, uv2->x, uv2->y ),
+			Vector3( p2->z, uv2->x, uv2->y ),
+		};
+
+		// 平面パラメータからUV軸座標算出
+		float U[ 3 ], V[ 3 ];
+		for ( int i = 0; i < 3; ++i ) {
+			Vector3 V1, V2;
+			V1.setSub( CP1[ i ], CP0[ i ] );
+			V2.setSub( CP2[ i ], CP1[ i ] );
+			Vector3 ABC;
+			ABC.setCross( V1, V2 );
+
+			if ( ABC.x == 0.0f ) {
+				// やばいす！
+				// ポリゴンかUV上のポリゴンが縮退してます！
+				//_ASSERT( 0 );
+				memset( outTangent,  0, sizeof( Vector3 ) );
+				memset( outBinormal, 0, sizeof( Vector3 ) );
+				return;
+			}
+			U[ i ] = - ABC.y / ABC.x;
+			V[ i ] = - ABC.z / ABC.x;
+		}
+
+		memcpy( outTangent,  U, sizeof( float ) * 3 );
+		memcpy( outBinormal, V, sizeof( float ) * 3 );
+
+		// 正規化します
+		if( outTangent->x != 0.0 && outTangent->y != 0.0 && outTangent->z != 0.0 ){
+			outTangent->normalize();
+		}
+		if( outBinormal->x != 0.0 && outBinormal->y != 0.0 && outBinormal->z != 0.0 ){
+			outBinormal->normalize();
 		}
 	}
 };

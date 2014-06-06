@@ -23,10 +23,12 @@ public:
 
 class Vertex {
 public:
-	Mashiro::Math::Vector3 mPosition; //位置
+	Mashiro::Math::Vector4 mPosition; //位置
 	Mashiro::Math::Vector3 mNormal; //法線
 	Mashiro::Math::Vector4 mColor; //頂点色
 	Mashiro::Math::Vector2 mUV; //UV
+	Mashiro::Math::Vector3 mBinormal;
+	Mashiro::Math::Vector3 mTangent;
 };
 
 struct BasicConstantBuffer{

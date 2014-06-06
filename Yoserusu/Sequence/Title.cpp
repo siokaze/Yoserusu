@@ -17,8 +17,6 @@
 
 #include "Util/DataBase.h"
 
-#include "Shader/include/CocTrans.h"
-
 using namespace Mashiro::Math;
 using namespace Mashiro::Graphics;
 
@@ -35,17 +33,18 @@ Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCoun
 	//mTitle.setScale(Vector3(0.5f));
 	//mTitle.setAngle(Vector3(0,0,0));
 
-	mBallPos =Vector3(0,10,0);
+	mBallPos =Vector3(0,10,10);
 	mTitlePos=Vector3(0,4,-50);
 
 	mTitleBitmap = Mashiro::Graphics::Bitmap::create( "res/image/titile.png" );
+	mStart = Mashiro::Graphics::Bitmap::create("res/image/start4.png");
 
-	mHr = NEW ArmRight();
-	mHl = NEW ArmLeft();
+	mHr = new ArmRight();
+	mHl = new ArmLeft();
 	Color = 0;
 	isTitle = false;
 	mKeep = false;
-	mBack = NEW BackGround();
+	mBack = new BackGround();
 	isEnd = false;
 }
 
@@ -71,17 +70,9 @@ void Title::titledraw(){
 	mBack->draw();
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	sp.setBitmap( mTitleBitmap );
-	sp.setBitmapRectangle(Vector2( 90, 80 ) );
+	sp.setBitmapRectangle(Vector2( 90, -10 ) );
 	sp.draw();
 
-	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_BALL;
-		coc->unLock();
-	}
-	Graphics::Manager().setShader( CocTrans::instance()->shader() );
-		
 	//3D表示
 	//ボール
 	mBall.setPosition(mBallPos);
@@ -96,6 +87,13 @@ void Title::titledraw(){
 		//mTitle.setTexture( mTitleTex );
 		//mTitle.draw();
 	}
+
+	Mashiro::Graphics::Sprite startsp = Mashiro::Graphics::Sprite::instance();
+
+	startsp.setBitmap(mStart);
+	startsp.setBitmapRectangle(Vector2(280,550));
+	startsp.draw();
+
 }
 
 void Title::titleUpdate( Parent* parent ){
@@ -113,9 +111,9 @@ void Title::titleUpdate( Parent* parent ){
 		
 	}
 	//ボールを上から落とす
-	if(mBallPos.y>= -3)
+	if(mBallPos.y>= -8)
 	{
-		mBallPos=Vector3(0,mBallPos.y-mPosY,0);
+		mBallPos=Vector3(0,mBallPos.y-mPosY,mBallPos.z);
 		mBall.setPosition(Vector3( mBallPos ));
 	}
 	//落ちきったのならタイトルを出す準備をする

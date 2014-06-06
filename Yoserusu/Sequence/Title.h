@@ -35,6 +35,7 @@ private:
 	Model mBall;
 	Model mTitle;
 	Texture mTitleTex;
+	Mashiro::Graphics::Bitmap mStart;
 
 	Vector3 mBallPos;
 	Vector3 mTitlePos;

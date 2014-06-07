@@ -158,6 +158,7 @@
     <ClInclude Include="Util\ModelLoader.h" />
     <ClInclude Include="Util\SoundManager.h" />
     <ClInclude Include="Util\Sprite.h" />
+    <ClInclude Include="Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lua\Authe.lua" />

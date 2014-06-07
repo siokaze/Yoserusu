@@ -246,6 +246,9 @@
     <ClInclude Include="Util\KinectUtil.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Util\Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Lua\Authe.lua">

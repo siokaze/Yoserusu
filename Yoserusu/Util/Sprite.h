@@ -26,6 +26,14 @@ public:
 	*/
 	void draw( int x, int y );
 	/*
+	* @brif 2D•`‰æ(‰~)
+	* @param int x - xÀ•W
+	* @param int y - yÀ•W
+	* @param int radiusX - ”¼Œa‘å‚«‚³X
+	* @param int radiusY - ”¼Œa‘å‚«‚³Y
+	*/
+	void drawEllipse( int x, int y, int radiusX, int radiusY );
+	/*
 	* @brif 2D•`‰æ
 	*/
 	void draw( const Mashiro::Graphics::Bitmap& bitmap );

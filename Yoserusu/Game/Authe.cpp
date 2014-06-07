@@ -40,45 +40,12 @@ void Authe::draw()  {
 	Graphics::Manager m = Graphics::Manager::instance();
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 
-	//”FØó‘Ô
-	switch( mMoveSceneFlag ){
-		case MODE_WAIT:
-			break;
-		case MODE_NOW:
-			sp.setTrance( 1.f );
-			sp.setBitmap( mBitmap[ 4 ] );
-			sp.setBitmapRectangle( Vector2(130,400) );
-			sp.draw();
-			if(check){
-				sp.setTrance( 1.f );
-				sp.setBitmap( mBitmap[ 0 ] );
-				sp.setBitmapRectangle( Vector2( 200 , 530 ));	
-				sp.draw();
-			}
-			break;
-		case MODE_END:
-			sp.setTrance( 1.f );
-			sp.setBitmap( mBitmap[ 1 ] );
-			sp.setBitmapRectangle( Vector2( 130 , 530 ));
-			sp.draw();
-			break;
-
-	}
 	Vector2 posR = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_RIGHT );
 	Vector2 posL = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_LEFT );
 
-	//Žè
-	sp.setColor( Vector3( 1, 0, 0 ) );
-	sp.setTrance( 1.f );
-	sp.setFillEllipse( posR, Vector2( 30, 30 ) );
-	sp.draw();
+	LuaManager::instance()->runLua< int >( "Authe", "handDraw", boost::make_tuple( posR.x, posR.y, posL.x, posL.y ) );
 
-	sp.setColor( Vector3( 0, 0, 1 ) );
-	sp.setTrance( 1.f );
-	sp.setFillEllipse( posL, Vector2( 30, 30 ) );
-	sp.draw();
-
-	LuaManager::instance()->runLua<void>( "Authe", "draw" );
+	LuaManager::instance()->runLua< int >( "Authe", "draw", boost::make_tuple( (int)mMoveSceneFlag, check, 0, 0 ) );
 
 }
 

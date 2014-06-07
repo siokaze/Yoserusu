@@ -4,6 +4,8 @@
 #include "lua.hpp"
 #include "luabind/luabind.hpp"
 
+#include "Util/Util.h"
+
 class LuaManager{
 public:
 	/*
@@ -27,6 +29,21 @@ public:
 	* @brif lua内関数実行
 	* @param const char* className - クラスの名前
 	* @param const char* functionName - 関数名
+	* @tparam typename tuple_t - boost/tuple luaの引数格納
+	* @tparam typename RetVal - 呼び出す関数の戻り値
+	*/
+	template< typename RetVal, typename tuple_t > RetVal runLua( const char* className, const char* functionName, tuple_t tuple ){
+		::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
+
+		assert(::luabind::type(tbl) == LUA_TTABLE);
+		assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
+
+		return luabind::call_function<RetVal>(tbl[functionName], tbl, tuple.get<0>(), tuple.get<1>(), tuple.get< 2 >(), tuple.get< 3 >() );
+	}
+	/*
+	* @brif lua内関数実行(引数なし)
+	* @param const char* className - クラスの名前
+	* @param const char* functionName - 関数名
 	* @tparam typename RetVal - 呼び出す関数の戻り値
 	*/
 	template< typename RetVal > RetVal runLua( const char* className, const char* functionName ){
@@ -36,14 +53,6 @@ public:
 		assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
 
 		return luabind::call_function<RetVal>(tbl[functionName],tbl);
-	}
-	template<> void runLua( const char* className, const char* functionName ){
-		::luabind::object const tbl = ::luabind::call_function<::luabind::object>( mLuaState, className );
-
-		assert(::luabind::type(tbl) == LUA_TTABLE);
-		assert(::luabind::type(tbl[functionName]) == LUA_TFUNCTION);
-
-		luabind::call_function<void>(tbl[functionName],tbl);
 	}
 private:
 	LuaManager();

@@ -157,7 +157,6 @@ void Ball::Draw(Mashiro::Graphics::Texture tex10, Mashiro::Graphics::Texture tex
 	
 	Vector4 light = coc->instance()->worldLight( mBall.worldMatrix() );	
 	Graphics::Manager().setLight( light );
-	mBall.setColor( Vector3( 0.5, 0.5, 0.5 ) );
 	mBall.draw();	
 }
 

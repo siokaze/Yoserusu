@@ -1,7 +1,11 @@
+
 require( "Lua/Enum"  );
 
 function Authe()
     local this = {}
+
+    this.mLeftHand = SpriteUtil();
+    this.mRightHand = SpriteUtil();
 
     this.mAuth = SpriteUtil( "res/image/Auth.png" );
     this.mOK = SpriteUtil( "res/image/Ok.png" );
@@ -9,9 +13,8 @@ function Authe()
     this.mBlueMaru = SpriteUtil( "res/image/BlueMaru.png" );  
     this.mTitle_Auth = SpriteUtil( "res/image/Title_Auth.png");
     this.mHandCheckCount = 0;
-    this.mMode = 0; --EnumMode
     
-    this.draw = function( self )
+    this.draw = function( self, mMoveSceneFlag, check )
         local switch = {}
 
         --”FØ”ÍˆÍ‰æ‘œ
@@ -23,33 +26,30 @@ function Authe()
             self.mTitle_Auth:draw( 130, 400 );
         end
         switch[ Mode.MODE_NOW ] = function ()
-           -- self.mTitle_Auth:draw( 130, 400 );
-
-                self.mOK:draw( 130, 530 );
+           self.mTitle_Auth:draw( 130, 400 );
+           if ( check ) then
+                self.mAuth:draw( 200, 530 );
+            end
         end
         switch[ Mode.MODE_END ] = function ()
             self.mOK:draw( 130, 530 );
         end
 
-        switch[ this.mMode ]();
+        switch[ mMoveSceneFlag ]();
+
+        return 0;
         
     end
 
-    this.handRang = function( self, checkPos, kinectPos )
-        if ( mHandCheckCount > 0 ) then 
-            mHandCheckCount = mHandCheckCount - 1;
-            lb = checkPos.x - 200;
-            rb = checkPos.x + 200;
-            if ( ( kinectPos.x < rb ) and ( kinectPos.x > lb ) ) then
-                tb = checkPos.y - 200;
-                bb = checkPos.y + 200;
-                if ( ( kinectPos.y < bb ) and ( kinectPos.y > tb ) ) then
-                    mHandCheckCount = mHandCheckCount + 2;
-                    return true;
-                end
-            end
-        end 
-    return false;
+    this.handDraw = function( self, rX, rY, lX, lY )
+        --Žè‚Ì•`‰æ
+        self.mLeftHand:setColor( 0.0, 0.0, 1.0 );
+        self.mLeftHand:drawEllipse( lX, lY, 30, 30 );
+
+        self.mRightHand:setColor( 1.0, 0.0, 0.0 );
+        self.mRightHand:drawEllipse( rX, rY, 30, 30 );
+
+        return 0;
     end
 
     return this;

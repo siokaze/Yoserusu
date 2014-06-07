@@ -38,6 +38,10 @@ LuaManager::LuaManager(){
 	luabind::module( mLuaState )[
 		luabind::class_<SpriteUtil>("SpriteUtil")
 			.def(luabind::constructor<const char*>())
+			.def(luabind::constructor<>())
+			.def("setColor", (void(SpriteUtil::*)(float, float, float))&SpriteUtil::setColor)
+			.def("setTransparency", (void(SpriteUtil::*)(float))&SpriteUtil::setTransparency)
+			.def("drawEllipse", (void(SpriteUtil::*)(int, int, int, int))&SpriteUtil::drawEllipse)
 			.def("draw", (void(SpriteUtil::*)(int, int))&SpriteUtil::draw),
 		luabind::class_< Vector2 >( "Vector2" )
 			.def( luabind::constructor< float, float >() )

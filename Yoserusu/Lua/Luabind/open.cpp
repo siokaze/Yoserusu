@@ -28,6 +28,8 @@
 #include <luabind/function.hpp>
 #include <luabind/get_main_thread.hpp>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind {
 
 namespace

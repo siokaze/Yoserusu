@@ -17,9 +17,8 @@ cbuffer ConstantBasic : register(b0)
 };
 cbuffer ConstantBasic : register(b1)
 {
-	int mDrawType;
+	float4 mDrawType;
 	float4x4 mWorldInv;
-	float3 mDummy;
 };
 
 Texture2D tex_0 : register( t0 );
@@ -145,15 +144,15 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 	In.col = In.col * 1.5f; 
 
 	float4 color = float4( 0, 0, 0, 1 );
-	if( mDrawType == WALL){ //BumpMapを使います
+	if( (int)mDrawType.x == WALL){ //BumpMapを使います
 		color = In.col * tex_0.Sample( texSamp_0, In.tex );
 	}
-	if( mDrawType == ARM ){//通常描画
+	if( (int)mDrawType.x == ARM ){//通常描画
 		float3 reflect_vec = reflect( In.eye, In.N );
 		color = In.col * envMap.Sample( texSamp_0, reflect_vec );
 		color = saturate( 1.0f * color + 0.2 );
 	}
-	if( mDrawType == BALL ){ //tex2枚で描画
+	if( (int)mDrawType.x == BALL ){ //tex2枚で描画
 		float4 texCol_0, texCol_1;
 		texCol_0 = tex_0.Sample( texSamp_0, In.tex );
 		texCol_1 = tex_1.Sample( texSamp_1, In.tex );

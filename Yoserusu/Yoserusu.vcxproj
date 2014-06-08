@@ -86,7 +86,6 @@
   <ItemGroup>
     <ClCompile Include="Game\ArmLeft.cpp" />
     <ClCompile Include="Game\ArmRight.cpp" />
-    <ClCompile Include="Game\BackGround.cpp" />
     <ClCompile Include="Game\Ball.cpp" />
     <ClCompile Include="Game\LockOn.cpp" />
     <ClCompile Include="Game\Score.cpp" />
@@ -122,12 +121,10 @@
     <ClCompile Include="Sequence\Title.cpp" />
     <ClCompile Include="Util\DataBase.cpp" />
     <ClCompile Include="Util\DepthSingleton.cpp" />
-    <ClCompile Include="Util\KinectUtil.cpp" />
     <ClCompile Include="Util\ModelLoader.cpp" />
     <ClCompile Include="Util\ModelObj.cpp" />
     <ClCompile Include="Util\SoundManager.cpp" />
     <ClCompile Include="Util\Sprite.cpp" />
-    <ClCompile Include="Util\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lua\Authe.lua" />
@@ -139,7 +136,6 @@
     <ClInclude Include="Game\Arm.h" />
     <ClInclude Include="Game\ArmLeft.h" />
     <ClInclude Include="Game\ArmRight.h" />
-    <ClInclude Include="Game\BackGround.h" />
     <ClInclude Include="Game\Ball.h" />
     <ClInclude Include="Game\Enum.h" />
     <ClInclude Include="Game\LockOn.h" />
@@ -161,11 +157,11 @@
     <ClInclude Include="Shader\include\CocTrans.h" />
     <ClInclude Include="Util\DataBase.h" />
     <ClInclude Include="Util\DepthSingleton.h" />
-    <ClInclude Include="Util\KinectUtil.h" />
     <ClInclude Include="Util\ModelLoader.h" />
     <ClInclude Include="Util\ModelObj.h" />
     <ClInclude Include="Util\SoundManager.h" />
     <ClInclude Include="Util\Sprite.h" />
+    <ClInclude Include="Util\TextureObj.h" />
     <ClInclude Include="Util\Transform.h" />
     <ClInclude Include="Util\Util.h" />
   </ItemGroup>

@@ -20,6 +20,14 @@ public:
 	*/
 	~SpriteUtil();
 	/*
+	* @brif 2D描画(四角形)
+	* @param int x - x座標
+	* @param int y - y座標
+	* @param int w - 幅
+	* @param int h - 高さ
+	*/
+	void drawRectangle( int x, int y, int w, int h );
+	/*
 	* @brif 2D描画
 	* @param int x - x座標
 	* @param int y - y座標

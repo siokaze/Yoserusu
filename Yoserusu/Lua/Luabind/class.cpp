@@ -33,6 +33,8 @@
 #include <cstring>
 #include <iostream>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind
 {
    LUABIND_API detail::nil_type nil;
@@ -236,7 +238,7 @@ namespace luabind { namespace detail {
 
     class_base::class_base(char const* name)
         : scope(std::auto_ptr<registration>(
-                m_registration = new class_registration(name))
+                m_registration = NEW class_registration(name))
           )
     {
     }

@@ -2,7 +2,6 @@
 #define WALL_H
 
 #include "Mashiro/Scene/Model.h"
-#include "Mashiro/Graphics/Texture.h"
 #include "Mashiro/Math/Vector3.h"
 #include "Mashiro/Math/Random.h"
 #include "Game/Enum.h"
@@ -11,6 +10,7 @@
 #include <utility>
 
 #include "Util/ModelObj.h"
+#include "Util/TextureObj.h"
 
 class Ball;
 
@@ -35,7 +35,7 @@ private:
 	void DelWall(int color,Ball* ball);		//ï«Çó£Ç∑
 	void ResetWall();	//çƒîzíu
 
-	std::pair< Mashiro::Graphics::Texture, Mashiro::Math::Vector3 > mTextureCol[ 3 ];
+	std::pair< TextureObj, Mashiro::Math::Vector3 > mTextureCol[ 3 ];
 	ModelObj mModel[4];
 	Mashiro::Math::Vector3 mPos[4];
 	Mashiro::Math::Vector3 mVec[4];

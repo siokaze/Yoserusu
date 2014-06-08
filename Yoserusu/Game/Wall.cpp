@@ -21,11 +21,11 @@ using namespace Mashiro::Math;
 
 Wall::Wall()
 {
-	mTextureCol[ 0 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_R.png" );
+	mTextureCol[ 0 ].first.create( "res/image/gato_color_R_UPZ_R.png" );
 	mTextureCol[ 0 ].second = Vector3( 1, 0, 0 );
-	mTextureCol[ 1 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_B.png" );
+	mTextureCol[ 1 ].first.create( "res/image/gato_color_R_UPZ_B.png" );
 	mTextureCol[ 1 ].second = Vector3( 0, 0, 1 );
-	mTextureCol[ 2 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_G.png" );
+	mTextureCol[ 2 ].first.create( "res/image/gato_color_R_UPZ_G.png" );
 	mTextureCol[ 2 ].second = Vector3( 0, 1, 0 );
 
 	lPos[ 0 ] = Vector3(-30,30,40);

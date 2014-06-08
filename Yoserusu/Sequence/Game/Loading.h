@@ -28,8 +28,6 @@ public:
 	~Loading();
 	void update( ParentGame* );
 private:
-	BackGround* mBack;
-	int mFade;
 	LoadingThread* mLoading;
 	bool mFirst;
 };

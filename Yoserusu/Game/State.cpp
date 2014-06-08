@@ -7,7 +7,6 @@
 
 #include "Game/State.h"
 #include "Game/Ball.h"
-#include "Game/BackGround.h"
 #include "Game/Wall.h"
 #include "Game/LockOn.h"
 
@@ -27,7 +26,6 @@ wall( 0 ),
 lArm( 0 ), 
 rArm( 0 ), 
 timer( 0 ), 
-mBack( 0 ), 
 mLockOn( 0 ){
 	//ƒIƒuƒWƒFƒNƒg‚Ì¶¬
 	ball = NEW Ball();
@@ -35,7 +33,6 @@ mLockOn( 0 ){
 	lArm= NEW ArmLeft();
 	rArm = NEW ArmRight();
 	timer = NEW Timer();
-	mBack = NEW BackGround();
 	mLockOn = NEW LockOn();
 }
 
@@ -47,7 +44,6 @@ void State::init(){
 
 State::~State(){
 	//delete‚Í¶¬‚µ‚½Žž‚Ì‹t‡‚Å‚µ‚æ‚¤
-	SAFE_DELETE( mBack );
 	SAFE_DELETE( mLockOn );
 	SAFE_DELETE(timer);
 	SAFE_DELETE(rArm);
@@ -79,8 +75,6 @@ void State::update(){
 }
 
 void State::draw(){
-	//”wŒi
-	mBack->draw();
 	//ƒ{[ƒ‹•`‰æ
 	ball->Draw( timer->draw_10(), timer->draw_01());
 	//˜r•`‰æ

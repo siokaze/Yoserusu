@@ -8,7 +8,6 @@
 
 class Ball;
 class Wall;
-class BackGround;
 class LockOn;
 
 //ゲームプレイ本体
@@ -29,7 +28,6 @@ private:
 	Timer* timer;
 	ArmLeft* lArm;
 	ArmRight* rArm;
-	BackGround* mBack;
 	LockOn* mLockOn;
 
 };

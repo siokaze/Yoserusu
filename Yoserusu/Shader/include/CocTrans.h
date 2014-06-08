@@ -22,9 +22,8 @@ public:
 		TYPE_WALL,
 	};
 	struct ConstantBuffer{
-		int mDrawType;
+		Vector4 mDrawType;
 		Matrix mWorldInv;
-		Vector3 mDummy;
 	};
 public:
 	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){

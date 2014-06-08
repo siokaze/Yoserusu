@@ -1,7 +1,7 @@
 #ifndef INCLUDE_TIMER_H_
 #define INCLUDE_TIMER_H_
 
-#include "Mashiro/Graphics/Texture.h"
+#include "Util/TextureObj.h"
 #include "Mashiro/Graphics/Bitmap.h"
 #include <map>
 
@@ -20,8 +20,8 @@ public:
 		mTime = 60;
 	}
 
-	Mashiro::Graphics::Texture draw_10();
-	Mashiro::Graphics::Texture draw_01();
+	TextureObj draw_10();
+	TextureObj draw_01();
 	void startDraw();
 
 	bool isStart();
@@ -32,7 +32,7 @@ public:
 	void warrningDraw();
 private:
 	//タイマーMap
-	typedef std::map< int, Mashiro::Graphics::Texture > TextureMap;
+	typedef std::map< int, TextureObj > TextureMap;
 	typedef std::map< int, Mashiro::Graphics::Bitmap > TexBitmap;
 	TextureMap m01Tex; //一の位
 	TextureMap m10Tex; //十の位

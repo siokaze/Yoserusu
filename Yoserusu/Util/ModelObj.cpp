@@ -9,7 +9,7 @@ using namespace Mashiro::Scene;
 
 void ModelObj::create(const char* fileName) {
 	mModel = ModelLoader::instance()->createModel( fileName );
-	mCocTrans = std::make_shared< CocTrans >();
+	mCocTrans = Mashiro::SharedPtr< CocTrans >( NEW CocTrans() );
 }
 
 void ModelObj::setColor(const Vector3& color) {
@@ -42,7 +42,7 @@ void ModelObj::draw( CocTrans::Type type ){
 
 	CocTrans::ConstantBuffer* cb = NULL;
 	if( mCocTrans->lock( (void**)&cb ) ){
-		cb->mDrawType = type;
+		cb->mDrawType.x = static_cast< int >( type );
 		mCocTrans->unLock();
 	}
 	cb = nullptr;
@@ -52,11 +52,11 @@ void ModelObj::draw( CocTrans::Type type ){
 	mModel.draw( world );
 }
 
-void ModelObj::setTexture(const Mashiro::Graphics::Texture& tex, int stage) {
+void ModelObj::setTexture(const TextureObj& tex, int stage) {
 	if( stage == 0 ){
-		mModel.setTexture( tex );
+		mModel.setTexture( tex.mTexture );
 	} else if( stage >= 0 ){
-		Graphics::Manager::instance().setTexture( tex, stage );
+		Graphics::Manager::instance().setTexture( tex.mTexture, stage );
 	}
 }
 

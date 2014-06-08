@@ -1,8 +1,6 @@
 #include "Sequence/Title.h"
 #include "Sequence/Parent.h"
 #include "Mashiro/Mashiro.h"
-#include "Mashiro\WorkSpace\WorkSpace.h"
-#include "Mashiro\Graphics\GraphicsManager.h"
 #include "Mashiro\Kinect\KinectManager.h"
 #include "Mashiro/Input/InputManager.h"
 #include "Mashiro/Input/Keyboard.h"
@@ -13,8 +11,6 @@
 #include "Game/ArmRight.h"
 #include "Util/DepthSingleton.h"
 #include "Util/SoundManager.h"
-#include "Game/BackGround.h"
-
 #include "Util/DataBase.h"
 
 #include "Shader/include/CocTrans.h"
@@ -33,9 +29,6 @@ Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCoun
 	mBallPos =Vector3(0,10,10);
 	mTitlePos=Vector3(0,4,-50);
 
-	mTitleBitmap = Mashiro::Graphics::Bitmap::create( "res/image/titile.png" );
-	mStart = Mashiro::Graphics::Bitmap::create("res/image/start4.png");
-
 	mHr = NEW ArmRight();
 	mHl = NEW ArmLeft();
 	Color = 0;
@@ -43,7 +36,7 @@ Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCoun
 	mKeep = false;
 	isEnd = false;
 
-	LuaManager::instance()->loadLua( "lua/Title.lua", "Title" );
+	LuaManager::instance()->loadLua( "Lua/Title.lua", "Title" );
 }
 
 Title::~Title(){

@@ -1,10 +1,9 @@
 #include "Sequence/Game/Loading.h"
 #include "Sequence/Game/ParentGame.h"
-#include "Mashiro/Graphics/SpriteManager.h"
 #include "Sequence/Game/Loading.h"
-#include "Game/BackGround.h"
 
 #include "Mashiro/Mashiro.h"
+#include "Lua/LuaManager.h"
 
 namespace Sequence{
 namespace Game{
@@ -26,13 +25,13 @@ void LoadingThread::operator()(){
 	mFinished = true;
 }
 
-Loading::Loading() : mLoading( 0 ), mFade( 0 ), mFirst( false ){
-	mBack = NEW BackGround();
+Loading::Loading() : mLoading( 0 ), mFirst( false ){
+	LuaManager::instance()->loadLua( "Lua/Loading.lua", "Loading" );
 }
 
 Loading::~Loading(){
+	LuaManager::instance()->deleteLua();
 	SAFE_DELETE( mLoading );
-	SAFE_DELETE( mBack );
 }
 
 void Loading::update( ParentGame* parent ){
@@ -42,22 +41,15 @@ void Loading::update( ParentGame* parent ){
 		//parent->startLoading();
 		mFirst = true;
 	}
-	if( mFade > 90 ){
+
+	int fade = LuaManager::instance()->runLua<int>( "draw" );
+
+	if( fade > 90 ){
 		if( mLoading->mFinished ){
 			//ƒ[ƒh‚ª‚¨[‚¯[‚È‚çŽŸƒV[ƒ“‚Ö
 			parent->moveTo( ParentGame::NEXT_PLAY );
 		}
 	}
-	++mFade;
-
-	//”wŒi
-	mBack->draw();
-	////ˆÃ“]
-	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	sp.setColor( Vector3( 0.f ) );
-	sp.setTrance(sin((double)mFade/30)/2+0.5f);
-	sp.setFillRectangle( Vector2( 0.f ), Vector2( 1024, 800 ) );
-	sp.draw();
 }
 
 } //namespace Game

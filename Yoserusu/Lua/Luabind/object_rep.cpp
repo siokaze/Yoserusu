@@ -25,6 +25,8 @@
 #include <luabind/detail/object_rep.hpp>
 #include <luabind/detail/class_rep.hpp>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind { namespace detail
 {
 

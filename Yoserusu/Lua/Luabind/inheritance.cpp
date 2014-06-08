@@ -15,6 +15,8 @@
 #include <luabind/typeid.hpp>
 #include <luabind/detail/inheritance.hpp>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind { namespace detail {
 
 class_id const class_id_map::local_id_base =
@@ -233,7 +235,7 @@ void cast_graph::insert(class_id src, class_id target, cast_function cast)
 }
 
 cast_graph::cast_graph()
-  : m_impl(new impl)
+  : m_impl(NEW impl)
 {}
 
 cast_graph::~cast_graph()

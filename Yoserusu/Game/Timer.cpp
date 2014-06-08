@@ -42,15 +42,17 @@ mPitch( 1.f ){
 	for( int x = 0; x < 7; ++x ){
 		oss.str( "" );
 		oss << "res/image/ball10_" << x << ".png";
-		Mashiro::Graphics::Texture texture = Mashiro::Graphics::Texture::create( oss.str().c_str() );
-		m10Tex.insert( pair< int, Mashiro::Graphics::Texture >( x, texture ) );
+		TextureObj texture;
+		texture.create( oss.str().c_str() );
+		m10Tex.insert( pair< int, TextureObj >( x, texture ) );
 	}
 	//1‚ÌˆÊ‚ðƒZƒbƒg5
 	for( int x = 0; x < 10; ++x ){
 		oss.str( "" );
 		oss << "res/image/ball1_" << x << ".png";
-		Mashiro::Graphics::Texture texture = Mashiro::Graphics::Texture::create( oss.str().c_str() );
-		m01Tex.insert( pair< int, Mashiro::Graphics::Texture >( x, texture ) );
+		TextureObj texture;
+		texture.create( oss.str().c_str() );
+		m01Tex.insert( pair< int, TextureObj >( x, texture ) );
 	}
 }
 
@@ -154,7 +156,7 @@ bool Timer::isStart(){
 	return true;
 }
 
-Mashiro::Graphics::Texture Timer::draw_10(){
+TextureObj Timer::draw_10(){
 	int i_10 = mTime / 10; //10‚ÌˆÊ
 	if( i_10 < 0 ){
 		i_10 = 0;
@@ -162,7 +164,7 @@ Mashiro::Graphics::Texture Timer::draw_10(){
 	return m10Tex[ i_10 ];
 }
 
-Mashiro::Graphics::Texture Timer::draw_01(){
+TextureObj Timer::draw_01(){
 	int i_01 = mTime % 10; //1‚ÌˆÊ
 	if( i_01 < 0 ){
 		i_01 = 0;

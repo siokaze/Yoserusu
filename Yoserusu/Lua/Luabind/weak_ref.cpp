@@ -30,6 +30,8 @@
 #include <luabind/weak_ref.hpp>
 #include <cassert>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind {
 
 namespace
@@ -98,7 +100,7 @@ namespace luabind
     }
     
     weak_ref::weak_ref(lua_State* main, lua_State* L, int index)
-        : m_impl(new impl(main, L, index))
+        : m_impl(NEW impl(main, L, index))
     {
         m_impl->count = 1;
     }

@@ -142,7 +142,7 @@ void Ball::Move(){
 Ball::~Ball(){
 }
 
-void Ball::Draw(Mashiro::Graphics::Texture tex10, Mashiro::Graphics::Texture tex01){	
+void Ball::Draw( TextureObj tex10, TextureObj tex01){	
 	mBall.setTexture( tex01 );
 	mBall.setTexture( tex10, 1 );
 	mBall.draw( CocTrans::TYPE_BALL );	

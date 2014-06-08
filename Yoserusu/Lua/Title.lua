@@ -8,9 +8,9 @@ function Title()
     this.mTitleBitmap = SpriteUtil( "res/image/titile.png" );
     this.mStart = SpriteUtil( "res/image/start4.png" );
 
-    this.mBall = Model( "res/model/Ball.pmd" );
+    this.mBall = ModelObj( "res/model/Ball.pmd" );
 
-    this.mBallPose = Vector3( 0.0, 0.0 );
+    this.mBallPose = Vector3( 0.0, 0.0, 0.0 );
     
     this.draw = function( self )
         local switch = {}

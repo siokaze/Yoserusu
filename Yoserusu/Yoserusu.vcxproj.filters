@@ -65,9 +65,6 @@
     <ClCompile Include="Util\DepthSingleton.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Util\KinectUtil.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="Util\ModelLoader.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -80,16 +77,10 @@
     <ClCompile Include="Util\Sprite.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Util\Transform.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="Game\ArmLeft.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\ArmRight.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\BackGround.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Ball.cpp">
@@ -188,9 +179,6 @@
     <ClInclude Include="Util\DepthSingleton.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Util\KinectUtil.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="Util\ModelLoader.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -216,9 +204,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\ArmRight.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\BackGround.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Ball.h">
@@ -271,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Shader\include\CocTrans.h">
       <Filter>Shader\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\TextureObj.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

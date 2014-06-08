@@ -4,7 +4,7 @@
 #include "Mashiro/Math/Vector2.h"
 #include "Mashiro/Math/Vector3.h"
 #include "Mashiro/Scene/Model.h"
-#include "Mashiro/Graphics/Texture.h"
+#include "Util/TextureObj.h"
 #include "Util/ModelObj.h"
 
 using namespace Mashiro::Graphics;
@@ -14,7 +14,7 @@ using namespace Mashiro::Math;
 class Arm{
 public:
 	Arm(){ 
-		mCubeTex = Mashiro::Graphics::Texture::create( "res/image/uffizi_cross.dds" );
+		mCubeTex.create( "res/image/uffizi_cross.dds" );
 		keep = false; depth = 0;}
 	virtual ~Arm(){}
 
@@ -39,7 +39,7 @@ protected:
 	int depth;
 	bool keep;
 
-	Mashiro::Graphics::Texture mCubeTex;
+	TextureObj mCubeTex;
 };
 
 #endif	// end of Arm

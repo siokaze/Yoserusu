@@ -1,12 +1,11 @@
 #ifndef INCLUDE_MODEL_OBJ_H_
 #define INCLUDE_MODEL_OBJ_H_
 
-#include <memory>
-
 #include "Transform.h"
-#include "Mashiro/Graphics/Texture.h"
+#include "TextureObj.h"
 #include "Mashiro/Scene/Model.h"
 #include "Shader/include/CocTrans.h"
+#include "Mashiro/Base/SharedPtr.h"
 
 /*
 * @class ModelObj
@@ -34,7 +33,7 @@ public:
 	/*
 	* @brif テクスチャセット
 	*/
-	void setTexture( const Mashiro::Graphics::Texture& tex, int stage = 0 );
+	void setTexture( const TextureObj& tex, int stage = 0 );
 	/*
 	 * @brif 描画
 	 */
@@ -43,7 +42,7 @@ public:
 private:
 	Mashiro::Scene::Model mModel;
 	//シェーダ
-	std::shared_ptr< CocTrans > mCocTrans;
+	Mashiro::SharedPtr< CocTrans > mCocTrans;
 };
 
 #endif

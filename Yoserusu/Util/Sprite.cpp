@@ -18,7 +18,6 @@ SpriteUtil::~SpriteUtil(){
 
 void SpriteUtil::draw(int x, int y) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	sp.setTrance( 1.f );
 	sp.setBitmap( mBitmap );
 	sp.setBitmapRectangle( Vector2( x, y ) );
 	sp.draw();
@@ -26,7 +25,6 @@ void SpriteUtil::draw(int x, int y) {
 
 void SpriteUtil::draw(const Bitmap& bitmap) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	sp.setTrance( 1.f );
 	sp.setBitmap( bitmap );
 	sp.setBitmapRectangle( Vector2( 0, 0 ) );
 	sp.draw();
@@ -34,7 +32,6 @@ void SpriteUtil::draw(const Bitmap& bitmap) {
 
 void SpriteUtil::drawEllipse(int x, int y, int radiusX, int radiusY){
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	sp.setTrance( 1.f );
 	sp.setFillEllipse( Vector2( x, y ), Vector2( radiusX, radiusY ) );
 	sp.draw();
 }
@@ -52,5 +49,11 @@ void SpriteUtil::setColor(const Vector3& color) {
 void SpriteUtil::setTransparency(float t) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	sp.setTrance( t );
+}
+
+void SpriteUtil::drawRectangle(int x, int y, int w, int h) {
+	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
+	sp.setFillRectangle( Vector2( x, y ), Vector2( w, h ) );
+	sp.draw();
 }
 

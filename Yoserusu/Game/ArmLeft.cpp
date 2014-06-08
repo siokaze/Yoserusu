@@ -7,8 +7,6 @@
 #include "Mashiro/Kinect/KinectManager.h"
 #include "Util/ModelLoader.h"
 
-#include "Util/KinectUtil.h"
-
 #include "Shader/include/CocTrans.h"
 using namespace Mashiro::Scene;
 

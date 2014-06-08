@@ -29,6 +29,8 @@
 #include <luabind/detail/stack_utils.hpp>
 #include <cassert>
 
+#include "Mashiro/Mashiro.h"
+
 namespace luabind { namespace detail {
 
     registration::registration()
@@ -195,7 +197,7 @@ namespace luabind {
 
     namespace_::namespace_(char const* name)
         : scope(std::auto_ptr<detail::registration>(
-              m_registration = new registration_(name)))
+              m_registration = NEW registration_(name)))
     {
     }
 

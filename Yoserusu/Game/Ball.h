@@ -8,6 +8,7 @@
 #include "Game/Enum.h"
 
 #include "Util/ModelObj.h"
+#include "Util/TextureObj.h"
 
 using namespace Mashiro;
 using namespace Mashiro::Graphics;
@@ -18,7 +19,7 @@ public:
 	Ball();
 	~Ball();
 	void Update(Arm* rhand, Arm* lhand);
-	void Draw( Mashiro::Graphics::Texture, Mashiro::Graphics::Texture );
+	void Draw( TextureObj, TextureObj );
 	int Color();
 	Mode IsMode();
 	void Initi();

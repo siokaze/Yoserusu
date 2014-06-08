@@ -13,7 +13,6 @@
 #include "Mashiro/Input/Keyboard.h"
 #include "Mashiro/Input/Mouse.h"
 
-#include "Game/BackGround.h"
 #include "Util/SoundManager.h"
 #include "Util/DepthSingleton.h"
 #include "Util/DataBase.h"

@@ -16,7 +16,8 @@ namespace Sequence{
 namespace Game{
 
 Result::Result(){
-	ball = ModelLoader::instance()->createModel("res/model/Ball.pmd");
+	ball.create( "res/model/Ball.pmd" );
+
 	mStrTex = Mashiro::Graphics::Bitmap::create("res/image/Ending.png");
 	mBackGround = Mashiro::Graphics::Bitmap::create( "res/image/Ending_bg.png");
 
@@ -49,19 +50,12 @@ void Result::update( ParentGame* parent ){
 	sp.setBitmapRectangle(Vector2(0,0));
 	sp.draw();
 
-	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_BALL;
-		coc->unLock();
-	}
-	Graphics::Manager().setShader( CocTrans::instance()->shader() );
-	
 	//É{Å[Éã
 	ball.setPosition(Vector3( ballPos ));
 	ball.setScale(Vector3(0.5f));
 	ball.setAngle(Vector3(0,AngY,-23.4f));
-	ball.draw();
+	ball.draw( CocTrans::TYPE_BALL );
+
 	sp.setBitmap( mStrTex );
 	sp.setBitmapRectangle(Vector2(0));
 	Graphics::Manager gm = Graphics::Manager::instance();

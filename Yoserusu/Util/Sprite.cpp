@@ -44,6 +44,11 @@ void SpriteUtil::setColor(float r, float g, float b) {
 	sp.setColor( Vector3( r, g, b ) );
 }
 
+void SpriteUtil::setColor(const Vector3& color) {
+	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
+	sp.setColor( color );
+}
+
 void SpriteUtil::setTransparency(float t) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	sp.setTrance( t );

@@ -14,6 +14,8 @@ using namespace Mashiro;
 using namespace Mashiro::Math;
 using namespace Mashiro::Graphics;
 
+#include "Util/ModelObj.h"
+
 class BackGround;
 
 namespace Sequence{
@@ -32,8 +34,8 @@ public:
 private:	
 	Mashiro::Graphics::Bitmap mTitleBitmap;
 
-	Model mBall;
-	Model mTitle;
+	ModelObj mBall;
+
 	Texture mTitleTex;
 	Mashiro::Graphics::Bitmap mStart;
 
@@ -42,7 +44,6 @@ private:
 
 	ArmRight* mHr;
 	ArmLeft* mHl;
-	BackGround* mBack;
 
 	float mPosY;
 	float mPosZ;

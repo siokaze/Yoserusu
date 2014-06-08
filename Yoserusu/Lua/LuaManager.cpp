@@ -1,12 +1,14 @@
 #include "Mashiro/Mashiro.h"
-#include "lua.hpp"
-#include "luabind/luabind.hpp"
-#include "LuaManager.h"
-#include "Util/Sprite.h"
-#include "Game/Enum.h"
-#include "boost/tuple/tuple.hpp"
 #include "Mashiro/Math/Vector2.h"
 #include "Mashiro/Math/Vector3.h"
+#include "Mashiro/Graphics/Texture.h"
+#include "Game/Enum.h"
+#include "Util/ModelObj.h"
+#include "Util/Sprite.h"
+#include "lua.hpp"
+#include "luabind/luabind.hpp"
+#include "boost/tuple/tuple.hpp"
+#include "LuaManager.h"
 using namespace Mashiro;
 using namespace Mashiro::Math;
 
@@ -32,7 +34,6 @@ LuaManager::LuaManager(){
 
 	//Lua標準ライブラリを開く
 	luaL_openlibs( mLuaState );
-
 	luabind::open( mLuaState );
 	//Luabindに関数登録
 	luabind::module( mLuaState )[
@@ -40,9 +41,16 @@ LuaManager::LuaManager(){
 			.def(luabind::constructor<const char*>())
 			.def(luabind::constructor<>())
 			.def("setColor", (void(SpriteUtil::*)(float, float, float))&SpriteUtil::setColor)
+			.def("setColor", (void(SpriteUtil::*)( const Vector3& ))&SpriteUtil::setColor)
 			.def("setTransparency", (void(SpriteUtil::*)(float))&SpriteUtil::setTransparency)
 			.def("drawEllipse", (void(SpriteUtil::*)(int, int, int, int))&SpriteUtil::drawEllipse)
 			.def("draw", (void(SpriteUtil::*)(int, int))&SpriteUtil::draw),
+		luabind::class_< ModelObj >( "ModelObj" )
+			.def(luabind::constructor<const char*>() )
+			.def("setTexture", (void(ModelObj::*)(Mashiro::Graphics::Texture, int))&ModelObj::setTexture)
+		    .def("setTrance", (void(ModelObj::*)(float))&ModelObj::setTrance)
+			.def("setColor", (void(ModelObj::*)(float, float, float))&ModelObj::setColor)
+			.def("draw", (void(ModelObj::*)(int))&ModelObj::draw),
 		luabind::class_< Vector2 >( "Vector2" )
 			.def( luabind::constructor< float, float >() )
 			.def_readwrite( "x", &Vector2::x )
@@ -58,9 +66,12 @@ LuaManager::LuaManager(){
 LuaManager::~LuaManager(){
 	//LuaのVMを閉じる
 	lua_close( mLuaState );
+	if( mLuaTable ){
+		SAFE_DELETE( mLuaTable );
+	}
 }
 
-void LuaManager::loadLua( const char* lua ){
+void LuaManager::loadLua( const char* lua, const char* className ){
 	int top = -1;
 	int ret = -1;
 	while( true ){
@@ -76,4 +87,13 @@ void LuaManager::loadLua( const char* lua ){
 		}
 	}
 	lua_settop(mLuaState,top);
+
+	mLuaTable = NEW LuaTable();
+	mLuaTable->mTable = luabind::call_function<::luabind::object>( mLuaState, className );
+
+	assert(luabind::type(mLuaTable->mTable) == LUA_TTABLE);
+}
+
+void LuaManager::deleteLua() {
+	SAFE_DELETE( mLuaTable );
 }

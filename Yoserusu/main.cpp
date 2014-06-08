@@ -9,6 +9,7 @@
 #include "Mashiro/Graphics/SpriteManager.h"
 #include "Mashiro/Graphics/GraphicsManager.h"
 #include "Mashiro/Graphics/Shader.h"
+#include "Mashiro/Graphics/StringRender.h"
 #include "Sequence/Parent.h"
 #include "Util/DepthSingleton.h"
 #include "Util/SoundManager.h"
@@ -29,6 +30,10 @@ using namespace Mashiro::Input;
 
 bool f = false;
 
+#if _DEBUG
+Mashiro::Graphics::StringRender gStr;
+#endif
+
 namespace Mashiro{
 	void WorkSpace::configure(WorkSpace::Configuration* c)
 	{
@@ -36,11 +41,11 @@ namespace Mashiro{
 		c->setHeight(800);
 		c->setWidth(1024);		
 		c->enableWindowScreen(true);
-		setFrameRate( 60 );
 	}
 
 	void WorkSpace::update(){
 		if(!f){
+			setFrameRate( 60 );
 			WorkSpace::kinectCreate();
 			SoundManager::create();
 			DepthSingleton::create();
@@ -51,21 +56,23 @@ namespace Mashiro{
 			DataBase::instance()->fileOpen( "res/ini/data.txt" );
 			Sequence::Parent::create();
 			f = true;
-		}
+#if _DEBUG
+			gStr = Mashiro::Graphics::StringRender::create( Font::FONT_GOSIC, 32 );
+#endif
 
-		CocTrans* coc = CocTrans::instance();
-		CocTrans::ConstantBuffer* cb = NULL;
-		if( coc->lock( (void**)&cb ) ){
-			cb->mDrawType = CocTrans::TYPE_BALL;
-			coc->unLock();
 		}
-		Graphics::Manager().setShader( CocTrans::instance()->shader() );
 
 		Graphics::Manager().setBackBufferTarget();
 
 		Sequence::Parent::instance()->update();
 
 		Input::Keyboard ikb = Input::Manager::instance().keyboard();
+
+#if _DEBUG
+		gStr << Mashiro::WorkSpace::instance().frameRate() << endl;
+		gStr.setColor();
+		gStr.draw();
+#endif
 
 		if(ikb.isTriggered(Input::Keyboard::KEY_ESC))
 		{
@@ -81,6 +88,9 @@ namespace Mashiro{
 			ModelLoader::destory();
 			Score::destory();
 			LuaManager::destory();
+#if _DEBUG
+			gStr.release();
+#endif
 		}
 	}
 }

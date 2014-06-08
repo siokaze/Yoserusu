@@ -86,7 +86,6 @@
   <ItemGroup>
     <ClCompile Include="Game\ArmLeft.cpp" />
     <ClCompile Include="Game\ArmRight.cpp" />
-    <ClCompile Include="Game\Authe.cpp" />
     <ClCompile Include="Game\BackGround.cpp" />
     <ClCompile Include="Game\Ball.cpp" />
     <ClCompile Include="Game\LockOn.cpp" />
@@ -112,6 +111,7 @@
     <ClCompile Include="Lua\Luabind\weak_ref.cpp" />
     <ClCompile Include="Lua\Luabind\wrapper_base.cpp" />
     <ClCompile Include="Lua\LuaManager.cpp" />
+    <ClCompile Include="Lua\LuaObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sequence\AutheScene.cpp" />
     <ClCompile Include="Sequence\Game\Loading.cpp" />
@@ -124,14 +124,21 @@
     <ClCompile Include="Util\DepthSingleton.cpp" />
     <ClCompile Include="Util\KinectUtil.cpp" />
     <ClCompile Include="Util\ModelLoader.cpp" />
+    <ClCompile Include="Util\ModelObj.cpp" />
     <ClCompile Include="Util\SoundManager.cpp" />
     <ClCompile Include="Util\Sprite.cpp" />
+    <ClCompile Include="Util\Transform.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lua\Authe.lua" />
+    <None Include="Lua\Enum.lua" />
+    <None Include="Lua\Title.lua" />
+    <None Include="Shader\hlsl\CocTrans.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Arm.h" />
     <ClInclude Include="Game\ArmLeft.h" />
     <ClInclude Include="Game\ArmRight.h" />
-    <ClInclude Include="Game\Authe.h" />
     <ClInclude Include="Game\BackGround.h" />
     <ClInclude Include="Game\Ball.h" />
     <ClInclude Include="Game\Enum.h" />
@@ -141,6 +148,7 @@
     <ClInclude Include="Game\Timer.h" />
     <ClInclude Include="Game\Wall.h" />
     <ClInclude Include="Lua\LuaManager.h" />
+    <ClInclude Include="Lua\LuaObject.h" />
     <ClInclude Include="Sequence\AutheScene.h" />
     <ClInclude Include="Sequence\Child.h" />
     <ClInclude Include="Sequence\Game\Child.h" />
@@ -151,18 +159,15 @@
     <ClInclude Include="Sequence\Parent.h" />
     <ClInclude Include="Sequence\Title.h" />
     <ClInclude Include="Shader\include\CocTrans.h" />
-    <ClInclude Include="Shader\include\ShaderBase.h" />
     <ClInclude Include="Util\DataBase.h" />
     <ClInclude Include="Util\DepthSingleton.h" />
     <ClInclude Include="Util\KinectUtil.h" />
     <ClInclude Include="Util\ModelLoader.h" />
+    <ClInclude Include="Util\ModelObj.h" />
     <ClInclude Include="Util\SoundManager.h" />
     <ClInclude Include="Util\Sprite.h" />
+    <ClInclude Include="Util\Transform.h" />
     <ClInclude Include="Util\Util.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Lua\Authe.lua" />
-    <None Include="Shader\hlsl\CocTrans.fx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

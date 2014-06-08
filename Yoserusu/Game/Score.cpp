@@ -4,7 +4,7 @@ Score* Score::mInstance = 0;
 
 void Score::create(){ 
 	ASSERT( !mInstance);
-	mInstance = new Score();
+	mInstance = NEW Score();
 }
 
 void Score::destory(){

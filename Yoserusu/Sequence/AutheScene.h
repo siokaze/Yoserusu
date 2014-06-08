@@ -2,6 +2,8 @@
 #define INCLUDED_SEQUENCE_AUTHE_H
 
 #include "Sequence/Child.h"
+#include "Mashiro/Math/Vector2.h"
+#include "Game/Enum.h"
 
 class BackGround;
 class Authe;
@@ -19,15 +21,24 @@ public:
 	void autheUpdate( Parent* );
 	//描画
 	void autheDraw();
-	//移動のフラグ
-	bool moveScene();
+
 private:
 	//シーンポップフラグ
 	int mMoveSceneCount;
-	//認証クラス
-	Authe* mAuthe;
-	//背景クラス
-	BackGround* mBack;
+
+	//認証完了
+	bool mHandCheck;
+
+	//深度値
+	int mDepth;
+	int mCount;
+	int mSum;
+	int mHandCheckCount;
+
+	bool check;
+
+	//シーンポップフラグ
+	AutheMode mMoveSceneFlag;
 };
 
 } //namespace Sequence

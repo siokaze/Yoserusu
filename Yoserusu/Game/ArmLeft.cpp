@@ -13,9 +13,9 @@
 using namespace Mashiro::Scene;
 
 ArmLeft::ArmLeft(){
-	wrist.model = ModelLoader::instance()->createModel("res/model/LeftHand.pmd");
-	shoulder.model = ModelLoader::instance()->createModel("res/model/LeftShoulder.pmd");
-	elbow.model = ModelLoader::instance()->createModel("res/model/LeftElbow.pmd");
+	wrist.model.create( "res/model/LeftHand.pmd" );
+	shoulder.model.create("res/model/LeftShoulder.pmd");
+	elbow.model.create("res/model/LeftElbow.pmd");
 }
 
 ArmLeft::~ArmLeft(){
@@ -53,46 +53,17 @@ void ArmLeft::Update(float depth,int number){
 	tx=tx/3.14159265f*180.f;
 	ty=ty/3.14159265f*180.f;
 
-	//各部位のワールド座標変換（拡縮、回転、平行移動）
-	Matrix scale;
-	scale.setScaling(Vector3(1.0f));
-	Matrix rotateZ;
-	rotateZ.setRotationZ(180);
-	Matrix rotateX;
-	rotateX.setRotationX(270-tx);
-	Matrix rotateY;
-	rotateY.setRotationY(ty);
-	Matrix shouldertrans;
-	shouldertrans.setTranslation(Vector3(pos2super));
-	Matrix elbowertrans;
-	elbowertrans.setTranslation(Vector3((pos1super.x+pos2super.x) /2,(pos1super.y+pos2super.y)/2+tx/5,(pos1super.z + pos2super.z)/2 ));
-	Matrix handtrans;
-	handtrans.setTranslation(Vector3(pos1super));
+	shoulder.model.setScale( Vector3( 1.f ) );
+	shoulder.model.setAngle( Vector3( 270 - tx, ty, 180 ) );
+	shoulder.model.setPosition( Vector3( pos2super ) );
 
-	sworld.setIdentity();
-	sworld.setMul(sworld,scale);
-	sworld.setMul(sworld,rotateZ);
-	sworld.setMul(sworld,rotateX);
-	sworld.setMul(sworld,rotateY);
-	sworld.setMul(sworld, shouldertrans);
+	elbow.model.setScale( Vector3( 1.f, 2.0f, 1.0f ) );
+	elbow.model.setAngle( Vector3( 270 - tx, ty, 180 ) );
+	elbow.model.setPosition( Vector3((pos1super.x+pos2super.x) /2,(pos1super.y+pos2super.y)/2+tx/5,(pos1super.z + pos2super.z)/2 ) );
 
-	scale.setScaling(Vector3(1.0f,2.0f,1.0f));
-	eworld.setIdentity();
-	eworld.setMul(eworld,scale);
-	eworld.setMul(eworld,rotateZ);
-	eworld.setMul(eworld,rotateX);
-	eworld.setMul(eworld,rotateY);
-	eworld.setMul(eworld, elbowertrans);
-
-	scale.setScaling(Vector3(1.0f));
-	rotateY.setRotationY(225);
-	rotateX.setRotationX(270);
-	hworld.setIdentity();
-	hworld.setMul(hworld,scale);
-	hworld.setMul(hworld,rotateZ);
-	hworld.setMul(hworld,rotateX);
-	hworld.setMul(hworld,rotateY);
-	hworld.setMul(hworld, handtrans);
+	wrist.model.setScale( Vector3( 1.f ) );
+	wrist.model.setAngle( Vector3( 270, 225, 180 ) );
+	wrist.model.setPosition( Vector3(pos1super) );
 }
 
 Vector2 ArmLeft::Pos(){
@@ -102,31 +73,19 @@ Vector2 ArmLeft::Pos(){
 void ArmLeft::Draw()
 {
 	Graphics::Manager m = Graphics::Manager::instance();
-
-	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_ARM;
-		coc->unLock();
-	}
-	cb = nullptr;
-	m.setShader( CocTrans::instance()->shader() );
 	
 	shoulder.model.setColor( Vector3(  0.f, 0.f, 1.f ) );
 	wrist.model.setColor( Vector3( 0.f, 0.f, 1.f ) );
 	elbow.model.setColor( Vector3( 0.f, 0.f, 1.f ) );
 
-	Vector4 light = coc->instance()->worldLight( sworld );	
-	Graphics::Manager().setLight( light );
-	m.setTexture( mCubeTex, 2 );
-	shoulder.model.draw(sworld);
-	light = coc->instance()->worldLight( hworld );	
-	Graphics::Manager().setLight( light );
-	m.setTexture( mCubeTex, 2 );
-	wrist.model.draw(hworld);
-	light = coc->instance()->worldLight( eworld );	
-	Graphics::Manager().setLight( light );
-	m.setTexture( mCubeTex, 2 );
-	elbow.model.draw(eworld);
+	shoulder.model.setTexture( mCubeTex, 2 );
+	shoulder.model.draw( CocTrans::TYPE_ARM );
+	
 
+	wrist.model.setTexture( mCubeTex, 2 );
+	wrist.model.draw( CocTrans::TYPE_ARM );
+
+
+	elbow.model.setTexture( mCubeTex, 2 );
+	elbow.model.draw( CocTrans::TYPE_ARM );
 }

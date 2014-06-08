@@ -10,6 +10,8 @@
 
 #include <utility>
 
+#include "Util/ModelObj.h"
+
 class Ball;
 
 class Wall
@@ -33,13 +35,11 @@ private:
 	void DelWall(int color,Ball* ball);		//壁を離す
 	void ResetWall();	//再配置
 
-	std::pair< 
-		Mashiro::Graphics::Texture, 
-		Mashiro::Math::Vector3 > mTextureCol[ 3 ];
-	Mashiro::Scene::Model			mModel[4];
-	Mashiro::Math::Vector3			mPos[4];
-	Mashiro::Math::Vector3			mVec[4];
-	Mashiro::Math::Random				mRand;
+	std::pair< Mashiro::Graphics::Texture, Mashiro::Math::Vector3 > mTextureCol[ 3 ];
+	ModelObj mModel[4];
+	Mashiro::Math::Vector3 mPos[4];
+	Mashiro::Math::Vector3 mVec[4];
+	Mashiro::Math::Random mRand;
 
 	//2D
 	int mCheck;
@@ -52,5 +52,7 @@ private:
 	bool delflg;
 	bool resetflg;  //再配置フラグ
 	WallColor nowColor;
+
+	Mashiro::Math::Vector3 lPos[ 4 ];
 };
 #endif

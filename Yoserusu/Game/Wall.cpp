@@ -19,10 +19,6 @@ using namespace Mashiro;
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
-namespace {
-	Mashiro::Math::Vector3 lPos[ 4 ];
-};
-
 Wall::Wall()
 {
 	mTextureCol[ 0 ].first = Graphics::Texture::create( "res/image/gato_color_R_UPZ_R.png" );
@@ -39,10 +35,10 @@ Wall::Wall()
 
 	ModelLoader* loader = ModelLoader::instance();
 
-	mModel[0] = loader->createModel("res/model/WallLeftTop.pmd");
-	mModel[1] = loader->createModel("res/model/WallRightTop.pmd");
-	mModel[2] = loader->createModel("res/model/WallLeftBottom.pmd");
-	mModel[3] = loader->createModel("res/model/WallRightBottom.pmd");
+	mModel[0].create("res/model/WallLeftTop.pmd");
+	mModel[1].create("res/model/WallRightTop.pmd");
+	mModel[2].create("res/model/WallLeftBottom.pmd");
+	mModel[3].create("res/model/WallRightBottom.pmd");
 
 	for(int i=0; i<4; i++){
 		mPos[i] = lPos[i];
@@ -82,28 +78,12 @@ void Wall::Draw( bool timer )
 {
 	Graphics::Sprite sp = Graphics::Sprite::instance();
 
-	CocTrans* coc = CocTrans::instance();
 	for(int i = 0; i < 4; i++)
 	{
-		mModel[i].setPosition(mPos[i]);
+		mModel[ i ].setPosition(mPos[i]);
 		mModel[ i ].setTexture( mTextureCol[ rand ].first );
 		mModel[ i ].setColor( mTextureCol[ rand ].second );
-
-		CocTrans::ConstantBuffer* cb = NULL;
-		if( coc->lock( (void**)&cb ) ){
-			cb->mDrawType = CocTrans::TYPE_WALL;
-			Matrix worldInv ;
-			worldInv.setInverse(mModel[ i ].worldMatrix());
-			cb->mWorldInv = worldInv;
-			coc->unLock();
-		}
-		cb = nullptr;
-		Graphics::Manager().setShader( CocTrans::instance()->shader() );
-
-		Vector4 light = coc->instance()->worldLight( mModel[ i ].worldMatrix() );	
-		Graphics::Manager().setLight( light );
-
-		mModel[i].draw();
+		mModel[ i ].draw( CocTrans::TYPE_WALL );
 	}
 
 	//タイマー終了

@@ -6,6 +6,8 @@
 #include "Mashiro/Scene/Model.h"
 #include "Mashiro/Graphics/Bitmap.h"
 
+#include "Util/ModelObj.h"
+
 class Animation;
 namespace Sequence{
 namespace Game{
@@ -18,7 +20,8 @@ public:
 	void update( ParentGame* );
 	void rank( int good, int nice, int bad );
 private:
-	Mashiro::Scene::Model ball;
+
+	ModelObj ball;
 	Mashiro::Math::Vector3 ballPos;
 
 	float AngY;

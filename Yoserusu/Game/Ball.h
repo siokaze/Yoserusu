@@ -7,6 +7,8 @@
 #include "Game/Arm.h"
 #include "Game/Enum.h"
 
+#include "Util/ModelObj.h"
+
 using namespace Mashiro;
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
@@ -36,7 +38,7 @@ private:
 
 	int color;
 	float depth;
-	Model mBall;
+	ModelObj mBall;
 	Mode mode;
 	int pos;
 	int count;

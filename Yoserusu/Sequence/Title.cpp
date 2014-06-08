@@ -18,7 +18,7 @@
 #include "Util/DataBase.h"
 
 #include "Shader/include/CocTrans.h"
-
+#include "Lua/LuaManager.h"
 
 using namespace Mashiro::Math;
 using namespace Mashiro::Graphics;
@@ -28,13 +28,7 @@ namespace Sequence{
 Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCount(0), mSceneMoveFlag( false ){
 	SoundManager::instance()->playBgm( SoundManager::BGM_TITLE );
 		
-	mBall=ModelLoader::instance()->createModel("res/model/Ball.pmd");
-	mBall.setScale(Vector3(1.0f));
-
-	//mTitle=ModelLoader::instance()->createModel("res/model/Title.pmd");
-	//mTitleTex = Texture::create("res/model/Title.png");
-	//mTitle.setScale(Vector3(0.5f));
-	//mTitle.setAngle(Vector3(0,0,0));
+	mBall.create( "res/model/Ball.pmd" );
 
 	mBallPos =Vector3(0,10,10);
 	mTitlePos=Vector3(0,4,-50);
@@ -47,21 +41,27 @@ Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCoun
 	Color = 0;
 	isTitle = false;
 	mKeep = false;
-	mBack = NEW BackGround();
 	isEnd = false;
+
+	LuaManager::instance()->loadLua( "lua/Title.lua", "Title" );
 }
 
 Title::~Title(){
 	SoundManager::instance()->stopBgm();
-	SAFE_DELETE( mBack );
+	LuaManager::instance()->deleteLua();
 	SAFE_DELETE( mHr );
 	SAFE_DELETE( mHl );
 }
 
 void Title::update( Parent* parent ){
+#if _DEBUG
 	if( Mashiro::Input::Manager::instance().mouse().isTriggered( Input::Mouse::BUTTON_LEFT ) ){
 		parent->moveTo( Parent::NEXT_GAME );
 	}
+	if( Mashiro::Input::Manager::instance().keyboard().isTriggered( Input::Keyboard::KEY_RETURN ) ){
+		LuaManager::instance()->loadLua( "lua/Title.lua", "Title" );
+	}
+#endif
 	//更新
 	titleUpdate( parent );
 	//描画
@@ -69,40 +69,14 @@ void Title::update( Parent* parent ){
 }
 
 void Title::titledraw(){
-	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_BALL;
-		coc->unLock();
-	}
-	Graphics::Manager().setShader( CocTrans::instance()->shader() );
 
-	mBack->draw();
-	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
-	sp.setBitmap( mTitleBitmap );
-	sp.setBitmapRectangle(Vector2( 90, -10 ) );
-	sp.draw();
+	LuaManager::instance()->runLua<int>( "draw" );
 
 	//3D表示
 	//ボール
 	mBall.setPosition(mBallPos);
 	mBall.setColor(Vector3(1,1,1));
-	mBall.draw();
-
-	//タイトル
-	if(isTitle)
-	{
-		//mTitle.setPosition(mTitlePos);
-		//mTitle.setColor( Vector3( 1.f, 1.f, 1.f ) );
-		//mTitle.setTexture( mTitleTex );
-		//mTitle.draw();
-	}
-
-	Mashiro::Graphics::Sprite startsp = Mashiro::Graphics::Sprite::instance();
-
-	startsp.setBitmap(mStart);
-	startsp.setBitmapRectangle(Vector2(280,550));
-	startsp.draw();
+	mBall.draw( CocTrans::TYPE_BALL );
 
 }
 

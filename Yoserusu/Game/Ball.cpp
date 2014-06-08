@@ -16,7 +16,7 @@ Ball::Ball() : mode( Normal ), pos( 20 ), count( 3 ) {
 	//初期深度値を２５に設定
 	depth = static_cast< float >( DepthSingleton::instance()->getDepthMin() );
 	//ボールの生成
-	mBall = ModelLoader::instance()->createModel("res/model/Ball.pmd");
+	mBall.create( "res/model/Ball.pmd" );
 	mBall.setPosition(Vector3(0.f,0.f,float(30)));
 	mBall.setAngle(Vector3(0.f,0.f,0.f));
 	mBall.setColor(Vector3(1.f,1.f,1.f));
@@ -142,22 +142,10 @@ void Ball::Move(){
 Ball::~Ball(){
 }
 
-void Ball::Draw(Mashiro::Graphics::Texture tex10, Mashiro::Graphics::Texture tex01){
-	CocTrans* coc = CocTrans::instance();
-	CocTrans::ConstantBuffer* cb = NULL;
-	if( coc->lock( (void**)&cb ) ){
-		cb->mDrawType = CocTrans::TYPE_BALL;
-		coc->unLock();
-	}
-	cb = nullptr;
-	Graphics::Manager().setShader( CocTrans::instance()->shader() );
-	
+void Ball::Draw(Mashiro::Graphics::Texture tex10, Mashiro::Graphics::Texture tex01){	
 	mBall.setTexture( tex01 );
-	Graphics::Manager::instance().setTexture( tex10, 1 );
-	
-	Vector4 light = coc->instance()->worldLight( mBall.worldMatrix() );	
-	Graphics::Manager().setLight( light );
-	mBall.draw();	
+	mBall.setTexture( tex10, 1 );
+	mBall.draw( CocTrans::TYPE_BALL );	
 }
 
 int Ball::Color(){ 

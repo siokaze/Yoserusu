@@ -12,10 +12,14 @@ function Authe()
     this.mRedMaru = SpriteUtil( "res/image/RedMaru.png" );
     this.mBlueMaru = SpriteUtil( "res/image/BlueMaru.png" );  
     this.mTitle_Auth = SpriteUtil( "res/image/Title_Auth.png");
+    this.mBackGraound = SpriteUtil( "res/image/bg.png" );
     this.mHandCheckCount = 0;
     
     this.draw = function( self, mMoveSceneFlag, check )
         local switch = {}
+
+        --”wŒi‚Ì•`‰æ
+        self.mBackGraound:draw( 0, 0 );
 
         --”FØ”ÍˆÍ‰æ‘œ
         self.mRedMaru:draw( 600, 100 );
@@ -43,7 +47,10 @@ function Authe()
 
     this.handDraw = function( self, rX, rY, lX, lY )
         --è‚Ì•`‰æ
-        self.mLeftHand:setColor( 0.0, 0.0, 1.0 );
+
+        red = Vector3( 0.0, 0.0, 1.0 );
+
+        self.mLeftHand:setColor( red );
         self.mLeftHand:drawEllipse( lX, lY, 30, 30 );
 
         self.mRightHand:setColor( 1.0, 0.0, 0.0 );

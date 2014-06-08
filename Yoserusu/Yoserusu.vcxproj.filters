@@ -2,13 +2,76 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Lua\LuaManager.cpp">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\LuaObject.cpp">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_info.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_registry.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_rep.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\create_class.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\error.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\function.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\inheritance.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\object_rep.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\open.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\pcall.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\scope.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
     <ClCompile Include="Util\DataBase.cpp">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Util\DepthSingleton.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="Util\KinectUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
     <ClCompile Include="Util\ModelLoader.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\ModelObj.cpp">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Util\SoundManager.cpp">
@@ -17,19 +80,13 @@
     <ClCompile Include="Util\Sprite.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Timer.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Wall.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Util\Transform.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Game\ArmLeft.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\ArmRight.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Authe.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\BackGround.cpp">
@@ -47,68 +104,11 @@
     <ClCompile Include="Game\State.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Lua\Luabind\class.cpp">
-      <Filter>Lua\Luabind</Filter>
+    <ClCompile Include="Game\Timer.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_info.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_registry.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_rep.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\create_class.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\error.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\function.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\inheritance.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\object_rep.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\open.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\pcall.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\scope.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
-      <Filter>Lua\Luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\LuaManager.cpp">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\AutheScene.cpp">
-      <Filter>Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Parent.cpp">
-      <Filter>Sequence</Filter>
-    </ClCompile>
-    <ClCompile Include="Sequence\Title.cpp">
-      <Filter>Sequence</Filter>
+    <ClCompile Include="Game\Wall.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Sequence\Game\Loading.cpp">
       <Filter>Sequence\Game</Filter>
@@ -122,47 +122,79 @@
     <ClCompile Include="Sequence\Game\Result.cpp">
       <Filter>Sequence\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Util\KinectUtil.cpp">
-      <Filter>Util</Filter>
+    <ClCompile Include="Sequence\AutheScene.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Parent.cpp">
+      <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence\Title.cpp">
+      <Filter>Sequence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Game">
-      <UniqueIdentifier>{05bbd4f7-dc51-474f-ad3b-c8480fafc60b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lua">
-      <UniqueIdentifier>{9dfa8f48-75ae-4938-b632-1e1b0d09b383}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sequence">
-      <UniqueIdentifier>{b9a1fd05-7926-4802-82b8-f73cd600a64b}</UniqueIdentifier>
+      <UniqueIdentifier>{9d48d069-c36d-4616-ad1c-9b3a65393df1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
-      <UniqueIdentifier>{44f058d6-f532-41eb-9753-80bf73b81e94}</UniqueIdentifier>
+      <UniqueIdentifier>{0c49500e-4ffc-496f-b18e-c38aea40ae9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lua\Luabind">
-      <UniqueIdentifier>{a79b2591-f3cc-4762-afb0-e87cf2a5c731}</UniqueIdentifier>
+    <Filter Include="Lua\luabind">
+      <UniqueIdentifier>{96d1451b-0eae-4cdc-b63e-1df4adf8a4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{aff6b13e-8084-4faa-84f7-367c9449fca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sequence">
+      <UniqueIdentifier>{cf544d20-34fd-40d8-91ec-d2b712f7b177}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sequence\Game">
-      <UniqueIdentifier>{daeb34c6-7c1c-429e-a56a-b3b716fac767}</UniqueIdentifier>
+      <UniqueIdentifier>{d4008eae-220d-4858-a7a5-b7138f4040da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader">
-      <UniqueIdentifier>{a1d88182-6993-425f-a358-e3e65302d6cb}</UniqueIdentifier>
+      <UniqueIdentifier>{f1d6173c-69e4-4116-913b-eebf49617279}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader\hlsl">
-      <UniqueIdentifier>{7ac2edb4-0708-4a08-b801-d5e61891a1cd}</UniqueIdentifier>
+      <UniqueIdentifier>{dd06a1c7-b6ef-4cdf-9620-22e8569a34ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shader\include">
-      <UniqueIdentifier>{8d27c311-c5c8-4546-b1c2-90241a2e70a5}</UniqueIdentifier>
+      <UniqueIdentifier>{9b772e0b-8036-4c97-8ca8-6585887b7d75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Lua\Authe.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="Lua\Enum.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="Lua\Title.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="Shader\hlsl\CocTrans.fx">
+      <Filter>Shader\hlsl</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lua\LuaManager.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\LuaObject.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
     <ClInclude Include="Util\DataBase.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Util\DepthSingleton.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Util\KinectUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
     <ClInclude Include="Util\ModelLoader.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\ModelObj.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Util\SoundManager.h">
@@ -171,11 +203,11 @@
     <ClInclude Include="Util\Sprite.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Timer.h">
-      <Filter>Game</Filter>
+    <ClInclude Include="Util\Transform.h">
+      <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Wall.h">
-      <Filter>Game</Filter>
+    <ClInclude Include="Util\Util.h">
+      <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Game\Arm.h">
       <Filter>Game</Filter>
@@ -184,9 +216,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\ArmRight.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Authe.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\BackGround.h">
@@ -207,20 +236,11 @@
     <ClInclude Include="Game\State.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Lua\LuaManager.h">
-      <Filter>Lua</Filter>
+    <ClInclude Include="Game\Timer.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Sequence\AutheScene.h">
-      <Filter>Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Child.h">
-      <Filter>Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Parent.h">
-      <Filter>Sequence</Filter>
-    </ClInclude>
-    <ClInclude Include="Sequence\Title.h">
-      <Filter>Sequence</Filter>
+    <ClInclude Include="Game\Wall.h">
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Sequence\Game\Child.h">
       <Filter>Sequence\Game</Filter>
@@ -237,25 +257,20 @@
     <ClInclude Include="Sequence\Game\Result.h">
       <Filter>Sequence\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Shader\include\ShaderBase.h">
-      <Filter>Shader\include</Filter>
+    <ClInclude Include="Sequence\AutheScene.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Child.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Parent.h">
+      <Filter>Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence\Title.h">
+      <Filter>Sequence</Filter>
     </ClInclude>
     <ClInclude Include="Shader\include\CocTrans.h">
       <Filter>Shader\include</Filter>
     </ClInclude>
-    <ClInclude Include="Util\KinectUtil.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\Util.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Lua\Authe.lua">
-      <Filter>Lua</Filter>
-    </None>
-    <None Include="Shader\hlsl\CocTrans.fx">
-      <Filter>Shader\hlsl</Filter>
-    </None>
   </ItemGroup>
 </Project>

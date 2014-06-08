@@ -5,6 +5,7 @@
 #include "Mashiro/Math/Vector3.h"
 #include "Mashiro/Scene/Model.h"
 #include "Mashiro/Graphics/Texture.h"
+#include "Util/ModelObj.h"
 
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Scene;
@@ -29,7 +30,7 @@ public:
 
 protected:
 	struct Joint{
-		Model model;
+		ModelObj model;
 		Vector3 angle;
 	};
 	Joint shoulder;

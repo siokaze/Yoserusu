@@ -41,6 +41,10 @@ public:
 	* @brif カラー設定(default=white)
 	*/
 	void setColor( float r, float g, float b );
+		/*
+	* @brif カラー設定(default=white)
+	*/
+	void setColor( const Mashiro::Math::Vector3& color );
 	/*
 	* @brif 透過率
 	*/

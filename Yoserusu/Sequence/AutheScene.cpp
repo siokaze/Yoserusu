@@ -6,6 +6,7 @@
 #include "Mashiro/Math/Vector3.h"
 #include "Mashiro/Math/Vector4.h"
 #include "Mashiro/Graphics/GraphicsManager.h"
+#include "Mashiro/Graphics/SpriteManager.h"
 #include "Mashiro/WorkSpace/WorkSpace.h"
 #include "Mashiro/Kinect/KinectManager.h"
 #include "Mashiro/Input/InputManager.h"
@@ -13,15 +14,25 @@
 #include "Mashiro/Input/Mouse.h"
 
 #include "Game/BackGround.h"
-#include "Game/Authe.h"
 #include "Util/SoundManager.h"
 #include "Util/DepthSingleton.h"
+#include "Util/DataBase.h"
+#include "Lua/LuaManager.h"
+
+using namespace Mashiro;
+using namespace Mashiro::Math;
 
 namespace Sequence{
 
 AutheScene::AutheScene() : 
-mAuthe( 0 ),
-mMoveSceneCount( 0 ){
+mMoveSceneCount( 0 ),
+mDepth(),
+mCount(),
+mSum(),
+mHandCheckCount(),
+mHandCheck( false ),
+check( false ),
+mMoveSceneFlag( MODE_WAIT ){
 	SoundManager::instance()->playBgm(SoundManager::BGM_AUTHE);
 	Graphics::Manager m = Graphics::Manager::instance();
 
@@ -33,7 +44,7 @@ mMoveSceneCount( 0 ){
 
 	view.setIdentity();
 	view.setLookAtLH( Vector3(0,0,-30),Vector3(0.f),Vector3(0,1,0));
-	
+
 	Matrix mat;
 	mat.setIdentity();
 	mat.setMul( mat, view );
@@ -45,20 +56,17 @@ mMoveSceneCount( 0 ){
 
 	m.setLight( Vector4( 0.7f,0.7f, 0.6f, 2.f ) );
 	m.setEyePos( v );
-	//m.setShader( Graphics::SHADER_COCTRANS );
 
 	m.setViewMatrix(view);
 	m.setWorldMatrix(world);
 	m.setProjectionMatrix( proj);
 
-	mAuthe = NEW Authe();
-	mBack = NEW BackGround();
+	LuaManager::instance()->loadLua( "Lua/Authe.lua", "Authe" );
 }
 
 AutheScene::~AutheScene(){
 	SoundManager::instance()->stopBgm();
-	SAFE_DELETE( mAuthe );
-	SAFE_DELETE( mBack );
+	LuaManager::instance()->deleteLua();
 }
 
 void AutheScene::update( Parent* parent ){
@@ -75,34 +83,128 @@ void AutheScene::update( Parent* parent ){
 }
 
 void AutheScene::autheDraw(){
-	mBack->draw();
-	mAuthe->draw();
+	Graphics::Manager m = Graphics::Manager::instance();
+	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
+
+	Vector2 posR = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_RIGHT );
+	Vector2 posL = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_LEFT );
+
+	LuaManager::instance()->runLua< int >( "draw", boost::make_tuple( (int)mMoveSceneFlag, check, 0, 0 ) );
+
+	LuaManager::instance()->runLua< int >( "handDraw", boost::make_tuple( posR.x, posR.y, posL.x, posL.y ) );
 }
 
 void AutheScene::autheUpdate( Parent* parent ){
-	if( mAuthe->getMode() == MODE_END ){
+	auto handRang = [this]( const Vector2& kinectPos, const Vector2& checkPos1 )->bool{
+		if(mHandCheckCount > 0) mHandCheckCount--;
+		const float lb = checkPos1.x - 200;
+		const float rb = checkPos1.x + 200;
+		if( ( kinectPos.x < rb ) && ( kinectPos.x > lb ) ){
+			const float tb = checkPos1.y - 200;
+			const float bb = checkPos1.y + 200;
+			if( ( kinectPos.y < bb ) && ( kinectPos.y > tb ) ){
+				mHandCheckCount += 2 ;
+				return true;
+			}
+		}
+		return false;
+	};
+
+	//枠ない収まってるかチェックしてます
+	bool rCheck = handRang( Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_RIGHT ), Vector2( 600, 100 ) );
+	bool lCheck = handRang( Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_LEFT ),  Vector2( 200, 100 ) );
+
+	auto handFlag = [this]( bool rCheck, bool lCheck )mutable->bool{
+
+		if ( rCheck && lCheck ){
+			mMoveSceneFlag = MODE_NOW;
+			mSum += Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HAND_RIGHT );
+			++mCount;
+			check = true;
+		}else if(!rCheck && !lCheck){
+			check = false;
+			mCount = 0;
+			mDepth = 0;
+		}
+
+		if( mCount > 20 ){
+			return mHandCheck = true;
+		}
+
+		return mHandCheck = false;
+	};
+
+	auto depthCheck = [this]()mutable->void{
+		//深度値をうまく取ってこれるまでループさせて
+		mDepth = mSum / mCount;
+		if(mDepth < 15){
+			mHandCheck = false;
+			mSum = 0;
+			mCount = 0;
+			mMoveSceneFlag = MODE_NOW;
+			return;
+		}
+
+		DepthSingleton::instance()->setDepthMin( static_cast< float >( mDepth - 3));
+		DepthSingleton::instance()->setDepthMax(
+			static_cast< float >(
+			Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD)) );
+
+		if(DepthSingleton::instance()->getDepthMin() > DepthSingleton::instance()->getDepthMax() - DataBase::instance()->maxDepth() ){
+			mHandCheck = false;
+			mSum = 0;
+			mCount = 0;
+			mMoveSceneFlag = MODE_NOW;
+			return;
+		}
+		if(DepthSingleton::instance()->getDepthMax()-DepthSingleton::instance()->getDepthMin() < DataBase::instance()->minDepth() ){
+			mHandCheck = false;
+			mSum = 0;
+			mCount = 0;
+			mMoveSceneFlag = MODE_NOW;
+			return;
+		}
+
+		int sub = DepthSingleton::instance()->getDepthMax() - DepthSingleton::instance()->getDepthMin();
+		if(abs(sub) < 15){
+			mHandCheck = false;
+			mSum = 0;
+			mCount = 0;
+			mMoveSceneFlag = MODE_NOW;
+			return;
+		}
+
+		//モードをNow→END
+		if(mHandCheck){
+			mMoveSceneFlag = MODE_END;
+		}
+	};
+
+	auto moveScene = [this]()mutable->bool{
+		if( mMoveSceneCount == 90 ){
+			//認証が完了した 放置してからシーンをポップする
+			SoundManager::instance()->playSe(SoundManager::SE_OK);
+		}
+		if( mMoveSceneCount == 100 ){
+			return true;
+		}
+		++mMoveSceneCount;
+		return false;
+	};
+
+
+	if( mMoveSceneFlag == MODE_END ){
 		if( moveScene() ){
 			parent->moveTo( Parent::NEXT_TITLE );
 		}
 	}
-	if( !mAuthe->handFlag() ){
-		if( mAuthe->handCheck() ){
+
+	if( !mHandCheck ){
+		if( handFlag( rCheck, lCheck ) ){
 			//認証が完了したら深度値取得
-			mAuthe->depthCheck();
+			depthCheck();
 		}
 	}
-}
-
-bool AutheScene::moveScene(){
-	if( mMoveSceneCount == 90 ){
-		//認証が完了した 放置してからシーンをポップする
-		SoundManager::instance()->playSe(SoundManager::SE_OK);
-	}
-	if( mMoveSceneCount == 100 ){
-		return true;
-	}
-	++mMoveSceneCount;
-	return false;
 }
 
 } //namespace Sequence

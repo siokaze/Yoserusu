@@ -1,6 +1,8 @@
 #ifndef INCLUDE_SHADER_COCTRANS_H_
 #define INCLUDE_SHADER_COCTRANS_H_
 
+#include "Mashiro/Graphics/GraphicsManager.h"
+
 #include "Mashiro/Graphics/Enum.h"
 #include "Mashiro/Graphics/Shader.h"
 
@@ -25,11 +27,13 @@ public:
 		Vector3 mDummy;
 	};
 public:
-	static CocTrans* instance(){
-		static CocTrans mInstance;
-		return &mInstance;
+	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
+		create();
 	}
 
+	~CocTrans(){
+
+	}
 	//シェーダ生成
 	void create(){
 		ElementDesc desc[] = {
@@ -48,13 +52,13 @@ public:
 		mShader = Shader::create(file, desc, 6, sizeof( ConstantBuffer ) );	
 	}
 
-	Mashiro::Math::Vector4 worldLight( const Matrix& world ){
+	void worldLight( const Matrix& world ){
 		Matrix mat = world;
 		mat.setInverse( mat );
-		Vector4 v = mat.translation( mLight, mat );
+		Vector4 v = mat.translation( Vector4( -0.577f, -0.577f, -0.577f, 0.f ), mat );
 		v.normalize();
 		v.w = -0.3f;// 環境光の強さ
-		return v;
+		mLight = v;
 	}
 
 	bool lock( void** cb ){
@@ -72,17 +76,16 @@ public:
 		return mShader;
 	}
 
+	void setShader(){
+		Graphics::Manager::instance().setShader( mShader );
+		Graphics::Manager::instance().setLight( mLight );
+	}
+
+private:
 	Mashiro::Math::Vector4 mLight;
 
 	Mashiro::Graphics::Shader mShader;
 
-private:
-	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
-		create();
-	}
-
-	~CocTrans(){
-	}
 };
 
 

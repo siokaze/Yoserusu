@@ -5,9 +5,6 @@
     <ClCompile Include="Lua\LuaManager.cpp">
       <Filter>Lua</Filter>
     </ClCompile>
-    <ClCompile Include="Lua\LuaObject.cpp">
-      <Filter>Lua</Filter>
-    </ClCompile>
     <ClCompile Include="Lua\Luabind\class.cpp">
       <Filter>Lua\luabind</Filter>
     </ClCompile>
@@ -168,9 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lua\LuaManager.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="Lua\LuaObject.h">
       <Filter>Lua</Filter>
     </ClInclude>
     <ClInclude Include="Util\DataBase.h">

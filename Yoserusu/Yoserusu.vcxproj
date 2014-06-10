@@ -110,7 +110,6 @@
     <ClCompile Include="Lua\Luabind\weak_ref.cpp" />
     <ClCompile Include="Lua\Luabind\wrapper_base.cpp" />
     <ClCompile Include="Lua\LuaManager.cpp" />
-    <ClCompile Include="Lua\LuaObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sequence\AutheScene.cpp" />
     <ClCompile Include="Sequence\Game\Loading.cpp" />
@@ -144,7 +143,6 @@
     <ClInclude Include="Game\Timer.h" />
     <ClInclude Include="Game\Wall.h" />
     <ClInclude Include="Lua\LuaManager.h" />
-    <ClInclude Include="Lua\LuaObject.h" />
     <ClInclude Include="Sequence\AutheScene.h" />
     <ClInclude Include="Sequence\Child.h" />
     <ClInclude Include="Sequence\Game\Child.h" />

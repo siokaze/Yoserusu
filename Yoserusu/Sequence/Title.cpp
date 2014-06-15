@@ -68,7 +68,7 @@ void Title::titledraw(){
 	//3Dï\é¶
 	//É{Å[Éã
 	mBall.setPosition(mBallPos);
-	mBall.setColor(Vector3(1,1,1));
+	mBall.setColor(Vector3(1, 1, 1));
 	mBall.draw( CocTrans::TYPE_BALL );
 
 }

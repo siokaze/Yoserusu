@@ -110,7 +110,6 @@
     <ClCompile Include="Lua\Luabind\weak_ref.cpp" />
     <ClCompile Include="Lua\Luabind\wrapper_base.cpp" />
     <ClCompile Include="Lua\LuaManager.cpp" />
-    <ClCompile Include="Lua\LuaObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sequence\AutheScene.cpp" />
     <ClCompile Include="Sequence\Game\Loading.cpp" />
@@ -129,8 +128,12 @@
   <ItemGroup>
     <None Include="Lua\Authe.lua" />
     <None Include="Lua\Enum.lua" />
+    <None Include="Lua\Loading.lua" />
+    <None Include="Lua\Result.lua" />
     <None Include="Lua\Title.lua" />
     <None Include="Shader\hlsl\CocTrans.fx" />
+    <None Include="Shader\hlsl\Copy.fx" />
+    <None Include="Shader\hlsl\FeadBack.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Arm.h" />
@@ -144,7 +147,6 @@
     <ClInclude Include="Game\Timer.h" />
     <ClInclude Include="Game\Wall.h" />
     <ClInclude Include="Lua\LuaManager.h" />
-    <ClInclude Include="Lua\LuaObject.h" />
     <ClInclude Include="Sequence\AutheScene.h" />
     <ClInclude Include="Sequence\Child.h" />
     <ClInclude Include="Sequence\Game\Child.h" />
@@ -155,6 +157,8 @@
     <ClInclude Include="Sequence\Parent.h" />
     <ClInclude Include="Sequence\Title.h" />
     <ClInclude Include="Shader\include\CocTrans.h" />
+    <ClInclude Include="Shader\include\copy.h" />
+    <ClInclude Include="Shader\include\FeadBack.h" />
     <ClInclude Include="Util\DataBase.h" />
     <ClInclude Include="Util\DepthSingleton.h" />
     <ClInclude Include="Util\ModelLoader.h" />

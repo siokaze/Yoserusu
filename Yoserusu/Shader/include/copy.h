@@ -1,5 +1,5 @@
-#ifndef INCLUDE_SHADER_COCTRANS_H_
-#define INCLUDE_SHADER_COCTRANS_H_
+#ifndef INCLUDE_SHADER_COPY_H_
+#define INCLUDE_SHADER_COPY_H_
 
 #include "Mashiro/Graphics/GraphicsManager.h"
 
@@ -14,24 +14,12 @@ using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
 //CocTransシェーダ
-class CocTrans {
+class Copy {
 public:
-	enum Type {
-		TYPE_BALL,
-		TYPE_ARM,
-		TYPE_WALL,
-	};
-	struct ConstantBuffer{
-		Vector4 mDrawType;
-		Matrix mWorldInv;
-	};
-public:
-	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
+	Copy(){
 		create();
 	}
-
-	~CocTrans(){
-
+	~Copy(){
 	}
 	//シェーダ生成
 	void create(){
@@ -44,20 +32,11 @@ public:
 			{ "TANGENT", FORMAT_R32G32B32_FLOAT, 64 },
 		};
 		ShaderFile file;
-		file.mFileName = "Shader/hlsl/CocTrans.fx";
-		file.mVSFunc = "vs_coc";
-		file.mPSFunc = "ps_coc";
+		file.mFileName = "Shader/hlsl/Copy.fx";
+		file.mVSFunc = "vs_copy";
+		file.mPSFunc = "ps_copy";
 		//シェーダ生成
-		mShader = Shader::create(file, desc, 6, sizeof( ConstantBuffer ) );	
-	}
-
-	void worldLight( const Matrix& world ){
-		Matrix mat = world;
-		mat.setInverse( mat );
-		Vector4 v = mat.translation( Vector4( -1.f, -1.f, 0.8f, 1.f ), mat );
-		v.normalize();
-		v.w = -0.7f;// 環境光の強さ
-		mLight = v;
+		mShader = Shader::create(file, desc, 6, 0 );	
 	}
 
 	bool lock( void** cb ){
@@ -70,21 +49,17 @@ public:
 	void unLock(){
 		mShader.unlock();
 	}
-	 
+
 	Mashiro::Graphics::Shader shader(){
 		return mShader;
 	}
 
 	void setShader(){
 		Graphics::Manager::instance().setShader( mShader );
-		Graphics::Manager::instance().setLight( mLight );
 	}
 
 private:
-	Mashiro::Math::Vector4 mLight;
-
 	Mashiro::Graphics::Shader mShader;
-
 };
 
 

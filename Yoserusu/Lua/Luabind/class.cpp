@@ -33,7 +33,6 @@
 #include <cstring>
 #include <iostream>
 
-#include "Mashiro/Mashiro.h"
 
 namespace luabind
 {
@@ -110,11 +109,7 @@ namespace luabind { namespace detail {
         lua_newuserdata(L, sizeof(detail::class_rep));
         crep = reinterpret_cast<detail::class_rep*>(lua_touserdata(L, -1));
 
-        new(crep) detail::class_rep(
-            m_type
-            , m_name
-            , L
-		);
+        new(crep) detail::class_rep( m_type, m_name, L );
 
         // register this new type in the class registry
         r->add_class(m_type, crep);
@@ -238,7 +233,7 @@ namespace luabind { namespace detail {
 
     class_base::class_base(char const* name)
         : scope(std::auto_ptr<registration>(
-                m_registration = NEW class_registration(name))
+                m_registration = new class_registration(name))
           )
     {
     }

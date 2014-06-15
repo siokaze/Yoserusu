@@ -64,6 +64,8 @@ namespace Mashiro{
 
 		Graphics::Manager().setBackBufferTarget();
 
+
+
 		Sequence::Parent::instance()->update();
 
 		Input::Keyboard ikb = Input::Manager::instance().keyboard();

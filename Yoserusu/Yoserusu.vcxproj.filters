@@ -2,63 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Lua\LuaManager.cpp">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\LuaObject.cpp">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_info.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_registry.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_rep.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\create_class.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\error.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\function.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\inheritance.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\object_rep.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\open.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\pcall.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\scope.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
     <ClCompile Include="Util\DataBase.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -122,6 +65,60 @@
     <ClCompile Include="Sequence\Title.cpp">
       <Filter>Sequence</Filter>
     </ClCompile>
+    <ClCompile Include="Lua\Luabind\scope.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_registry.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_rep.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\create_class.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\error.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\function.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\inheritance.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\object_rep.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\open.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\pcall.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\LuaManager.cpp">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class_info.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\Luabind\class.cpp">
+      <Filter>Lua\luabind</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Lua">
@@ -165,14 +162,20 @@
     <None Include="Shader\hlsl\CocTrans.fx">
       <Filter>Shader\hlsl</Filter>
     </None>
+    <None Include="Lua\Loading.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="Lua\Result.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="Shader\hlsl\FeadBack.fx">
+      <Filter>Shader\hlsl</Filter>
+    </None>
+    <None Include="Shader\hlsl\Copy.fx">
+      <Filter>Shader\hlsl</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lua\LuaManager.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="Lua\LuaObject.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
     <ClInclude Include="Util\DataBase.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -259,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="Util\TextureObj.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\LuaManager.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\include\FeadBack.h">
+      <Filter>Shader\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\include\copy.h">
+      <Filter>Shader\include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

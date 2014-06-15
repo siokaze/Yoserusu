@@ -7,6 +7,8 @@
 #include "Shader/include/CocTrans.h"
 #include "Mashiro/Base/SharedPtr.h"
 
+#include <memory>
+
 /*
 * @class ModelObj
 * @brif モデルオブジェクト
@@ -42,7 +44,7 @@ public:
 private:
 	Mashiro::Scene::Model mModel;
 	//シェーダ
-	Mashiro::SharedPtr< CocTrans > mCocTrans;
+	std::unique_ptr< CocTrans > mCocTrans;
 };
 
 #endif

@@ -15,6 +15,7 @@ cbuffer ConstantBasic : register(b0)
 	float4 mEye;
 	float4 mSpecular;
 };
+
 cbuffer ConstantBasic : register(b1)
 {
 	float4 mDrawType;
@@ -77,42 +78,35 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 	Out.pos = mul( Out.pos, mView );
 	Out.pos = mul( Out.pos, mProj );
 
+	//法線をワールド空間へ
+	float3 nor = mul( In.nor, (float3x3)mWorldInv );
+	Out.N = normalize( nor.xyz );
+
 	//拡散光 + 環境光
 	float amb = -mLight.w;
 	float3 L = -mLight.xyz;
-	Out.col = ( In.col * -mLight ) * max( amb, dot( float4( In.nor, 1.f ), -mLight ) );
+	Out.col = In.col * max( amb, dot( float4( Out.N, 1.f ), -mLight ) );
 
+	//テクスチャUV
 	Out.tex = In.tex;
 
-	float3 nor = mul( In.nor, (float3x3)mWorld  );
-
-
-	Out.N = nor.xyz;
+	//頂点別で確保
 	Out.X = In.pos.xyz;
 
+	//viewを頂点で確保
 	Out.vpos = view_pos.xyz;
 
-	float4 t = normalize( mul( float4( In.tan.xyz,1.0f ), ( mWorldInv ) ) ); 
-	float4 b = normalize( mul( float4( In.bin.xyz,1.0f ), ( mWorldInv ) ) ); 
-	float4 n = normalize( mul( float4( In.nor.xyz,1.0f ), ( mWorldInv ) ) );
-
 	float3 light = world_pos.xyz - mLight.xyz;
-	Out.light.x = dot(light, t.xyz); 
-	Out.light.y = dot(light, b.xyz); 
-	Out.light.z = dot(light, n.xyz); 
-	Out.light = normalize(Out.light);
+	Out.light = normalize(light);
 
 	Out.eye = world_pos.xyz - mEye.xyz;
 	Out.eye = normalize( Out.eye );
-
-
-
 
 	return Out;
 }
 
 float4 ps_coc( VS_OUTPUT In ) : SV_Target {
-	float3 L = -mLight.xyz; //ライトベクトル
+	float3 L = -In.light.xyz; //ライトベクトル
 	float3 N = normalize( In.N ); //法線ベクトル
 	float3 V = normalize( mEye.xyz - In.X ); //視線ベクトル
 	float3 H = normalize( L + V ); //ハーフベクトル
@@ -124,7 +118,7 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 	float NL = dot( N, L );
 	float LH = dot( L, H );
 
-	const float m = 0.35f;//粗さ
+	const float m = 0.45f;//粗さ
 	float NH2 = NH*NH;
 	float D = exp( -( 1 - NH2 ) / ( NH2 * m * m ) ) / ( 4 * m * m * NH2 * NH2 );
 
@@ -139,11 +133,7 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 	float cgnc = LH * gnc + 1;
 	float F = 0.5f * gnc * gnc * ( 1 + cgpc * cgpc / ( cgnc * cgnc ) ) / ( gpc * gpc );
 
-	//金属の色
-	float4 ks = { 1.0f, 1.0f, 1.0f, 1.0f };
-	In.col = In.col * 1.5f; 
-
-	float4 color = float4( 0, 0, 0, 1 );
+	float4 color = float4( 1, 1, 1, 1 );
 	if( (int)mDrawType.x == WALL){ //BumpMapを使います
 		color = In.col * tex_0.Sample( texSamp_0, In.tex );
 	}
@@ -156,13 +146,14 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 		float4 texCol_0, texCol_1;
 		texCol_0 = tex_0.Sample( texSamp_0, In.tex );
 		texCol_1 = tex_1.Sample( texSamp_1, In.tex );
-		color = In.col * texCol_0 * texCol_1;
+		color = texCol_0 * texCol_1;
 	}
 
-	color = color + ks*max( 0, F * D * G / NV ) / 2;
+	//金属の色
+	float4 ks = { mDiffuse.x*0.486f, mDiffuse.y*0.433f, mDiffuse.z*0.450f, 1.0f };
 
-	color.xyz = color.xyz * mDiffuse.xyz*1.5;
 	color.w = mDiffuse.w;
 
-	return color+pow(max(0,dot(N,H)),50);
+	return color * mDiffuse
+			+ ks * max( 0, F * D * G / NV );
 }

@@ -7,8 +7,6 @@
 #include "Mashiro/Scene/Model.h"
 #include "Mashiro/Graphics/Texture.h"
 #include "Mashiro/Graphics/Bitmap.h"
-#include "Game/ArmRight.h"
-#include "Game/ArmLeft.h"
 
 using namespace Mashiro;
 using namespace Mashiro::Math;
@@ -42,9 +40,6 @@ private:
 	Vector3 mBallPos;
 	Vector3 mTitlePos;
 
-	ArmRight* mHr;
-	ArmLeft* mHl;
-
 	float mPosY;
 	float mPosZ;
 	float mAngY;
@@ -54,7 +49,6 @@ private:
 	float oK;
 
 	bool mKeep;
-	int Color;
 	bool isTitle;
 	int mDepth;
 	bool isEnd;

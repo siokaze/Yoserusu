@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <NuiApi.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "Mashiro/Mashiro.h"
 #include "Mashiro/Kinect/KinectManager.h"
@@ -326,7 +327,8 @@ public:
 	}
 	//カメラの角度変更
 	void setCamera( float radian ){
-		//mNuiSensor->NuiCameraElevationSetAngle( NUI_
+
+		mNuiSensor->NuiCameraElevationSetAngle(radian);
 	}
 	//トラッキングフラグ
 	void initTrackingFlag(){

@@ -22,7 +22,8 @@ using namespace Mashiro::Graphics;
 
 namespace Sequence{
 
-Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),oK(0),oKCount(0), mSceneMoveFlag( false ){
+	Title::Title() :mPosY(0),mPosZ(0),mAngY(0),mCount(0),isTitle(false),
+						oK(0),oKCount(0), mSceneMoveFlag( false ),startAlpha(0){
 	SoundManager::instance()->playBgm( SoundManager::BGM_TITLE );
 		
 	mBall.create( "res/model/Ball.pmd" );
@@ -69,7 +70,8 @@ void Title::titledraw(){
 	mBall.setPosition(mBallPos);
 	mBall.setColor(Vector3(1,1,1));
 	mBall.draw( CocTrans::TYPE_BALL );
-
+	startAlpha+=0.1;
+	LuaManager::instance()->runLua<int>( "startDraw",boost::make_tuple(sin(startAlpha),0,0,0));
 }
 
 void Title::titleUpdate( Parent* parent ){

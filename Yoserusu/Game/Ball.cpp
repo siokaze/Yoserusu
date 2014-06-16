@@ -17,7 +17,7 @@ Ball::Ball() : mode( Normal ), pos( 20 ), count( 3 ) {
 	depth = static_cast< float >( DepthSingleton::instance()->getDepthMin() );
 	//ボールの生成
 	mBall.create( "res/model/Ball.pmd" );
-	mBall.setPosition(Vector3(0.f,0.f,float(30)));
+	mBall.setPosition(Vector3(0.f,0.f,float(30+depth)));
 	mBall.setAngle(Vector3(0.f,0.f,0.f));
 	mBall.setColor(Vector3(1.f,1.f,1.f));
 	mBall.setScale(Vector3(2.f));
@@ -29,7 +29,7 @@ Ball::Ball() : mode( Normal ), pos( 20 ), count( 3 ) {
 void Ball::Initi(){
 	mode = Normal;
 	color = 4;
-	pos = 30;
+	pos = 30+depth;
 	mBall.setColor(Vector3(1.f,1.f,1.f));
 }
 
@@ -87,7 +87,7 @@ void Ball::DepthChange(Arm* hand,int n){
 	//キューブの深度値を腕の深度値に設定
 	if(hand->Depth() > depth)depth+=0.6f;
 	if(hand->Depth() < depth)depth-=0.6f;
-	mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 10));
+	mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 30));
 	hand->Keep(Check(n));
 }
 
@@ -101,7 +101,7 @@ void Ball::DepthChange(Arm* rhand,Arm* lhand){
 		if(lhand->Depth() > depth)depth+=0.6f;
 		if(lhand->Depth() < depth)depth-=0.6f;
 	}
-	mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 10));
+	mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 30));
 	Check(rhand,lhand);
 }
 
@@ -126,15 +126,15 @@ void Ball::Check(Arm* rhand,Arm* lhand){
 void Ball::Move(){
 	if(mode == Catch){
 		pos -= 2;
-		if(pos <= 10){
+		if(pos <= 30){
 			mode = Release;
 			depth = static_cast< float >( DepthSingleton::instance()->getDepthMin() );
 		}
-		mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 10));
+		mBall.setPosition(Vector3(0.f,0.f,DepthSingleton::instance()->getDepthMax()-depth + 30));
 		return;
 	}
 	pos += 2;
-	if(pos>=+ DepthSingleton::instance()->getDepthMax()) Initi();
+	if(pos>=+ DepthSingleton::instance()->getDepthMax() + 30) Initi();
 	mBall.setPosition(Vector3(0.f,0.f,static_cast< float >( pos )));
 	
 }

@@ -40,6 +40,8 @@ private:
 	Vector3 mBallPos;
 	Vector3 mTitlePos;
 
+	float startAlpha;
+
 	float mPosY;
 	float mPosZ;
 	float mAngY;

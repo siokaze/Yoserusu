@@ -59,5 +59,9 @@ void Manager::initTrackingFlag(){
 	gManagerImpl->initTrackingFlag();
 }
 
+void Manager::setCamera(float angle) const{
+	gManagerImpl->setCamera(angle);
+}
+
 }
 }

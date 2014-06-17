@@ -163,15 +163,28 @@ public:
 					count = 0;
 					Vector3 bin, tan;
 					CalcTangentAndBinormal(
-						&v[ i - 2 ].mPosition, &v[ i - 2 ].mUV,
-						&v[ i - 1 ].mPosition, &v[ i - 1 ].mUV,
-						&v[ i ].mPosition, &v[ i ].mUV,
-						&bin, &tan );
-					v[ i - 2 ].mBinormal = bin;
+						&v[ i - 2 ].mPosition, &v[ i - 2 ].mUV, //0
+						&v[ i - 1 ].mPosition, &v[ i - 1 ].mUV, //1
+						&v[ i ].mPosition, &v[ i ].mUV,         //2
+						&tan, &bin );
+					v[ i - 2 ].mBinormal.setMul( bin, -1.f );
 					v[ i - 2 ].mTangent = tan;
-					v[ i - 1 ].mBinormal = bin;
+
+
+					CalcTangentAndBinormal( 
+						&v[ i - 1 ].mPosition, &v[ i - 1 ].mUV, 
+						&v[ i - 2 ].mPosition, &v[ i - 2 ].mUV,
+						&v[ i ].mPosition, &v[ i ].mUV,
+						&tan, &bin );
+					v[ i - 1 ].mBinormal.setMul( bin, -1.f );
 					v[ i - 1 ].mTangent = tan;
-					v[ i ].mBinormal = bin;
+
+					CalcTangentAndBinormal( 
+						&v[ i - 2 ].mPosition, &v[ i - 2].mUV, 
+						&v[ i ].mPosition, &v[ i ].mUV,
+						&v[ i - 1 ].mPosition, &v[ i - 1 ].mUV,
+						&tan, &bin );
+					v[ i ].mBinormal.setMul( bin, -1.f );
 					v[ i ].mTangent = tan;
 				}
 			}

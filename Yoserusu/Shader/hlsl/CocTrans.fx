@@ -96,11 +96,32 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 	//viewを頂点で確保
 	Out.vpos = view_pos.xyz;
 
+	float3 tangent; 
+	float3 binormal; 
+	float3 c1 = cross(In.nor, float3(0.0, 0.0, 1.0)); 
+	float3 c2 = cross(In.nor, float3(0.0, 1.0, 0.0)); 
+	if (length(c1)>length(c2)) { 
+		tangent = c1; 
+	} else { 
+		tangent = c2; 
+	} 
+	tangent = normalize(tangent); 
+	binormal = cross( In.nor, tangent); 
+	binormal = normalize(binormal); 
+
 	float3 light = world_pos.xyz - mLight.xyz;
+	Out.light.x = dot( light, tangent );
+	Out.light.y = dot( light, binormal );
+	Out.light.z = dot( light, In.nor );
+	Out.light = normalize(Out.light);
 	Out.light = normalize(light);
 
-	Out.eye = world_pos.xyz - mEye.xyz;
+	float eye = world_pos.xyz - mEye.xyz;
+	Out.eye.x = dot( eye, tangent ); 
+	Out.eye.y = dot( eye, binormal );
+	Out.eye.z = dot( eye, In.nor );
 	Out.eye = normalize( Out.eye );
+	Out.eye = normalize( eye );
 
 	return Out;
 }
@@ -135,7 +156,7 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 
 	float4 color = float4( 1, 1, 1, 1 );
 	if( (int)mDrawType.x == WALL){ //BumpMapを使います
-		color = In.col * tex_0.Sample( texSamp_0, In.tex );
+		color = In.col * tex_0.Sample( texSamp_0, In.tex ) ;
 	}
 	if( (int)mDrawType.x == ARM ){//通常描画
 		float3 reflect_vec = reflect( In.eye, In.N );
@@ -143,9 +164,10 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 		color = saturate( 1.0f * color + 0.2 );
 	}
 	if( (int)mDrawType.x == BALL ){ //tex2枚で描画
-		float4 texCol_0, texCol_1;
+		float4 texCol_0, texCol_1, texCol_2;
 		texCol_0 = tex_0.Sample( texSamp_0, In.tex );
 		texCol_1 = tex_1.Sample( texSamp_1, In.tex );
+
 		color = texCol_0 * texCol_1;
 	}
 

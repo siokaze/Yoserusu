@@ -17,6 +17,7 @@
 #include "Util/DepthSingleton.h"
 #include "Util/DataBase.h"
 #include "Lua/LuaManager.h"
+#include "boost\algorithm\clamp.hpp"
 
 using namespace Mashiro;
 using namespace Mashiro::Math;
@@ -60,6 +61,8 @@ mMoveSceneFlag( MODE_WAIT ){
 	m.setWorldMatrix(world);
 	m.setProjectionMatrix( proj);
 
+	Mashiro::Kinect::Manager::instance().setCamera(0);
+
 	LuaManager::instance()->loadLua( "Lua/Authe.lua", "Authe" );
 }
 
@@ -94,6 +97,17 @@ void AutheScene::autheDraw(){
 }
 
 void AutheScene::autheUpdate( Parent* parent ){
+
+	float  angle =  - 11 + Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HEAD );
+	
+	Sprite::instance().setTrance(1);
+
+	 if(!Mashiro::Kinect::Manager::instance().tracking()) angle = 0;
+
+	angle = boost::algorithm::clamp(angle,-11,27);
+
+	Mashiro::Kinect::Manager::instance().setCamera(angle);
+
 	auto handRang = [this]( const Vector2& kinectPos, const Vector2& checkPos1 )->bool{
 		if(mHandCheckCount > 0) mHandCheckCount--;
 		const float lb = checkPos1.x - 200;
@@ -136,7 +150,17 @@ void AutheScene::autheUpdate( Parent* parent ){
 	auto depthCheck = [this]()mutable->void{
 		//深度値をうまく取ってこれるまでループさせて
 		mDepth = mSum / mCount;
-		if(mDepth < 15){
+
+		float headPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HEAD ).y;
+		float footPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_FOOT_RIGHT ).y;
+
+		int depthCheck = 14;
+
+		if(Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD)  <  38 ) depthCheck = 1; //子供の身長によって変える
+
+		float honki = Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD);
+
+		if(mDepth < depthCheck){
 			mHandCheck = false;
 			mSum = 0;
 			mCount = 0;
@@ -145,18 +169,17 @@ void AutheScene::autheUpdate( Parent* parent ){
 		}
 
 		DepthSingleton::instance()->setDepthMin( static_cast< float >( mDepth - 3));
-		DepthSingleton::instance()->setDepthMax(
-			static_cast< float >(
+		DepthSingleton::instance()->setDepthMax(static_cast< float >(
 			Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD)) );
 
-		if(DepthSingleton::instance()->getDepthMin() > DepthSingleton::instance()->getDepthMax() - DataBase::instance()->maxDepth() ){
+		if(DepthSingleton::instance()->getDepthMin() > DepthSingleton::instance()->getDepthMax()){
 			mHandCheck = false;
 			mSum = 0;
 			mCount = 0;
 			mMoveSceneFlag = MODE_NOW;
 			return;
 		}
-		if(DepthSingleton::instance()->getDepthMax()-DepthSingleton::instance()->getDepthMin() < DataBase::instance()->minDepth() ){
+		if(DepthSingleton::instance()->getDepthMax()-DepthSingleton::instance()->getDepthMin() < depthCheck ){
 			mHandCheck = false;
 			mSum = 0;
 			mCount = 0;
@@ -164,14 +187,14 @@ void AutheScene::autheUpdate( Parent* parent ){
 			return;
 		}
 
-		int sub = DepthSingleton::instance()->getDepthMax() - DepthSingleton::instance()->getDepthMin();
+	/*	int sub = DepthSingleton::instance()->getDepthMax() - DepthSingleton::instance()->getDepthMin();
 		if(abs(sub) < 15){
 			mHandCheck = false;
 			mSum = 0;
 			mCount = 0;
 			mMoveSceneFlag = MODE_NOW;
 			return;
-		}
+		}*/
 
 		//モードをNow→END
 		if(mHandCheck){

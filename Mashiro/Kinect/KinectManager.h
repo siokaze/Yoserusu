@@ -33,6 +33,8 @@ public:
 	//トラッキング固定フラグ
 	void initTrackingFlag();
 
+	void setCamera(float angle) const;
+
 	//以下は知らなくてよい
 	void update();
 	static void create( int w, int h, bool window );

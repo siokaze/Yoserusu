@@ -3,7 +3,7 @@
 #include "Sequence/Game/Loading.h"
 
 #include "Mashiro/Mashiro.h"
-#include "Lua/LuaManager.h"
+#include "Mashiro/Math/Functions.h"
 
 namespace Sequence{
 namespace Game{
@@ -25,12 +25,12 @@ void LoadingThread::operator()(){
 	mFinished = true;
 }
 
-Loading::Loading() : mLoading( 0 ), mFirst( false ){
-	LuaManager::instance()->loadLua( "Lua/Loading.lua", "Loading" );
+Loading::Loading() : mLoading( 0 ), mFirst( false ), mFade( 0.f ){
+	mBlack = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
+	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 }
 
 Loading::~Loading(){
-	LuaManager::instance()->deleteLua();
 	SAFE_DELETE( mLoading );
 }
 
@@ -42,9 +42,19 @@ void Loading::update( ParentGame* parent ){
 		mFirst = true;
 	}
 
-	int fade = LuaManager::instance()->runLua<int>( "draw" );
+	float fade = Math::sin( mFade / 30 ) / 2 + 0.5;
 
-	if( fade > 90 ){
+	//”wŒi•`‰æ
+	mBlack->setColor( 0.0, 0.0, 0.0 );
+	mBlack->setTransparency( fade );
+	mBlack->drawRectangle( 0, 0, 1024, 800 );
+
+	mBackGraound->draw( 0, 0 );
+
+	mFade = mFade + 1;
+
+
+	if( mFade > 90 ){
 		if( mLoading->mFinished ){
 			//ƒ[ƒh‚ª‚¨[‚¯[‚È‚çŽŸƒV[ƒ“‚Ö
 			parent->moveTo( ParentGame::NEXT_PLAY );

@@ -16,7 +16,6 @@
 #include "Util/SoundManager.h"
 #include "Util/DepthSingleton.h"
 #include "Util/DataBase.h"
-#include "Lua/LuaManager.h"
 #include "boost\algorithm\clamp.hpp"
 
 using namespace Mashiro;
@@ -63,12 +62,20 @@ mMoveSceneFlag( MODE_WAIT ){
 
 	Mashiro::Kinect::Manager::instance().setCamera(0);
 
-	LuaManager::instance()->loadLua( "Lua/Authe.lua", "Authe" );
+	mLeftHand = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
+	mRightHand = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
+
+	mAuth = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Auth.png" ) );
+	mOK = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Ok.png" ) );
+	mRedMaru = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/RedMaru.png" ) );
+	mBlueMaru = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/BlueMaru.png" ) ); 
+	mTitle_Auth = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Title_Auth.png" ) );
+	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
+
 }
 
 AutheScene::~AutheScene(){
 	SoundManager::instance()->stopBgm();
-	LuaManager::instance()->deleteLua();
 }
 
 void AutheScene::update( Parent* parent ){
@@ -91,14 +98,36 @@ void AutheScene::autheDraw(){
 	Vector2 posR = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_RIGHT );
 	Vector2 posL = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HAND_LEFT );
 
-	LuaManager::instance()->runLua< int >( "draw", boost::make_tuple( (int)mMoveSceneFlag, check, 0, 0 ) );
+	//背景の描画
+	mBackGraound->draw( 0, 0 );
 
-	LuaManager::instance()->runLua< int >( "handDraw", boost::make_tuple( posR.x, posR.y, posL.x, posL.y ) );
+	//認証範囲画像
+	mRedMaru->draw( 600, 100 );
+	mBlueMaru->draw( 200, 100 );
+
+	//switchケース 
+	switch( mMoveSceneFlag ){
+		case MODE_WAIT: mTitle_Auth->draw( 130, 400 ); break;
+		case MODE_NOW: 
+			mTitle_Auth->draw( 130, 400 );
+			if ( check ) {
+				mAuth->draw( 200, 530 );
+			}
+			break;
+		case MODE_END: mOK->draw( 130, 530 ); break;
+	}
+
+	//手の描画
+	mLeftHand->setColor( 0.0, 0.0, 1.0  );
+	mLeftHand->drawEllipse( posL.x, posL.y, 30, 30 );
+
+	mRightHand->setColor( 1.0, 0.0, 0.0 );
+	mRightHand->drawEllipse( posR.x, posR.y, 30, 30 );
 }
 
 void AutheScene::autheUpdate( Parent* parent ){
 
-	float  angle =  - 11 + Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HEAD );
+	float angle =  -11 + Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HEAD );
 	
 	Sprite::instance().setTrance(1);
 
@@ -151,14 +180,9 @@ void AutheScene::autheUpdate( Parent* parent ){
 		//深度値をうまく取ってこれるまでループさせて
 		mDepth = mSum / mCount;
 
-		float headPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HEAD ).y;
-		float footPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_FOOT_RIGHT ).y;
-
 		int depthCheck = 14;
 
 		if(Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD)  <  38 ) depthCheck = 1; //子供の身長によって変える
-
-		float honki = Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD);
 
 		if(mDepth < depthCheck){
 			mHandCheck = false;
@@ -186,15 +210,6 @@ void AutheScene::autheUpdate( Parent* parent ){
 			mMoveSceneFlag = MODE_NOW;
 			return;
 		}
-
-	/*	int sub = DepthSingleton::instance()->getDepthMax() - DepthSingleton::instance()->getDepthMin();
-		if(abs(sub) < 15){
-			mHandCheck = false;
-			mSum = 0;
-			mCount = 0;
-			mMoveSceneFlag = MODE_NOW;
-			return;
-		}*/
 
 		//モードをNow→END
 		if(mHandCheck){

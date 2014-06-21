@@ -92,24 +92,6 @@
     <ClCompile Include="Game\State.cpp" />
     <ClCompile Include="Game\Timer.cpp" />
     <ClCompile Include="Game\Wall.cpp" />
-    <ClCompile Include="Lua\Luabind\class.cpp" />
-    <ClCompile Include="Lua\Luabind\class_info.cpp" />
-    <ClCompile Include="Lua\Luabind\class_registry.cpp" />
-    <ClCompile Include="Lua\Luabind\class_rep.cpp" />
-    <ClCompile Include="Lua\Luabind\create_class.cpp" />
-    <ClCompile Include="Lua\Luabind\error.cpp" />
-    <ClCompile Include="Lua\Luabind\exception_handler.cpp" />
-    <ClCompile Include="Lua\Luabind\function.cpp" />
-    <ClCompile Include="Lua\Luabind\inheritance.cpp" />
-    <ClCompile Include="Lua\Luabind\link_compatibility.cpp" />
-    <ClCompile Include="Lua\Luabind\object_rep.cpp" />
-    <ClCompile Include="Lua\Luabind\open.cpp" />
-    <ClCompile Include="Lua\Luabind\pcall.cpp" />
-    <ClCompile Include="Lua\Luabind\scope.cpp" />
-    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp" />
-    <ClCompile Include="Lua\Luabind\weak_ref.cpp" />
-    <ClCompile Include="Lua\Luabind\wrapper_base.cpp" />
-    <ClCompile Include="Lua\LuaManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sequence\AutheScene.cpp" />
     <ClCompile Include="Sequence\Game\Loading.cpp" />
@@ -126,11 +108,6 @@
     <ClCompile Include="Util\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lua\Authe.lua" />
-    <None Include="Lua\Enum.lua" />
-    <None Include="Lua\Loading.lua" />
-    <None Include="Lua\Result.lua" />
-    <None Include="Lua\Title.lua" />
     <None Include="Shader\hlsl\CocTrans.fx" />
     <None Include="Shader\hlsl\Copy.fx" />
     <None Include="Shader\hlsl\FeadBack.fx" />
@@ -146,7 +123,6 @@
     <ClInclude Include="Game\State.h" />
     <ClInclude Include="Game\Timer.h" />
     <ClInclude Include="Game\Wall.h" />
-    <ClInclude Include="Lua\LuaManager.h" />
     <ClInclude Include="Sequence\AutheScene.h" />
     <ClInclude Include="Sequence\Child.h" />
     <ClInclude Include="Sequence\Game\Child.h" />

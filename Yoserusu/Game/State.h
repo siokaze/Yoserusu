@@ -6,6 +6,8 @@
 #include "Game/ArmRight.h"
 #include "Mashiro/Graphics/Bitmap.h"
 
+#include <memory>
+
 class Ball;
 class Wall;
 class LockOn;
@@ -23,12 +25,12 @@ public:
 	bool countDown() const;
 	bool targetCheck() const;
 private:
-	Ball* ball;
-	Wall* wall;
-	Timer* timer;
-	ArmLeft* lArm;
-	ArmRight* rArm;
-	LockOn* mLockOn;
+	std::unique_ptr< Ball > ball;
+	std::unique_ptr< Wall > wall;
+	std::unique_ptr< Timer > timer;
+	std::unique_ptr< ArmLeft > lArm;
+	std::unique_ptr< ArmRight > rArm;
+	std::unique_ptr< LockOn > mLockOn;
 
 };
 

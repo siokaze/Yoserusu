@@ -20,20 +20,18 @@ using namespace Mashiro::Graphics;
 using namespace Mashiro::Kinect;
 using namespace std;
 
-State::State() : 
-ball( 0 ), 
-wall( 0 ), 
-lArm( 0 ), 
-rArm( 0 ), 
-timer( 0 ), 
-mLockOn( 0 ){
+template< typename T > std::unique_ptr< T > factory(){
+	return std::unique_ptr< T >( NEW T );
+}
+
+State::State(){
 	//オブジェクトの生成
-	ball = NEW Ball();
-	wall = NEW Wall();
-	lArm= NEW ArmLeft();
-	rArm = NEW ArmRight();
-	timer = NEW Timer();
-	mLockOn = NEW LockOn();
+	ball = factory< Ball >();
+	wall = factory< Wall >();
+	lArm= factory< ArmLeft >();
+	rArm = factory< ArmRight >();
+	timer = factory< Timer >();
+	mLockOn = factory< LockOn >();
 }
 
 void State::init(){
@@ -43,13 +41,6 @@ void State::init(){
 }
 
 State::~State(){
-	//deleteは生成した時の逆順でしよう
-	SAFE_DELETE( mLockOn );
-	SAFE_DELETE(timer);
-	SAFE_DELETE(rArm);
-	SAFE_DELETE(lArm);
-	SAFE_DELETE(wall);
-	SAFE_DELETE(ball);
 }
 
 void State::update(){
@@ -64,13 +55,13 @@ void State::update(){
 	//タイマー回してる
 	if( timer->isStart() && !timeUp() ){
 		//ボールアップデート
-		ball->Update( rArm, lArm );
+		ball->Update( rArm.get(), lArm.get() );
 		//ターゲット
 		mLockOn->update( targetCheck() );
 	}
 
 	if( !timeUp() ){
-		wall->Animation(ball);
+		wall->Animation(ball.get());
 	}
 }
 

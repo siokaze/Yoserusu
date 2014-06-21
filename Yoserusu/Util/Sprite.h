@@ -20,6 +20,10 @@ public:
 	*/
 	~SpriteUtil();
 	/*
+	* @brief 生成
+	*/
+	void create( const char* fileName );
+	/*
 	* @brif 2D描画(四角形)
 	* @param int x - x座標
 	* @param int y - y座標

@@ -57,3 +57,7 @@ void SpriteUtil::drawRectangle(int x, int y, int w, int h) {
 	sp.draw();
 }
 
+void SpriteUtil::create(const char* fileName) {
+	mBitmap = Bitmap::create( fileName );
+}
+

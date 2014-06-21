@@ -4,6 +4,9 @@
 #include "Sequence/Child.h"
 #include "Mashiro/Math/Vector2.h"
 #include "Game/Enum.h"
+#include "Util/Sprite.h"
+
+#include <memory>
 
 class BackGround;
 class Authe;
@@ -23,6 +26,16 @@ public:
 	void autheDraw();
 
 private:
+	std::unique_ptr< SpriteUtil > mLeftHand;
+	std::unique_ptr< SpriteUtil > mRightHand;
+
+	std::unique_ptr< SpriteUtil > mAuth;
+	std::unique_ptr< SpriteUtil > mOK;
+	std::unique_ptr< SpriteUtil > mRedMaru;
+	std::unique_ptr< SpriteUtil > mBlueMaru;
+	std::unique_ptr< SpriteUtil > mTitle_Auth;
+	std::unique_ptr< SpriteUtil > mBackGraound;
+
 	//シーンポップフラグ
 	int mMoveSceneCount;
 

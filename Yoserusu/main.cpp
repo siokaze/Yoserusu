@@ -16,7 +16,6 @@
 #include "Util/ModelLoader.h"
 #include "Util/DataBase.h"
 #include "Game/Score.h"
-#include "Lua/LuaManager.h"
 
 #include "Util/Sprite.h"
 
@@ -50,7 +49,6 @@ namespace Mashiro{
 			SoundManager::create();
 			DepthSingleton::create();
 			ModelLoader::create();
-			LuaManager::create();
 			Score::create();
 			DataBase::create();
 			DataBase::instance()->fileOpen( "res/ini/data.txt" );
@@ -89,7 +87,6 @@ namespace Mashiro{
 			DepthSingleton::destory();
 			ModelLoader::destory();
 			Score::destory();
-			LuaManager::destory();
 #if _DEBUG
 			gStr.release();
 #endif

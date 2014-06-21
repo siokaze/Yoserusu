@@ -4,6 +4,8 @@
 #include "Sequence/Game/Child.h"
 #include "Mashiro/Threading/Thread.h"
 
+#include "Util/Sprite.h"
+#include <memory>
 class BackGround;
 
 namespace Sequence{
@@ -30,6 +32,11 @@ public:
 private:
 	LoadingThread* mLoading;
 	bool mFirst;
+
+	float mFade;
+
+	std::unique_ptr< SpriteUtil > mBlack;
+	std::unique_ptr< SpriteUtil > mBackGraound;
 };
 
 } //namespace Game

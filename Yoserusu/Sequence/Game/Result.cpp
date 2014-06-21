@@ -7,17 +7,21 @@
 
 #include "Util/SoundManager.h"
 #include "Util/ModelLoader.h"
-#include "Lua/LuaManager.h"
 
 namespace Sequence{
 namespace Game{
 
-Result::Result(){
-	LuaManager::instance()->loadLua( "Lua/Result.lua", "Result" );
+Result::Result() : 
+mBallPos( 0.0, -20.0, 0.0 ),
+mBallAng( 0.0, 0.0, 0.0 ),
+mBallScale( 0.5, 0.5, 0.5 ){
+	mBall = std::unique_ptr< ModelObj >( NEW ModelObj( "res/model/Ball.pmd" ) );
+
+	mStrTex = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Ending.png" ) );
+	mBackGround = std::unique_ptr< SpriteUtil >( NEW SpriteUtil(  "res/image/Ending_bg.png" ) );
 }
 
 Result::~Result(){
-	LuaManager::instance()->deleteLua();
 	SoundManager::instance()->stopBgm();
 }
 
@@ -26,9 +30,24 @@ void Result::update( ParentGame* parent ){
 		parent->moveTo( ParentGame::NEXT_AUTHE );
 	}
 
-	float pos = LuaManager::instance()->runLua<float>( "draw" );
+	mBallAng.y = mBallAng.y + 3.0;
 
-	if(pos>20)
+	if ( mBallPos.y < 20 ){
+		mBallPos.y = mBallPos.y + 0.1 * 1.5;
+	}
+
+	mBackGround->setTransparency( 1.0 );
+	mBackGround->draw( 0, 0 );
+
+	//ƒ{[ƒ‹
+	mBall->setPosition( mBallPos );
+	mBall->setScale( mBallScale );
+	mBall->setAngle( mBallAng );
+	mBall->draw( CocTrans::TYPE_BALL );
+
+	mStrTex->draw( 0, 0 );
+
+	if( mBallPos.y > 20 )
 	{
 		parent->moveTo( ParentGame::NEXT_AUTHE );
 	}

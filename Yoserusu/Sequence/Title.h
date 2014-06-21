@@ -4,22 +4,30 @@
 #include "Sequence/Child.h"
 
 #include "Mashiro/Math/Vector3.h"
-#include "Mashiro/Scene/Model.h"
-#include "Mashiro/Graphics/Texture.h"
-#include "Mashiro/Graphics/Bitmap.h"
-
 using namespace Mashiro;
 using namespace Mashiro::Math;
-using namespace Mashiro::Graphics;
 
 #include "Util/ModelObj.h"
-
+#include "Util/Sprite.h"
+#include <memory>
 class BackGround;
 
 namespace Sequence{
 class Parent;
 
 class Title : public Child{
+	enum SceneMode{
+		MODE_TITLE,
+		MODE_KEEP,
+		MODE_END,
+
+		MODE_NONE,
+	};
+	struct Difference{
+		float mPosY;
+		float mPosZ;
+		float mAngY;
+	};
 public:
 	Title();
 	~Title();
@@ -30,32 +38,16 @@ public:
 	//描画
 	void titledraw();
 private:	
-	Mashiro::Graphics::Bitmap mTitleBitmap;
-
-	ModelObj mBall;
-
-	Texture mTitleTex;
-	Mashiro::Graphics::Bitmap mStart;
+	//タイトルで出すオブジェクト群
+	std::unique_ptr< ModelObj > mBall;
+	std::unique_ptr< SpriteUtil > mBackGraound;
+	std::unique_ptr< SpriteUtil > mTitleBitmap;
+	std::unique_ptr< SpriteUtil > mStart;
 
 	Vector3 mBallPos;
-	Vector3 mTitlePos;
-
-	float startAlpha;
-
-	float mPosY;
-	float mPosZ;
-	float mAngY;
-	float mCount;
-
-	float oKCount;
-	float oK;
-
-	bool mKeep;
-	bool isTitle;
+	Difference mDiff;
+	SceneMode mMode;
 	int mDepth;
-	bool isEnd;
-
-	bool mSceneMoveFlag;
 };
 
 } //namespace Sequence

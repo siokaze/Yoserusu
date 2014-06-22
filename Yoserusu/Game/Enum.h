@@ -9,6 +9,16 @@ enum Mode{
 	
 };
 
+enum EXPLANATION_TEXTURES{
+	REDTEX = 0,
+	BLUETEX = 1,
+	GREENTEX = 2,
+	PULLTEX = 3,
+	CATCHTEX = 4, 
+
+	MAX = 5
+};
+
 enum WallColor
 {
 	RED = 0,

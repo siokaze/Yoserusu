@@ -40,6 +40,7 @@ public:
 	void titledraw();
 
 private:	
+<<<<<<< HEAD
 
 	//タイトルで出すオブジェクト群
 	std::unique_ptr< ModelObj > mBall;
@@ -47,6 +48,18 @@ private:
 	std::unique_ptr< SpriteUtil > mTitleBitmap;
 	std::unique_ptr< SpriteUtil > mStart;
 	std::unique_ptr< LockOn > mLockOn;
+=======
+
+	void catchCheck(int rHandDepth,int lHandDepth);
+	
+	void move(int rHandDepth,int lHandDepth,Parent* parent);
+
+
+	Mashiro::Graphics::Bitmap mTitleBitmap;
+
+	ModelObj mBall;
+	LockOn* mLockOn;
+>>>>>>> origin/develop
 
 	void catchCheck(int rHandDepth,int lHandDepth);
 	void move(int rHandDepth,int lHandDepth,Parent* parent);

@@ -122,7 +122,10 @@
     <ClCompile Include="Game\Explanation.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+<<<<<<< HEAD
 >>>>>>> ゲームメイン修正
+=======
+>>>>>>> origin/develop
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">

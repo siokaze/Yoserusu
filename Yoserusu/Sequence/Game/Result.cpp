@@ -37,6 +37,7 @@ void Result::update( ParentGame* parent ){
 	}
 
 	mBackGround->setTransparency( 1.0 );
+	mBackGround->setTexture( parent->getAlbum( 0 ) );
 	mBackGround->draw( 0, 0 );
 
 	//ƒ{[ƒ‹

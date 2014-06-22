@@ -9,6 +9,9 @@
 namespace Sequence{
 namespace Game{
 
+int ParentGame::mAlbumCount = 0;
+Mashiro::Graphics::Bitmap ParentGame::mAlbum[ 3 ] = {};
+
 ParentGame::ParentGame() :
 mNextSequence( NEXT_NONE ),
 mChild( 0 ),
@@ -62,6 +65,19 @@ void ParentGame::startLoading(){
 
 State* ParentGame::getState(){
 	return mState;
+}
+
+void ParentGame::albumSave( const Mashiro::Graphics::Bitmap& bitmap ) {
+	mAlbum[ mAlbumCount ] = bitmap;
+	++mAlbumCount;
+	if( mAlbumCount > 3 ){
+		mAlbumCount = 0;
+	}
+}
+
+Mashiro::Graphics::Bitmap ParentGame::getAlbum(int i)
+{
+	return mAlbum[ 0 ];
 }
 
 } //namespace Game

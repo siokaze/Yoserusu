@@ -16,6 +16,8 @@
 #include "Util/DataBase.h"
 
 #include <sstream>
+
+#include "Sequence/Game/ParentGame.h"
 using namespace Mashiro;
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Kinect;
@@ -88,6 +90,11 @@ void State::draw(){
 	}
 	if( timer->isStart() && !timeUp() ){
 		mExplanation->Draw();
+	}
+
+	//タイマーが10ごとに回って写真を取るわけですよ
+	if( timer->time() % 10 == 0 && !timer->IsEnd() ){
+		Sequence::Game::ParentGame::albumSave( Mashiro::Kinect::Manager().colorTexture() );
 	}
 	
 }

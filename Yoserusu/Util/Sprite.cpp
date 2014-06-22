@@ -61,3 +61,11 @@ void SpriteUtil::create(const char* fileName) {
 	mBitmap = Bitmap::create( fileName );
 }
 
+void SpriteUtil::setTexture( const Mashiro::Graphics::Bitmap& bitmap )
+{
+	if( mBitmap == bitmap ){
+		return;
+	}
+	mBitmap = bitmap;
+}
+

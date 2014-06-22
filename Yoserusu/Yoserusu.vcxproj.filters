@@ -65,66 +65,6 @@
     <ClCompile Include="Sequence\Title.cpp">
       <Filter>Sequence</Filter>
     </ClCompile>
-<<<<<<< HEAD
-=======
-    <ClCompile Include="Lua\Luabind\scope.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\stack_content_by_name.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\weak_ref.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\wrapper_base.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_registry.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_rep.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\create_class.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\error.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\exception_handler.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\function.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\inheritance.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\link_compatibility.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\object_rep.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\open.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\pcall.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\LuaManager.cpp">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class_info.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Lua\Luabind\class.cpp">
-      <Filter>Lua\luabind</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Explanation.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
->>>>>>> ゲームメイン修正
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">

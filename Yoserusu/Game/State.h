@@ -11,6 +11,7 @@
 class Ball;
 class Wall;
 class LockOn;
+class Explanation;
 
 //ゲームプレイ本体
 class State{
@@ -25,13 +26,14 @@ public:
 	bool countDown() const;
 	bool targetCheck() const;
 private:
+
 	std::unique_ptr< Ball > ball;
 	std::unique_ptr< Wall > wall;
 	std::unique_ptr< Timer > timer;
 	std::unique_ptr< ArmLeft > lArm;
 	std::unique_ptr< ArmRight > rArm;
 	std::unique_ptr< LockOn > mLockOn;
-
+	std::unique_ptr< Explanation > mExplanation;
 };
 
 #endif

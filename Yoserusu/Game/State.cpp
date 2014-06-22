@@ -9,6 +9,7 @@
 #include "Game/Ball.h"
 #include "Game/Wall.h"
 #include "Game/LockOn.h"
+#include "Game/Explanation.h"
 
 #include "Util/ModelLoader.h"
 #include "Util/DepthSingleton.h"
@@ -32,15 +33,18 @@ State::State(){
 	rArm = factory< ArmRight >();
 	timer = factory< Timer >();
 	mLockOn = factory< LockOn >();
+	mExplanation = factory< Explanation >();
 }
 
 void State::init(){
 	ball->Initi();
 	lArm->Init();
 	rArm->Init();
+	mExplanation->Init();
 }
 
 State::~State(){
+
 }
 
 void State::update(){
@@ -63,6 +67,9 @@ void State::update(){
 	if( !timeUp() ){
 		wall->Animation(ball.get());
 	}
+
+	mExplanation->ChangeTexture(wall->GetWallColor(),targetCheck());
+
 }
 
 void State::draw(){
@@ -79,7 +86,12 @@ void State::draw(){
 			timer->warrningDraw();
 		}
 	}
+	if( timer->isStart() && !timeUp() ){
+		mExplanation->Draw();
+	}
+	
 }
+	
 
 bool State::timeUp() const{
 	//タイマーが切れればシーン移行へ

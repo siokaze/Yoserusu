@@ -11,6 +11,7 @@
 #include "Util/ModelLoader.h"
 #include "Util/DepthSingleton.h"
 #include "Util/SoundManager.h"
+#include "Game/LockOn.h"
 
 #include "Util/DataBase.h"
 
@@ -20,19 +21,25 @@
 using namespace Mashiro::Math;
 using namespace Mashiro::Graphics;
 
+template< typename T > std::unique_ptr< T > factory(){
+	return std::unique_ptr< T >( NEW T );
+}
+
 namespace Sequence{
 
 Title::Title() :
 mDiff(),
 mDepth(),
 mMode( MODE_NONE ),
-mBallPos( 0, 10, 10 ){
+mBallPos( 0, 10, 0 ){
 	SoundManager::instance()->playBgm( SoundManager::BGM_TITLE );
 		
 	mBall = std::unique_ptr< ModelObj >( NEW ModelObj( "res/model/Ball.pmd" ) );
 	mTitleBitmap = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/titile.png" ) );
 	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 	mStart = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/start4.png" ) );
+	mLockOn = factory< LockOn >();
+	mBallPos =Vector3(0,10,15);	
 }
 
 Title::~Title(){
@@ -68,6 +75,8 @@ void Title::titledraw(){
 	mStart->setTransparency(sin(alpha));
 	mStart->draw( 280, 550 );
 
+	mLockOn->draw(Vector2(350, 430));
+
 }
 
 void Title::titleUpdate( Parent* parent ){
@@ -93,6 +102,13 @@ void Title::titleUpdate( Parent* parent ){
 		mMode = MODE_TITLE;
 		mDepth = DepthSingleton::instance()->getDepthMin();	
 	}	
+
+	catchCheck(rHandDepth,lHandDepth);
+
+	move(rHandDepth,lHandDepth,parent);
+}
+
+void Title::catchCheck(int rHandDepth, int lHandDepth){
 	//タイトルがいるならボールを掴んでいるか判定
 	if( mMode == MODE_TITLE ){
 		if( rHandDepth<= DepthSingleton::instance()->getDepthMin()){
@@ -102,11 +118,13 @@ void Title::titleUpdate( Parent* parent ){
 		if( lHandDepth <= DepthSingleton::instance()->getDepthMin()){
 			mMode = MODE_KEEP;
 		}
-
+		mLockOn->update((bool)mMode);
 	}
+}
+
+void Title::move(int rHandDepth, int lHandDepth,Parent* parent){
 	//掴んでいるなら タイトルを手前に移動
-	if(mMode == MODE_KEEP)
-	{	
+	if(mMode == MODE_KEEP){	
 		if( rHandDepth == 0 || lHandDepth == 0 ) return;
 
 		if( mMode != MODE_END ){
@@ -124,15 +142,14 @@ void Title::titleUpdate( Parent* parent ){
 				mMode = MODE_END;
 			}	
 		}
-
-		if( mMode == MODE_END ){
-			mDepth++;
-		}
+	}
+	if( mMode == MODE_END ){
+		mDepth++;
 		mBallPos = Vector3(0,mBallPos.y,DepthSingleton::instance()->getDepthMax() - (mDepth));
+	}		
 
-		if(mDepth > DepthSingleton::instance()->getDepthMax()+40){
-			parent->moveTo( Parent::NEXT_GAME );
-		}
+	if(mDepth > DepthSingleton::instance()->getDepthMax()+40){
+		parent->moveTo( Parent::NEXT_GAME );
 	}
 }
 

@@ -11,6 +11,7 @@ using namespace Mashiro::Math;
 #include "Util/Sprite.h"
 #include <memory>
 class BackGround;
+class LockOn;
 
 namespace Sequence{
 class Parent;
@@ -37,12 +38,18 @@ public:
 	void titleUpdate( Parent* );
 	//描画
 	void titledraw();
+
 private:	
+
 	//タイトルで出すオブジェクト群
 	std::unique_ptr< ModelObj > mBall;
 	std::unique_ptr< SpriteUtil > mBackGraound;
 	std::unique_ptr< SpriteUtil > mTitleBitmap;
 	std::unique_ptr< SpriteUtil > mStart;
+	std::unique_ptr< LockOn > mLockOn;
+
+	void catchCheck(int rHandDepth,int lHandDepth);
+	void move(int rHandDepth,int lHandDepth,Parent* parent);
 
 	Vector3 mBallPos;
 	Difference mDiff;

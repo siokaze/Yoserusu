@@ -34,29 +34,12 @@ mMode( MODE_NONE ),
 mBallPos( 0, 10, 0 ){
 	SoundManager::instance()->playBgm( SoundManager::BGM_TITLE );
 		
-<<<<<<< HEAD
 	mBall = std::unique_ptr< ModelObj >( NEW ModelObj( "res/model/Ball.pmd" ) );
 	mTitleBitmap = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/titile.png" ) );
 	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 	mStart = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/start4.png" ) );
 	mLockOn = factory< LockOn >();
 	mBallPos =Vector3(0,10,15);	
-=======
-	mBall.create( "res/model/Ball.pmd" );
-
-	mBallPos =Vector3(0,10,10);
-	mTitlePos=Vector3(0,4,-50);
-
-	mTitleBitmap = Mashiro::Graphics::Bitmap::create( "res/image/titile.png" );
-	mStart = Mashiro::Graphics::Bitmap::create("res/image/start4.png");
-	mLockOn = NEW LockOn();
-
-	isTitle = false;
-	mKeep = false;
-	isEnd = false;
-
-	LuaManager::instance()->loadLua( "lua/Title.lua", "Title" );
->>>>>>> origin/develop
 }
 
 Title::~Title(){
@@ -94,17 +77,6 @@ void Title::titledraw(){
 
 	mLockOn->draw(Vector2(350, 430));
 
-<<<<<<< HEAD
-=======
-	//3D•\Ž¦
-	//ƒ{[ƒ‹
-	mBall.setPosition(mBallPos);
-	mBall.setColor(Vector3(1, 1, 1));
-	mBall.draw( CocTrans::TYPE_BALL );
-	startAlpha+=0.1;
-	mLockOn->draw(Vector2(350, 470));
-	LuaManager::instance()->runLua<int>( "startDraw",boost::make_tuple(sin(startAlpha),0,0,0));
->>>>>>> origin/develop
 }
 
 void Title::titleUpdate( Parent* parent ){
@@ -146,11 +118,7 @@ void Title::catchCheck(int rHandDepth, int lHandDepth){
 		if( lHandDepth <= DepthSingleton::instance()->getDepthMin()){
 			mMode = MODE_KEEP;
 		}
-<<<<<<< HEAD
 		mLockOn->update((bool)mMode);
-=======
-		mLockOn->update(mKeep);
->>>>>>> origin/develop
 	}
 }
 

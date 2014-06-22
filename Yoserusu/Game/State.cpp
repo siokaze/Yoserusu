@@ -27,7 +27,6 @@ template< typename T > std::unique_ptr< T > factory(){
 
 State::State(){
 	//オブジェクトの生成
-<<<<<<< HEAD
 	ball = factory< Ball >();
 	wall = factory< Wall >();
 	lArm= factory< ArmLeft >();
@@ -35,15 +34,6 @@ State::State(){
 	timer = factory< Timer >();
 	mLockOn = factory< LockOn >();
 	mExplanation = factory< Explanation >();
-=======
-	ball = NEW Ball();
-	wall = NEW Wall();
-	lArm= NEW ArmLeft();
-	rArm = NEW ArmRight();
-	timer = NEW Timer();
-	mLockOn = NEW LockOn();
-	mExplanation = NEW Explanation();
->>>>>>> origin/develop
 }
 
 void State::init(){
@@ -54,18 +44,7 @@ void State::init(){
 }
 
 State::~State(){
-<<<<<<< HEAD
 
-=======
-	//deleteは生成した時の逆順でしよう
-	SAFE_DELETE( mLockOn );
-	SAFE_DELETE(timer);
-	SAFE_DELETE(rArm);
-	SAFE_DELETE(lArm);
-	SAFE_DELETE(wall);
-	SAFE_DELETE(ball);
-	SAFE_DELETE(mExplanation);
->>>>>>> origin/develop
 }
 
 void State::update(){

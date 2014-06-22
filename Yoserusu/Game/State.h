@@ -26,16 +26,6 @@ public:
 	bool countDown() const;
 	bool targetCheck() const;
 private:
-<<<<<<< HEAD
-=======
-	Ball* ball;
-	Wall* wall;
-	Timer* timer;
-	ArmLeft* lArm;
-	ArmRight* rArm;
-	LockOn* mLockOn;
-	Explanation* mExplanation;
->>>>>>> origin/develop
 
 	std::unique_ptr< Ball > ball;
 	std::unique_ptr< Wall > wall;

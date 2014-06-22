@@ -29,7 +29,11 @@ public:
 	mColor( 0 ),
 	mFactory( 0 ),
 	mDWriteFactory( 0 ),
-	mBackBuffer( 0 ){
+	mBackBuffer( 0 ),
+	mRotate(),
+	mScale(),
+	mRotateFlag(),
+	mScaleFlag(){
 		  HRESULT hr = S_OK;
 		  //Direct2D初期化
 		  if( FAILED( hr = createD2DFactory( chain ) ) ){
@@ -133,6 +137,21 @@ public:
 		standby();
 		//カラ
 		mBrush->SetColor( D2D1::ColorF( mColor.x, mColor.y, mColor.z, mColor.w ) );
+
+		D2D1::Matrix3x2F matrix;
+		matrix = D2D1::Matrix3x2F::Identity();
+
+		if( mScaleFlag ){
+			matrix = matrix * mScale;
+			mScaleFlag = false;
+		}
+		if( mRotateFlag ){
+			matrix = matrix * mRotate;
+			mRotateFlag = false;
+		}
+
+		mBackBuffer->SetTransform( matrix );
+
 		//それぞれの描画方法へ
 		switch( mSpriteType ){
 		case SPRITE_BITMAP://ビットマップ
@@ -203,6 +222,14 @@ public:
 		SafeRelease(&pBackBuffer);
 		return S_OK;
 	}
+	void setRotate( float radian ){
+		mRotateFlag = true;
+		mRotate = D2D1::Matrix3x2F::Rotation( radian, D2D1::Point2F( mRect.right / 2, mRect.bottom / 2 ) );
+	}
+	void setScale( float x, float y ){
+		mScaleFlag = true;
+		mScale = D2D1::Matrix3x2F::Scale( x, y, D2D1::Point2F( mRect.right / 2, mRect.bottom / 2 ) );
+	}
 
 	IDWriteFactory* writeFac(){
 		return mDWriteFactory;
@@ -226,6 +253,12 @@ public:
 	D2D1_RECT_F mRectAngle;
 	D2D1_POINT_2F mPoint0;
 	D2D1_POINT_2F mPoint1;
+
+	D2D1::Matrix3x2F mScale;
+	D2D1::Matrix3x2F mRotate;
+
+	bool mRotateFlag;
+	bool mScaleFlag;
 
 	Vector4 mColor;
 	Bitmap::Impl* mCurrentBitmap;

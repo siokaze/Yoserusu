@@ -3,6 +3,7 @@
 
 #include "Mashiro/Graphics/Bitmap.h"
 #include "Mashiro/Math/Vector3.h"
+#include "Mashiro/Math/Vector2.h"
 
 #include <sstream>
 
@@ -12,7 +13,11 @@
 */
 class SpriteUtil{
 public:
-	SpriteUtil(){}
+	SpriteUtil() : 
+	mColor( 1.f, 1.f, 1.f ),
+	mAlpha( 1.f ),
+	mScale( 1.f ),
+	mRadian(){}
 	/*
 	* @brif コンストラクタ bitmapロード
 	*/
@@ -67,10 +72,21 @@ public:
 	* @brif 後からセット
 	*/
 	void setTexture( const Mashiro::Graphics::Bitmap& );
+	/*
+	* @brif 回転
+	*/
+	void setRotate( float radian );
+	/*
+	* @brif 拡大縮小
+	*/
+	void setScale( float x, float b );
 private:
 	Mashiro::Graphics::Bitmap mBitmap;
 	Mashiro::Math::Vector3 mColor;
 	float mAlpha;
+
+	float mRadian;
+	Mashiro::Math::Vector2 mScale;
 
 	std::string mFileName;
 };

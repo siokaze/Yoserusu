@@ -8,7 +8,9 @@ using namespace Mashiro::Math;
 
 SpriteUtil::SpriteUtil( const char* fileName ) : 
 mColor( 1.f, 1.f, 1.f ),
-mAlpha( 1.f ){
+mAlpha( 1.f ),
+mScale( 1.f ),
+mRadian(){
 	mBitmap = Bitmap::create( fileName );
 }
 
@@ -20,6 +22,8 @@ void SpriteUtil::draw(int x, int y) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	sp.setBitmap( mBitmap );
 	sp.setBitmapRectangle( Vector2( x, y ) );
+	sp.setRotate( mRadian );
+	sp.setScale( mScale.x, mScale.y );
 	sp.draw();
 }
 
@@ -27,6 +31,8 @@ void SpriteUtil::draw(const Bitmap& bitmap) {
 	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
 	sp.setBitmap( bitmap );
 	sp.setBitmapRectangle( Vector2( 0, 0 ) );
+	sp.setRotate( mRadian );
+	sp.setScale( mScale.x, mScale.y );
 	sp.draw();
 }
 
@@ -67,5 +73,15 @@ void SpriteUtil::setTexture( const Mashiro::Graphics::Bitmap& bitmap )
 		return;
 	}
 	mBitmap = bitmap;
+}
+
+void SpriteUtil::setScale(float x, float b)
+{
+	mScale.set( x, b );
+}
+
+void SpriteUtil::setRotate(float radian)
+{
+	mRadian = radian;
 }
 

@@ -194,5 +194,8 @@
     <ClInclude Include="Shader\include\copy.h">
       <Filter>Shader\include</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Explanation.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

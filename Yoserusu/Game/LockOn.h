@@ -13,6 +13,9 @@ public:
 	void update( bool flag );
 
 	void draw();
+
+	void draw(Vector2 pos);
+
 private:
 	Mashiro::Graphics::Bitmap mBitmap;
 	bool mFlag;

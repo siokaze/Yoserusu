@@ -40,11 +40,14 @@ void ModelObj::draw( CocTrans::Type type ){
 	world.setMul(world, rotateY);
 	world.setMul(world, trans);
 
+	Matrix tranposeWorld;
+	tranposeWorld.setTranspose( world );
+
 	CocTrans::ConstantBuffer* cb = NULL;
 	if( mCocTrans->lock( (void**)&cb ) ){
 		cb->mDrawType.x = static_cast< int >( type );
 		Matrix invW;
-		invW.setInverse( world );
+		invW.setInverse( tranposeWorld );
 		cb->mWorldInv = invW;
 		mCocTrans->unLock();
 	}

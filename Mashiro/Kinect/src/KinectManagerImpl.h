@@ -111,6 +111,33 @@ public:
 	}
 	//色情報を更新する
 	void processColor(){
+		HRESULT hr;
+		NUI_IMAGE_FRAME imageFrame;
+
+		Bitmap colorBitmap;
+
+		//カメラから色情報を取得
+		hr = mNuiSensor->NuiImageStreamGetNextFrame(
+			mColor, 0, &imageFrame );
+		if( FAILED( hr ) ){
+			return;
+		}
+
+		INuiFrameTexture* texture = imageFrame.pFrameTexture;
+
+		//情報をロック
+		NUI_LOCKED_RECT lockedRect;
+		texture->LockRect( 0, &lockedRect, NULL, 0 );
+
+		if( lockedRect.Pitch != 0 ){
+			colorBitmap = Bitmap::create( 640, 480, 0 );
+			colorBitmap.copyFromMemory( static_cast< BYTE* >( lockedRect.pBits ) );
+		}
+		//情報をロック解除
+		texture->UnlockRect( 0 );
+
+		hr = mNuiSensor->NuiImageStreamReleaseFrame( mColor, &imageFrame );
+		mCameraBitmap = colorBitmap;
 	}
 	void processDepth(){
 		HRESULT hr;
@@ -267,34 +294,7 @@ public:
 		mHeight = h;
 	}
 	Bitmap colorTexture() {
-		HRESULT hr;
-		NUI_IMAGE_FRAME imageFrame;
-
-		Bitmap colorBitmap;
-
-		//カメラから色情報を取得
-		hr = mNuiSensor->NuiImageStreamGetNextFrame(
-			mColor, 0, &imageFrame );
-		if( FAILED( hr ) ){
-			return colorBitmap;
-		}
-
-		INuiFrameTexture* texture = imageFrame.pFrameTexture;
-
-		//情報をロック
-		NUI_LOCKED_RECT lockedRect;
-		texture->LockRect( 0, &lockedRect, NULL, 0 );
-
-		if( lockedRect.Pitch != 0 ){
-			colorBitmap = Bitmap::create( 640, 480, 0 );
-			colorBitmap.copyFromMemory( static_cast< BYTE* >( lockedRect.pBits ) );
-		}
-		//情報をロック解除
-		texture->UnlockRect( 0 );
-
-		hr = mNuiSensor->NuiImageStreamReleaseFrame( mColor, &imageFrame );
-
-		return colorBitmap;
+		return mCameraBitmap;
 	}
 	Bitmap depthTexture() {
 		return mDepthBitmap;

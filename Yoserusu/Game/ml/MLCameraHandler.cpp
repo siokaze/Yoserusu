@@ -16,7 +16,6 @@ namespace
 MLCameraHandler::MLCameraHandler()
 	: m_updateTarget(nullptr)
 {
-	m_gMana = &Graphics::Manager::instance();
 
 	m_actArray = new MLCameraAction_Base*[2];
 	m_actArray[ACTION_TYPE::HEAD_BANGING] = new MLCameraAction_HeadBanging();
@@ -42,7 +41,7 @@ void MLCameraHandler::Update()
 		//	計算クラスからの数値と合成
 		camMat *= (*m_updateTarget->Update());
 		//	行列のセット
-		m_gMana->setViewMatrix(camMat);
+		Graphics::Manager::instance().setViewMatrix(camMat);
 	}
 }
 

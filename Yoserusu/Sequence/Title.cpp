@@ -69,8 +69,8 @@ void Title::titledraw(){
 	mBall->draw( CocTrans::TYPE_BALL );
 	
 	static float startAlpha = 0.0;
-	startAlpha += 0.1;
-	float alpha = sin( startAlpha );
+	startAlpha += 0.05;
+	float alpha = cos(-startAlpha );
 
 	mStart->setTransparency(sin(alpha));
 	mStart->draw( 280, 550 );

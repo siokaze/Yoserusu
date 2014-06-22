@@ -43,7 +43,6 @@ public:
 	Math::Matrix& getCameraMatrix();
 
 private:
-	Graphics::Manager* m_gMana;
 	MLCameraAction_Base* m_updateTarget;	//	現在更新すべきアクション
 	MLCameraAction_Base** m_actArray;		//	更新候補のアクション
 };

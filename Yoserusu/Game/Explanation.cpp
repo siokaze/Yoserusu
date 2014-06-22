@@ -1,8 +1,9 @@
 #include "Explanation.h"
 #include "Mashiro/Math/Vector2.h"
 #include "Mashiro/Graphics/SpriteManager.h"
+#include "Game\Score.h"
 
-Explanation::Explanation():color(0),isCatch(false){
+Explanation::Explanation():color(0),isCatch(false),count(0){
 	mTextures[REDTEX] = Mashiro::Graphics::Bitmap::create("res/image/red.png");
 	mTextures[BLUETEX] = Mashiro::Graphics::Bitmap::create("res/image/blue.png");
 	mTextures[GREENTEX] = Mashiro::Graphics::Bitmap::create("res/image/green.png");
@@ -22,9 +23,12 @@ void Explanation::Init(){
 void Explanation::ChangeTexture(int _color,bool _isCatch){
 	color = _color;
 	isCatch = _isCatch;
+
 }
 
 void Explanation::Draw(){
+
+	if(Score::instance()->getScore() >= 3) return;
 
 	Mashiro::Graphics::Sprite colorsp = Mashiro::Graphics::Sprite::instance();
 	Mashiro::Graphics::Sprite catchsp = Mashiro::Graphics::Sprite::instance();

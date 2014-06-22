@@ -12,15 +12,20 @@
 #include "Util/ModelLoader.h"
 
 #include "Shader/include/CocTrans.h"
-
 #define PI 3.14159265f
 
 using namespace Mashiro;
 using namespace Mashiro::Graphics;
 using namespace Mashiro::Math;
 
+template< typename T > std::unique_ptr< T > factory(){
+	return std::unique_ptr< T >( NEW T );
+}
+
 Wall::Wall()
 {
+	camera = factory<ML::MLCameraHandler>();
+
 	mTextureCol[ 0 ].first.create( "res/image/gato_color_R_UPZ_R.png" );
 	mTextureCol[ 0 ].second = Vector3( 1, 0, 0 );
 	mTextureCol[ 1 ].first.create( "res/image/gato_color_R_UPZ_B.png" );
@@ -100,6 +105,8 @@ void Wall::Draw( bool timer )
 //		•Ç‰Šú”z’uŠÖ”
 void Wall::MoveWall()
 {
+	camera->Update();
+
 	if(!setflg)
 	{
 		return;
@@ -129,12 +136,14 @@ void Wall::DelWall(int color,Ball* ball)
 
 	if(color != rand&& ball->IsMode() == Release)
 	{
+		camera->actSet(ML::ACTION_TYPE::HEAD_BANGING);
 		mWallState = WALL_FALSE;
 		SoundManager::instance()->playSe(SoundManager::SE_FALSE);
 	}
 
 	if(color == rand && !resetflg && ball->IsMode() == Release)
 	{
+		camera->actRemove();
 		setflg = false;
 		delflg = true;
 		SoundManager::instance()->playSe(SoundManager::SE_OPEN);

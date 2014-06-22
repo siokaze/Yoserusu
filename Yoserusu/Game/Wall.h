@@ -6,6 +6,7 @@
 #include "Mashiro/Math/Random.h"
 #include "Game/Enum.h"
 #include "Util/SoundManager.h"
+#include "ml\MLCameraHandler.h"
 
 #include <utility>
 
@@ -40,6 +41,7 @@ private:
 	Mashiro::Math::Vector3 mPos[4];
 	Mashiro::Math::Vector3 mVec[4];
 	Mashiro::Math::Random mRand;
+	std::unique_ptr< ML::MLCameraHandler > camera;
 
 	//2D
 	int mCheck;
@@ -52,6 +54,7 @@ private:
 	bool delflg;
 	bool resetflg;  //再配置フラグ
 	WallColor nowColor;
+
 
 	Mashiro::Math::Vector3 lPos[ 4 ];
 };

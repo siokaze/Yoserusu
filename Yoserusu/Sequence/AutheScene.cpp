@@ -12,6 +12,7 @@
 #include "Mashiro/Input/InputManager.h"
 #include "Mashiro/Input/Keyboard.h"
 #include "Mashiro/Input/Mouse.h"
+#include "Game\ml\MLCameraHandler.h"
 
 #include "Util/SoundManager.h"
 #include "Util/DepthSingleton.h"
@@ -71,6 +72,7 @@ mMoveSceneFlag( MODE_WAIT ){
 	mTitle_Auth = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Title_Auth.png" ) );
 	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 
+	ML::MLCameraHandler::setCameraMatrix(&view);
 }
 
 AutheScene::~AutheScene(){
@@ -132,7 +134,7 @@ void AutheScene::autheUpdate( Parent* parent ){
 
 	 if(!Mashiro::Kinect::Manager::instance().tracking()) angle = 0;
 
-	angle = boost::algorithm::clamp(angle,-11,27);
+	angle = boost::algorithm::clamp(angle,-11,18);
 
 	Mashiro::Kinect::Manager::instance().setCamera(angle);
 

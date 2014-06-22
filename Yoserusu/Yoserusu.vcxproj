@@ -89,6 +89,12 @@
     <ClCompile Include="Game\Ball.cpp" />
     <ClCompile Include="Game\Explanation.cpp" />
     <ClCompile Include="Game\LockOn.cpp" />
+    <ClCompile Include="Game\ml\MLCameraAction_Base.cpp" />
+    <ClCompile Include="Game\ml\MLCameraAction_HeadBanging.cpp" />
+    <ClCompile Include="Game\ml\MLCameraHandler.cpp" />
+    <ClCompile Include="Game\ml\MLRenderTargetManager.cpp" />
+    <ClCompile Include="Game\ml\MLShader_FeedBackBlur.cpp" />
+    <ClCompile Include="Game\ml\MLTestArea.cpp" />
     <ClCompile Include="Game\Score.cpp" />
     <ClCompile Include="Game\State.cpp" />
     <ClCompile Include="Game\Timer.cpp" />
@@ -121,6 +127,12 @@
     <ClInclude Include="Game\Enum.h" />
     <ClInclude Include="Game\Explanation.h" />
     <ClInclude Include="Game\LockOn.h" />
+    <ClInclude Include="Game\ml\MLCameraAction_Base.h" />
+    <ClInclude Include="Game\ml\MLCameraAction_HeadBanging.h" />
+    <ClInclude Include="Game\ml\MLCameraHandler.h" />
+    <ClInclude Include="Game\ml\MLRenderTargetManager.h" />
+    <ClInclude Include="Game\ml\MLShader_FeedBackBlur.h" />
+    <ClInclude Include="Game\ml\MLTestArea.h" />
     <ClInclude Include="Game\Score.h" />
     <ClInclude Include="Game\State.h" />
     <ClInclude Include="Game\Timer.h" />

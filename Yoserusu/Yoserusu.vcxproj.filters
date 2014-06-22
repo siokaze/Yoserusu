@@ -62,9 +62,29 @@
     <ClCompile Include="Sequence\Title.cpp">
       <Filter>Sequence</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Explanation.cpp" />
     <ClCompile Include="Util\Sprite.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Explanation.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLCameraAction_Base.cpp">
+      <Filter>Game\ore</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLCameraAction_HeadBanging.cpp">
+      <Filter>Game\ore</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLCameraHandler.cpp">
+      <Filter>Game\ore</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLRenderTargetManager.cpp">
+      <Filter>Game\ore</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLShader_FeedBackBlur.cpp">
+      <Filter>Game\ore</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ml\MLTestArea.cpp">
+      <Filter>Game\ore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +108,9 @@
     </Filter>
     <Filter Include="Shader\include">
       <UniqueIdentifier>{9b772e0b-8036-4c97-8ca8-6585887b7d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\ore">
+      <UniqueIdentifier>{40e08b72-3651-4d9f-a224-0d7bdb6c95ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +220,24 @@
     </ClInclude>
     <ClInclude Include="Util\Sprite.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLCameraAction_Base.h">
+      <Filter>Game\ore</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLCameraAction_HeadBanging.h">
+      <Filter>Game\ore</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLCameraHandler.h">
+      <Filter>Game\ore</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLRenderTargetManager.h">
+      <Filter>Game\ore</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLShader_FeedBackBlur.h">
+      <Filter>Game\ore</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ml\MLTestArea.h">
+      <Filter>Game\ore</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

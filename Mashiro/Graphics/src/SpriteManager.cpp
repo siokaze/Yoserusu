@@ -76,5 +76,17 @@ void Sprite::setBitmap( Bitmap bit ){
 	gSpriteImpl->setBitmap( bit.mImpl );
 }
 
+void Sprite::setRotate(float radian)
+{
+	gSpriteImpl->setRotate( radian );
+}
+
+void Sprite::setScale(float x, float y)
+{
+	gSpriteImpl->setScale( x, y );
+}
+
+
+
 }
 }

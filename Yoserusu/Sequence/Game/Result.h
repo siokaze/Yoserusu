@@ -6,6 +6,7 @@
 #include "Util/ModelObj.h"
 #include "Util/Sprite.h"
 #include <memory>
+#include "boost/array.hpp"
 
 namespace Sequence{
 namespace Game{
@@ -23,9 +24,13 @@ private:
 	std::unique_ptr< SpriteUtil > mStrTex;
 	std::unique_ptr< SpriteUtil > mBackGround;
 
+	boost::array< std::unique_ptr< SpriteUtil >, 3 > mAlbum;
+
 	Vector3 mBallPos;
 	Vector3 mBallAng;
 	Vector3 mBallScale;
+
+	bool mFirst;
 };
 
 } //namespace Game

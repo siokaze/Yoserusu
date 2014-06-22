@@ -8,10 +8,22 @@
 #include "Util/SoundManager.h"
 #include "Util/ModelLoader.h"
 
+using namespace Mashiro;
+using namespace Mashiro::Math;
+
 namespace Sequence{
 namespace Game{
 
+namespace {
+	Vector3 gAlbumPos[ 3 ] = {
+		Vector3( 100, 100, 20 ),
+		Vector3( 300, 300, -20 ),
+		Vector3( 100, 300, 10 ),
+	};
+}
+
 Result::Result() : 
+mFirst( false ),
 mBallPos( 0.0, -20.0, 0.0 ),
 mBallAng( 0.0, 0.0, 0.0 ),
 mBallScale( 0.5, 0.5, 0.5 ){
@@ -19,6 +31,10 @@ mBallScale( 0.5, 0.5, 0.5 ){
 
 	mStrTex = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/Ending.png" ) );
 	mBackGround = std::unique_ptr< SpriteUtil >( NEW SpriteUtil(  "res/image/Ending_bg.png" ) );
+
+	for( int i = 0; i < mAlbum.size(); ++i ){
+		mAlbum[ i ] = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
+	}
 }
 
 Result::~Result(){
@@ -26,6 +42,13 @@ Result::~Result(){
 }
 
 void Result::update( ParentGame* parent ){
+	if( !mFirst ){
+		for( int i = 0; i < mAlbum.size(); ++i ){
+			mAlbum[ i ]->setTexture( parent->getAlbum( i ) );
+		}
+		mFirst = true;
+	}
+
 	if( Mashiro::Input::Manager::instance().mouse().isTriggered( Input::Mouse::BUTTON_LEFT ) ){
 		parent->moveTo( ParentGame::NEXT_AUTHE );
 	}
@@ -37,8 +60,14 @@ void Result::update( ParentGame* parent ){
 	}
 
 	mBackGround->setTransparency( 1.0 );
-	mBackGround->setTexture( parent->getAlbum( 0 ) );
 	mBackGround->draw( 0, 0 );
+
+	//アルバム三枚を描画
+	for( int i = 0; i < mAlbum.size(); ++i ){
+		mAlbum[ i ]->setTexture( parent->getAlbum( i ) );
+		mAlbum[ i ]->setRotate( gAlbumPos[ i ].z );
+		mAlbum[ i ]->draw( gAlbumPos[ i ].x, gAlbumPos[ i ].y );
+	}
 
 	//ボール
 	mBall->setPosition( mBallPos );

@@ -44,6 +44,11 @@ public:
 	//ビットマップ描画
 	void setBitmapRectangle( const Vector2& p );
 	void setBitmapRectangle( const Vector2& p, const Vector2& size, const Vector4& imageRect );
+	
+	//rotate
+	void setRotate( float radian );
+	//scale
+	void setScale( float x, float y );
 
 	static void create();
 	static void destroy();

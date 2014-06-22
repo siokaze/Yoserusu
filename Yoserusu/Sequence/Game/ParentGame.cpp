@@ -77,7 +77,7 @@ void ParentGame::albumSave( const Mashiro::Graphics::Bitmap& bitmap ) {
 
 Mashiro::Graphics::Bitmap ParentGame::getAlbum(int i)
 {
-	return mAlbum[ 0 ];
+	return mAlbum[ i ];
 }
 
 } //namespace Game

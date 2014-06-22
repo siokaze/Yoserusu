@@ -10,6 +10,7 @@ using namespace Mashiro::Graphics;
 class Explanation{
 	bool isCatch;
 	int color;
+	int count;
 
 	Mashiro::Graphics::Bitmap mTextures[MAX];
 

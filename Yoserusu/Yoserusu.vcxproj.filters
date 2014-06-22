@@ -17,9 +17,6 @@
     <ClCompile Include="Util\SoundManager.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="Util\Sprite.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="Game\ArmLeft.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -64,6 +61,10 @@
     </ClCompile>
     <ClCompile Include="Sequence\Title.cpp">
       <Filter>Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Explanation.cpp" />
+    <ClCompile Include="Util\Sprite.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +115,6 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Util\SoundManager.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\Sprite.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Util\Transform.h">
@@ -196,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="Game\Explanation.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Sprite.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

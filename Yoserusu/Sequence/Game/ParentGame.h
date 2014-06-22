@@ -28,11 +28,18 @@ public:
 	void startLoading();
 
 	State* getState();
+
+	static void albumSave( const Mashiro::Graphics::Bitmap& );
+	static Mashiro::Graphics::Bitmap getAlbum( int i );
 private:
 	NextSequence mNextSequence;
 	Game::Child* mChild;
 
 	State* mState;
+
+	static int mAlbumCount;
+public:
+	static Mashiro::Graphics::Bitmap mAlbum[ 3 ]; //ƒAƒ‹ƒoƒ€
 
 };
 

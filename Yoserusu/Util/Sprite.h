@@ -4,6 +4,8 @@
 #include "Mashiro/Graphics/Bitmap.h"
 #include "Mashiro/Math/Vector3.h"
 
+#include <sstream>
+
 /*
 * @file Splite.h
 * @brif 2D描画クラス 一枚一クラス
@@ -61,10 +63,16 @@ public:
 	* @brif 透過率
 	*/
 	void setTransparency( float t );
+	/*
+	* @brif 後からセット
+	*/
+	void setTexture( const Mashiro::Graphics::Bitmap& );
 private:
 	Mashiro::Graphics::Bitmap mBitmap;
 	Mashiro::Math::Vector3 mColor;
 	float mAlpha;
+
+	std::string mFileName;
 };
 
 #endif

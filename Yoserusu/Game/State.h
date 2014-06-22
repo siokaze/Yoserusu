@@ -9,6 +9,7 @@
 class Ball;
 class Wall;
 class LockOn;
+class Explanation;
 
 //ゲームプレイ本体
 class State{
@@ -29,6 +30,7 @@ private:
 	ArmLeft* lArm;
 	ArmRight* rArm;
 	LockOn* mLockOn;
+	Explanation* mExplanation;
 
 };
 

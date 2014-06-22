@@ -15,6 +15,7 @@ using namespace Mashiro::Graphics;
 #include "Util/ModelObj.h"
 
 class BackGround;
+class LockOn;
 
 namespace Sequence{
 class Parent;
@@ -29,10 +30,18 @@ public:
 	void titleUpdate( Parent* );
 	//•`‰æ
 	void titledraw();
+
 private:	
+
+	void catchCheck(int rHandDepth,int lHandDepth);
+	
+	void move(int rHandDepth,int lHandDepth,Parent* parent);
+
+
 	Mashiro::Graphics::Bitmap mTitleBitmap;
 
 	ModelObj mBall;
+	LockOn* mLockOn;
 
 	Texture mTitleTex;
 	Mashiro::Graphics::Bitmap mStart;

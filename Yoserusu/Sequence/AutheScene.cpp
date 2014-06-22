@@ -151,14 +151,9 @@ void AutheScene::autheUpdate( Parent* parent ){
 		//深度値をうまく取ってこれるまでループさせて
 		mDepth = mSum / mCount;
 
-		float headPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_HEAD ).y;
-		float footPos = Mashiro::Kinect::Manager::instance().skeletonPos( Mashiro::Kinect::SKELETON_INDEX_FOOT_RIGHT ).y;
-
 		int depthCheck = 14;
 
 		if(Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD)  <  38 ) depthCheck = 1; //子供の身長によって変える
-
-		float honki = Mashiro::Kinect::Manager::instance().depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HEAD);
 
 		if(mDepth < depthCheck){
 			mHandCheck = false;

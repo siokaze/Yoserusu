@@ -160,9 +160,11 @@ void Wall::DelWall(int color,Ball* ball)
 			nowColor = (WallColor)rand;
 			if(Score::instance()->getScore()==1){
 				rand = 1;
+				nowColor = WallColor::BLUE;
 			}
 			if(Score::instance()->getScore()==2){
 				rand = 2;
+				nowColor = WallColor::GREEN;
 			}
 			mPos[0] = Vector3(-5.5f,5.5f,-30);
 			mPos[1] = Vector3(5.5f,5.5f,-30);

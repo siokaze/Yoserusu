@@ -30,3 +30,19 @@ void LockOn::draw(){
 	sp.setBitmapRectangle( Mashiro::Math::Vector2( w-160, h-160 ) );
 	sp.draw();
 }
+
+void LockOn::draw(Vector2 pos){
+	Mashiro::Graphics::Sprite sp = Mashiro::Graphics::Sprite::instance();
+	if( mFlag ){
+		mTrance += 0.1f;
+		sp.setTrance( mTrance );
+	} else {
+		mTrance = 0.f;
+		sp.setTrance( mTrance );
+	}
+	sp.setBitmap(mBitmap);
+	sp.setBitmapRectangle(pos);
+	sp.draw();
+
+
+}

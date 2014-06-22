@@ -11,6 +11,7 @@
 #include "Util/ModelLoader.h"
 #include "Util/DepthSingleton.h"
 #include "Util/SoundManager.h"
+#include "Game/LockOn.h"
 
 #include "Util/DataBase.h"
 
@@ -33,6 +34,7 @@ namespace Sequence{
 
 	mTitleBitmap = Mashiro::Graphics::Bitmap::create( "res/image/titile.png" );
 	mStart = Mashiro::Graphics::Bitmap::create("res/image/start4.png");
+	mLockOn = NEW LockOn();
 
 	isTitle = false;
 	mKeep = false;
@@ -71,6 +73,7 @@ void Title::titledraw(){
 	mBall.setColor(Vector3(1, 1, 1));
 	mBall.draw( CocTrans::TYPE_BALL );
 	startAlpha+=0.1;
+	mLockOn->draw(Vector2(350, 470));
 	LuaManager::instance()->runLua<int>( "startDraw",boost::make_tuple(sin(startAlpha),0,0,0));
 }
 
@@ -108,6 +111,13 @@ void Title::titleUpdate( Parent* parent ){
 		mPosZ+=1.0f;
 		mTitlePos=Vector3(0,mTitlePos.y,mTitlePos.z+mPosZ);
 	}	
+
+	catchCheck(rHandDepth,lHandDepth);
+
+	move(rHandDepth,lHandDepth,parent);
+}
+
+void Title::catchCheck(int rHandDepth, int lHandDepth){
 	//タイトルがいるならボールを掴んでいるか判定
 	if(isTitle&&!mKeep){
 		if( rHandDepth<= DepthSingleton::instance()->getDepthMin()){
@@ -117,8 +127,11 @@ void Title::titleUpdate( Parent* parent ){
 		if( lHandDepth <= DepthSingleton::instance()->getDepthMin()){
 			mKeep = true;
 		}
-
+		mLockOn->update(mKeep);
 	}
+}
+
+void Title::move(int rHandDepth, int lHandDepth,Parent* parent){
 	//掴んでいるなら タイトルを手前に移動
 	if(mKeep)
 	{	

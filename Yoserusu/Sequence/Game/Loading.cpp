@@ -27,7 +27,7 @@ void LoadingThread::operator()(){
 
 Loading::Loading() : mLoading( 0 ), mFirst( false ), mFade( 0.f ){
 	mBlack = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
-	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
+	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/load.png" ) );
 }
 
 Loading::~Loading(){
@@ -54,7 +54,7 @@ void Loading::update( ParentGame* parent ){
 	mFade = mFade + 1;
 
 
-	if( mFade > 90 ){
+	if( mFade > 120 ){
 		if( mLoading->mFinished ){
 			//ロードがおーけーなら次シーンへ
 			parent->moveTo( ParentGame::NEXT_PLAY );

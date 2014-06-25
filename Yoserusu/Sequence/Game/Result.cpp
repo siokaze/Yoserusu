@@ -4,6 +4,7 @@
 #include "Mashiro/Input/Mouse.h"
 #include "Sequence/Game/Result.h"
 #include "Sequence/Game/ParentGame.h"
+#include "Mashiro\Math\Vector2.h"
 
 #include "Util/SoundManager.h"
 #include "Util/ModelLoader.h"
@@ -16,9 +17,9 @@ namespace Game{
 
 namespace {
 	Vector3 gAlbumPos[ 3 ] = {
-		Vector3( 100, 100, 20 ),
-		Vector3( 300, 300, -20 ),
-		Vector3( 100, 300, 10 ),
+		Vector3( 0, 100, 20 ),
+		Vector3( 100, 500, -20 ),
+		Vector3( 600, 300, 10 ),
 	};
 }
 
@@ -65,6 +66,7 @@ void Result::update( ParentGame* parent ){
 	//ƒAƒ‹ƒoƒ€ŽO–‡‚ð•`‰æ
 	for( int i = 0; i < mAlbum.size(); ++i ){
 		mAlbum[ i ]->setTexture( parent->getAlbum( i ) );
+		mAlbum[ i ]->setScale( 0.5f,0.5f);
 		mAlbum[ i ]->setRotate( gAlbumPos[ i ].z );
 		mAlbum[ i ]->draw( gAlbumPos[ i ].x, gAlbumPos[ i ].y );
 	}

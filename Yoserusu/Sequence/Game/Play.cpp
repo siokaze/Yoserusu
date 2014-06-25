@@ -62,9 +62,11 @@ void Play::update( ParentGame* parent ){
 		mFirst = true;
 	}
 
+#if 0
 	if( Mashiro::Input::Manager::instance().mouse().isTriggered( Input::Mouse::BUTTON_LEFT ) ){
 		parent->moveTo( ParentGame::NEXT_RESULT );
 	}
+#endif
 
 	//ƒQ[ƒ€XV
 	state->update();

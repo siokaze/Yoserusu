@@ -95,8 +95,7 @@ void State::draw(){
 	//タイマーが10ごとに回って写真を取るわけですよ
 	if( timer->time() % 10 == 0 && !timer->IsEnd() ){
 		Sequence::Game::ParentGame::albumSave( Mashiro::Kinect::Manager().colorTexture() );
-	}
-	
+	}	
 }
 	
 

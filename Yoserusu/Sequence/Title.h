@@ -55,6 +55,9 @@ private:
 	Difference mDiff;
 	SceneMode mMode;
 	int mDepth;
+
+	TextureObj mBallTex01;
+	TextureObj mBallTex10;
 };
 
 } //namespace Sequence

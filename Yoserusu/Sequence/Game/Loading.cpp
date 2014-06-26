@@ -28,6 +28,7 @@ void LoadingThread::operator()(){
 Loading::Loading() : mLoading( 0 ), mFirst( false ), mFade( 0.f ){
 	mBlack = std::unique_ptr< SpriteUtil >( NEW SpriteUtil() );
 	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/load.png" ) );
+	mLoadTex = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/loading.png" ) );
 }
 
 Loading::~Loading(){
@@ -42,7 +43,7 @@ void Loading::update( ParentGame* parent ){
 		mFirst = true;
 	}
 
-	float fade = Math::sin( mFade / 30 ) / 2 + 0.5;
+	float fade = Math::sin( mFade ) / 2 + 0.5;
 
 	//”wŒi•`‰æ
 	mBlack->setColor( 0.0, 0.0, 0.0 );
@@ -50,11 +51,12 @@ void Loading::update( ParentGame* parent ){
 	mBlack->drawRectangle( 0, 0, 1024, 800 );
 
 	mBackGraound->draw( 0, 0 );
+	mLoadTex->draw(580,670);
 
-	mFade = mFade + 1;
+	mFade = mFade + 0.5;
 
 
-	if( mFade > 120 ){
+	if( mFade > 280 ){
 		if( mLoading->mFinished ){
 			//ƒ[ƒh‚ª‚¨[‚¯[‚È‚çŽŸƒV[ƒ“‚Ö
 			parent->moveTo( ParentGame::NEXT_PLAY );

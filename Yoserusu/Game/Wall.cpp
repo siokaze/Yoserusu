@@ -136,7 +136,7 @@ void Wall::DelWall(int color,Ball* ball)
 
 	if(color != rand&& ball->IsMode() == Release)
 	{
-		camera->actSet(ML::ACTION_TYPE::HEAD_BANGING);
+		camera->actSet(ML::ACTION_TYPE::HEAD_BANGING,35);
 		mWallState = WALL_FALSE;
 		SoundManager::instance()->playSe(SoundManager::SE_FALSE);
 	}

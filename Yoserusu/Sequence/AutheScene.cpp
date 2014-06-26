@@ -129,7 +129,7 @@ void AutheScene::autheDraw(){
 
 void AutheScene::autheUpdate( Parent* parent ){
 
-	float angle =  -11 + Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HEAD );
+	float angle =  -15 + Mashiro::Kinect::Manager::instance().depthSkeleton( Mashiro::Kinect::SKELETON_INDEX_HEAD );
 	
 	Sprite::instance().setTrance(1);
 

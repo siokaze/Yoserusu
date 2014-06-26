@@ -5,6 +5,7 @@
 #include "Game/ArmLeft.h"
 #include "Game/ArmRight.h"
 #include "Mashiro/Graphics/Bitmap.h"
+#include "Util/Sprite.h"
 
 #include <memory>
 
@@ -34,6 +35,8 @@ private:
 	std::unique_ptr< ArmRight > rArm;
 	std::unique_ptr< LockOn > mLockOn;
 	std::unique_ptr< Explanation > mExplanation;
+	std::unique_ptr< SpriteUtil > mBackgraound;
+	bool isShot;
 };
 
 #endif

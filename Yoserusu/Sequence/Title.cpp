@@ -68,10 +68,8 @@ void Title::titledraw(){
 
 	mBall->setPosition(mBallPos);
 	mBall->setColor(Vector3(1, 1, 1));
-
 	mBall->setTexture(mBallTex01);
 	mBall->setTexture(mBallTex10,1);
-
 	mBall->draw( CocTrans::TYPE_BALL );
 	
 	static float startAlpha = 0.0;

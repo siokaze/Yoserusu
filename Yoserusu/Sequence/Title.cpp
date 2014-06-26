@@ -66,7 +66,6 @@ void Title::titledraw(){
 
 	mBall->setPosition(mBallPos);
 	mBall->setColor(Vector3(1, 1, 1));
-	mBall->setAngle( Vector3() );
 	mBall->draw( CocTrans::TYPE_BALL );
 	
 	static float startAlpha = 0.0;
@@ -87,7 +86,7 @@ void Title::titleUpdate( Parent* parent ){
 	int lHandDepth = kinect.depthSkeleton(Mashiro::Kinect::SKELETON_INDEX_HAND_LEFT);
 
 	mDiff.mAngY+=2.0f;
-	mBall->setAngle(Vector3(0.0f,mDiff.mAngY,-23.4f));
+	mBall->setAngle(Vector3(0.0f,mDiff.mAngY,-23));
 
 	mDiff.mPosY += 0.2f/100;
 

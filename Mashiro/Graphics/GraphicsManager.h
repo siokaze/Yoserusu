@@ -78,6 +78,9 @@ public:
 	//ガリングモード
 	void setCullMode( CullMode );
 
+	//viewMatrix取り出し
+	Mashiro::Math::Matrix viewMatrix() const;
+
 	void enableAlphaBlend( bool );
 	void enableDepthWriteMask( bool );
 	void enableDepthTest( bool );

@@ -163,5 +163,9 @@ void Manager::setBackBufferTarget()
 	gManagerImpl->setBackBufferTarget();
 }
 
+Matrix Manager::viewMatrix() const {
+	return gManagerImpl->mBasicConstantBuffer.mView;
+}
+
 }
 }

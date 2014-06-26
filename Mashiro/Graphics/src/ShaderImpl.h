@@ -197,7 +197,7 @@ public:
 		}
 	}
 	bool lock( void** cb ){
-		if( SUCCEEDED( mConstantBuffer->Map( D3D10_MAP_WRITE_DISCARD, NULL, cb ) ) ){
+		if( mConstantBuffer->Map( D3D10_MAP_WRITE_DISCARD, NULL, cb ) == S_OK ){
 			return true;
 		}
 		return false;

@@ -53,8 +53,7 @@ mMoveSceneFlag( MODE_WAIT ){
 	Vector4 v( -0.57f, -0.57f, -0.57f, 1.f );
 	v = mat.translation( v, inv );
 
-	m.setLight( Vector4( 0.7f,0.7f, 0.6f, 2.f ) );
-	m.setEyePos( v );
+	//m.setEyePos( v );
 
 	m.setViewMatrix(view);
 	m.setWorldMatrix(world);

@@ -44,7 +44,7 @@ void ModelObj::draw( CocTrans::Type type ){
 	tranposeWorld.setTranspose( world );
 
 	CocTrans::ConstantBuffer* cb = NULL;
-	if( mCocTrans->lock( (void**)&cb ) ){
+	if( mCocTrans->mShader.lock( (void**)&cb ) ){
 		cb->mDrawType.x = static_cast< int >( type );
 		Matrix invW;
 		invW.setInverse( tranposeWorld );
@@ -52,7 +52,9 @@ void ModelObj::draw( CocTrans::Type type ){
 		mCocTrans->unLock();
 	}
 	cb = nullptr;
-	mCocTrans->worldLight( world );	
+	mCocTrans->worldLight( world );		
+	mCocTrans->worldViewEye( world );
+
 	mCocTrans->setShader();
 
 	mModel.draw( world );

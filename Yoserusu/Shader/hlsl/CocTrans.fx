@@ -91,7 +91,7 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 	Out.tex = In.tex;
 
 	//頂点別で確保
-	Out.X = In.pos.xyz;
+	Out.X = world_pos;
 
 	//viewを頂点で確保
 	Out.vpos = view_pos.xyz;
@@ -116,7 +116,7 @@ VS_OUTPUT vs_coc( VS_INPUT In ){
 	Out.light = normalize(Out.light);
 	Out.light = normalize(light);
 
-	float eye = world_pos.xyz - mEye.xyz;
+	float3 eye = world_pos.xyz - mEye.xyz;
 	Out.eye.x = dot( eye, tangent ); 
 	Out.eye.y = dot( eye, binormal );
 	Out.eye.z = dot( eye, In.nor );
@@ -139,14 +139,14 @@ float4 ps_coc( VS_OUTPUT In ) : SV_Target {
 	float NL = dot( N, L );
 	float LH = dot( L, H );
 
-	const float m = 0.45f;//粗さ
+	const float m = 0.35f;//粗さ
 	float NH2 = NH*NH;
 	float D = exp( -( 1 - NH2 ) / ( NH2 * m * m ) ) / ( 4 * m * m * NH2 * NH2 );
 
 	float G = min( 1, min( 2 * NH * NV / VH, 2 * NH * NL / VH ) );
 
 	//フレネル
-	float n = 20.0f;//屈折率
+	float n = 100.0f;//屈折率
 	float g = sqrt( n * n + LH * LH - 1 );
 	float gpc = g + LH;
 	float gnc = g - LH;

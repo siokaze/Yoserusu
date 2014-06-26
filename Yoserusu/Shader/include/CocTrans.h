@@ -26,7 +26,7 @@ public:
 		Matrix mWorldInv;
 	};
 public:
-	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ){
+	CocTrans() : mLight( -0.577f, -0.577f, -0.577f, 0.f ), mEye( -0.57f, -0.57f, -0.57f, 1.f ){
 		create();
 	}
 
@@ -54,10 +54,17 @@ public:
 	void worldLight( const Matrix& world ){
 		Matrix mat = world;
 		mat.setInverse( mat );
-		Vector4 v = mat.translation( Vector4( -1.f, -1.f, 0.8f, 1.f ), mat );
+		Vector4 v = mat.translation( Vector4( 0.f, 100.f, 50.0f, 1.f ), mat );
 		v.normalize();
 		v.w = -0.7f;// ŠÂ‹«Œõ‚Ì‹­‚³
 		mLight = v;
+	}
+
+	void worldViewEye( const Matrix& wp ){
+		Matrix mat = wp;
+		mat.setInverse( mat );
+		mEye = mat.translation( Vector4( 0.0f, 0.f, -50.f, 1.f ), mat );
+		mEye.normalize();
 	}
 
 	bool lock( void** cb ){
@@ -77,12 +84,14 @@ public:
 
 	void setShader(){
 		Graphics::Manager::instance().setShader( mShader );
+		Graphics::Manager::instance().setEyePos( mEye );
 		Graphics::Manager::instance().setLight( mLight );
+		Graphics::Manager::instance().setDiffuse( Vector4( 1.0 ) );
 	}
 
-private:
+public:
 	Mashiro::Math::Vector4 mLight;
-
+	Mashiro::Math::Vector4 mEye;
 	Mashiro::Graphics::Shader mShader;
 
 };

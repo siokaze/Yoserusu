@@ -37,6 +37,7 @@ private:
 
 	std::unique_ptr< SpriteUtil > mBlack;
 	std::unique_ptr< SpriteUtil > mBackGraound;
+	std::unique_ptr< SpriteUtil > mLoadTex;
 };
 
 } //namespace Game

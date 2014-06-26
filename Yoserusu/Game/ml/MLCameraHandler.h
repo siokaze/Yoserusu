@@ -34,6 +34,10 @@ public:
 
 	//	実行するアクションの指定
 	void actSet(ACTION_TYPE act);
+	
+	//	実行するアクションの指定
+	void actSet(ACTION_TYPE act,int timer);
+
 	//	実行中のアクションの停止
 	void actRemove();
 
@@ -45,6 +49,8 @@ public:
 private:
 	MLCameraAction_Base* m_updateTarget;	//	現在更新すべきアクション
 	MLCameraAction_Base** m_actArray;		//	更新候補のアクション
+	
+	float timer;
 };
 }
 #endif

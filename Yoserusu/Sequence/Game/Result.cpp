@@ -17,9 +17,9 @@ namespace Game{
 
 namespace {
 	Vector3 gAlbumPos[ 3 ] = {
-		Vector3( 0, 100, 20 ),
-		Vector3( 100, 500, -20 ),
-		Vector3( 600, 300, 10 ),
+		Vector3( -100, 300, 20 ),
+		Vector3( 200, 500, -30 ),
+		Vector3( 720, 300, 30 ),
 	};
 }
 

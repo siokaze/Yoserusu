@@ -27,7 +27,7 @@ template< typename T > std::unique_ptr< T > factory(){
 	return std::unique_ptr< T >( NEW T );
 }
 
-State::State(){
+State::State():isShot(false){
 	//オブジェクトの生成
 	ball = factory< Ball >();
 	wall = factory< Wall >();
@@ -36,6 +36,7 @@ State::State(){
 	timer = factory< Timer >();
 	mLockOn = factory< LockOn >();
 	mExplanation = factory< Explanation >();
+	mBackgraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 }
 
 void State::init(){
@@ -75,6 +76,9 @@ void State::update(){
 }
 
 void State::draw(){
+	mBackgraound->setTransparency(1);
+	mBackgraound->draw( 0, 0 );
+
 	//ボール描画
 	ball->Draw( timer->draw_10(), timer->draw_01());
 	//腕描画
@@ -93,9 +97,12 @@ void State::draw(){
 	}
 
 	//タイマーが10ごとに回って写真を取るわけですよ
-	if( timer->time() % 10 == 0 && !timer->IsEnd() ){
-		Sequence::Game::ParentGame::albumSave( Mashiro::Kinect::Manager().colorTexture() );
-	}	
+	if( timer->time() % 10 == 0){
+		if(!isShot){
+			isShot = true;
+			Sequence::Game::ParentGame::albumSave( Mashiro::Kinect::Manager().colorTexture() );
+		}
+	}else if(!timer->IsEnd()) isShot = false;
 }
 	
 

@@ -14,7 +14,7 @@ using namespace Mashiro::Math;
 class Arm{
 public:
 	Arm(){ 
-		mCubeTex.create( "res/image/bg.dds" );
+		mCubeTex.create( "res/image/bg2.dds" );
 		keep = false; depth = 0;}
 	virtual ~Arm(){}
 

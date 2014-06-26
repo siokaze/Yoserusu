@@ -38,6 +38,8 @@ mBallPos( 0, 10, 0 ){
 	mTitleBitmap = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/titile.png" ) );
 	mBackGraound = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/bg.png" ) );
 	mStart = std::unique_ptr< SpriteUtil >( NEW SpriteUtil( "res/image/start4.png" ) );
+	mBallTex01.create("res/image/ball1_0.png");
+	mBallTex10.create("res/image/ball10_3.png");
 	mLockOn = factory< LockOn >();
 	mBallPos =Vector3(0,10,15);	
 }
@@ -66,6 +68,10 @@ void Title::titledraw(){
 
 	mBall->setPosition(mBallPos);
 	mBall->setColor(Vector3(1, 1, 1));
+
+	mBall->setTexture(mBallTex01);
+	mBall->setTexture(mBallTex10,1);
+
 	mBall->draw( CocTrans::TYPE_BALL );
 	
 	static float startAlpha = 0.0;

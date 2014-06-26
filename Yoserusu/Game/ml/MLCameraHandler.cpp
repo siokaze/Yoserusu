@@ -11,6 +11,7 @@ using namespace Mashiro::Math;
 namespace 
 {
 	static Math::Matrix camMat;
+	static Math::Matrix initMat;
 }
 
 MLCameraHandler::MLCameraHandler()
@@ -42,6 +43,12 @@ void MLCameraHandler::Update()
 		camMat *= (*m_updateTarget->Update());
 		//	行列のセット
 		Graphics::Manager::instance().setViewMatrix(camMat);
+
+		if(timer> 0){
+			timer -= 0.5f;
+			return;
+		}
+		actRemove();
 	}
 }
 
@@ -56,18 +63,33 @@ void MLCameraHandler::actSet(ACTION_TYPE act)
 	}
 }
 
+void MLCameraHandler::actSet(ACTION_TYPE act,int timer)
+{
+	//	中身が無いときにのみターゲットをセットするか
+	//	どうかは検討中
+	if(!m_updateTarget)
+	{
+		m_updateTarget = m_actArray[act];
+		m_updateTarget->Initialize();
+		this->timer = timer;
+	}
+}
+
 void MLCameraHandler::actRemove()
 {
 	if(m_updateTarget)
 	{
 		m_updateTarget->Initialize();
 		m_updateTarget = nullptr;
+		camMat = initMat;
+		Graphics::Manager::instance().setViewMatrix(camMat);
 	}
 }
 
 void MLCameraHandler::setCameraMatrix(Math::Matrix* pCamMat)
 {
 	camMat = (*pCamMat);
+	initMat = (*pCamMat);
 }
 
 Math::Matrix& MLCameraHandler::getCameraMatrix()
